@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../store/actions/authentication";
 
@@ -10,23 +10,33 @@ function LoginForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(login(email, password));
-  }
+  };
 
-  const updateEmail = e => {
-    setEmail(e.target.value)
-  }
+  const updateEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-  const updatePassword = e => {
+  const updatePassword = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Email" value={email} onChange={updateEmail} />
-        <input type="password" placeholder="Password" value={password} onChange={updatePassword} />
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={updateEmail}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={updatePassword}
+        />
+        <button type="submit">Login</button>
       </form>
-      <button type="submit">Login</button>
     </div>
   );
 }

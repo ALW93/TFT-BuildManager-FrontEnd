@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { loadToken } from "./store/actions/authentication";
@@ -23,18 +23,13 @@ const App = ({ needLogin, loadToken }) => {
     <BrowserRouter>
       <Switch>
         <ProtectedRoute
-          path="/"
+          path="/login"
           exact={true}
           needLogin={needLogin}
           component={LoginPage}
         />
-        <PrivateRoute
-          path="/"
-          exact={true}
-          needLogin={needLogin}
-          component={HomePage}
-        />
-        <Redirect to="/" />
+        <PrivateRoute path="/Home" needLogin={needLogin} component={HomePage} />
+        <Redirect to="/Home" />
       </Switch>
     </BrowserRouter>
   );

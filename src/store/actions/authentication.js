@@ -12,10 +12,13 @@ export const loadToken = () => async (dispatch) => {
   if (token) {
     console.log("dispatching token!");
     dispatch(setToken(token));
+  } else {
+    console.log("no token found!");
   }
 };
 
 export const login = (email, password) => async (dispatch) => {
+  console.log("hitting login!");
   const response = await fetch(`${TFT_BASE}/users/session`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -26,6 +29,8 @@ export const login = (email, password) => async (dispatch) => {
     const { token } = await response.json();
     window.localStorage.setItem(TOKEN_KEY, token);
     dispatch(setToken(token));
+  } else {
+    console.log("failed fetch!");
   }
 };
 
@@ -33,10 +38,11 @@ export const logout = () => async (dispatch, getState) => {
   const {
     authentication: { token },
   } = getState();
+  console.log(getState());
 
   const response = await fetch(`${TFT_BASE}/users/session`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
   if (response.ok) {
