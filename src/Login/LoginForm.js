@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route } from "react-router-dom";
 import { login, demoLogin } from "../store/actions/authentication";
 import SignUpForm from "./SignUpForm";
+import { showForm, hideForm } from "../store/actions/utility";
 
 const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    login(email, password);
   };
 
   const handleDemoLogin = async (e) => {
-    dispatch(demoLogin());
+    demoLogin();
   };
 
   const updateEmail = (e) => {
@@ -25,8 +25,6 @@ const LoginForm = () => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
-  const showForm;
 
   return (
     <div>
@@ -48,9 +46,26 @@ const LoginForm = () => {
       <button onClick={handleDemoLogin}>Demo</button>
       <div>
         No Account? Sign Up <button onClick={showForm}>Here!</button>
+        <div>
+          <SignUpForm hidden={formVisible} />
+        </div>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+const LoginFormContainer = () => {
+  const formVisible = useSelector(state => state.utility.formVisible);
+  const dispatch = useDispatch();
+  return (
+    <LoginForm
+      formVisible={formVisible}
+      showForm={() => dispatch(showForm())}
+      hideForm={() => dispatch(hideForm())}
+      login={() => dispatch(login(email, password))}
+      demoLogin={() => dispatch(demoLogin())}
+    />
+  )
+}
+
+export default LoginFormContainer;
