@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Redirect, Switch } from "react-router-dom";
-import { useSelector, useDipatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import { loadToken } from "./store/actions/authentication"
-import { ProtectedRoute, PrivateRoute } from "./Utility/route-utility"
+import { loadToken } from "./store/actions/authentication";
+import { ProtectedRoute, PrivateRoute } from "./Utility/route-utility";
 import LoginPage from "./Login/LoginPage";
-import HomePage from "./HomePage/HomePage";
+import HomePage from "./Home/HomePage";
 
 const App = ({ needLogin, loadToken }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     setLoaded(true);
-    loadToken()
+    loadToken();
   }, []);
 
   if (!loaded) {
@@ -22,8 +22,18 @@ const App = ({ needLogin, loadToken }) => {
   return (
     <BrowserRouter>
       <Switch>
-        <ProtectedRoute path="/" exact={true} needLogin={needLogin} component={LoginPage} />
-        <PrivateRoute path="/" exact={true} needLogin={needLogin} component={HomePage} />
+        <ProtectedRoute
+          path="/"
+          exact={true}
+          needLogin={needLogin}
+          component={LoginPage}
+        />
+        <PrivateRoute
+          path="/"
+          exact={true}
+          needLogin={needLogin}
+          component={HomePage}
+        />
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
@@ -33,7 +43,7 @@ const App = ({ needLogin, loadToken }) => {
 const AppContainer = () => {
   const needLogin = useSelector((state) => !state.authentication.token);
   const dispatch = useDispatch();
-  return <App needLogin={needLogin} loadToken={() => dispatch(loadToken())} />
-}
+  return <App needLogin={needLogin} loadToken={() => dispatch(loadToken())} />;
+};
 
 export default AppContainer;

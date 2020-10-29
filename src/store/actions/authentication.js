@@ -1,4 +1,4 @@
-const { TFT_BASE } = require("../../../config")
+const { TFT_BASE } = require("../../config");
 
 export const TOKEN_KEY = "tft-buildmanager/authentication/token";
 export const SET_TOKEN = "tft-buildmanager/authentication/SET_TOKEN";
@@ -12,7 +12,7 @@ export const loadToken = () => async (dispatch) => {
   if (token) {
     dispatch(setToken(token));
   }
-}
+};
 
 export const login = (email, password) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/session`, {
@@ -26,10 +26,12 @@ export const login = (email, password) => async (dispatch) => {
     window.localStorage.setItem(TOKEN_KEY, token);
     dispatch(setToken(token));
   }
-}
+};
 
 export const logout = () => async (dispatch, getState) => {
-  const { authentication: { token } } = getState();
+  const {
+    authentication: { token },
+  } = getState();
 
   const response = await fetch(`${TFT_BASE}/users/session`, {
     method: "DELETE",
@@ -38,6 +40,6 @@ export const logout = () => async (dispatch, getState) => {
 
   if (response.ok) {
     window.localStorage.removeItem(TOKEN_KEY);
-    dispatch(removeToken())
+    dispatch(removeToken());
   }
-}
+};
