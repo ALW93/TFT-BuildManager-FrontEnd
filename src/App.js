@@ -32,7 +32,8 @@ const App = ({ needLogin, loadToken }) => {
 
 const AppContainer = () => {
   const needLogin = useSelector((state) => !state.authentication.token);
-  const dispatch = useDipatch();
+  const dispatch = useDispatch();
+  return <App needLogin={needLogin} loadToken={() => dispatch(loadToken())} />
 }
 
 export default AppContainer;
