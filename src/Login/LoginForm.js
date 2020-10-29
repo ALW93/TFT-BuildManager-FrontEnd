@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Route } from "react-router-dom";
 import { login, demoLogin } from "../store/actions/authentication";
 import SignUpForm from "./SignUpForm";
 
@@ -14,8 +15,8 @@ function LoginForm(props) {
   };
 
   const handleDemoLogin = async (e) => {
-    dispatch(demoLogin())
-  }
+    dispatch(demoLogin());
+  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -42,10 +43,8 @@ function LoginForm(props) {
         />
         <button type="submit">Login</button>
       </form>
-      <button onSubmit={handleDemoLogin}>Demo</button>
-      <div>
-        No Account? Sign Up <Route to="/signUp" component={SignUpForm} />
-      </div>
+      <button onClick={handleDemoLogin}>Demo</button>
+      <div>No Account? Sign Up Today!</div>
     </div>
   );
 }

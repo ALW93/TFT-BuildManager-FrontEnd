@@ -10,17 +10,14 @@ export const setToken = (token) => ({ type: SET_TOKEN, token });
 export const loadToken = () => async (dispatch) => {
   const token = window.localStorage.getItem(TOKEN_KEY);
   if (token) {
-    console.log("dispatching token!");
     dispatch(setToken(token));
-  } else {
-    console.log("no token found!");
   }
 };
 
-export const demoLogin = () => {
+export const demoLogin = () => async (dispatch) => {
   window.localStorage.setItem(TOKEN_KEY, demoToken);
-  dispatch(setToken(token))
-}
+  dispatch(setToken(demoToken));
+};
 
 export const login = (email, password) => async (dispatch) => {
   console.log("hitting login!");
