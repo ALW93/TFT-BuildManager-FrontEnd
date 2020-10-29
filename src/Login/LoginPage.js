@@ -1,7 +1,7 @@
 import React from "react";
-import LoginForm from "./LoginForm";
 
-// Presentational Component
-const LoginPage = () => <LoginForm />;
+function LoginPage(props) {
+  return <div>Please Login</div>;
+}
 
 export default LoginPage;
