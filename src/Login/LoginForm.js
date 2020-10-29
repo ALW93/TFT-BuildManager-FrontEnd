@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../store/actions/authentication";
+import { login, demoLogin } from "../store/actions/authentication";
+import SignUpForm from "./SignUpForm";
 
 function LoginForm(props) {
-  const [email, setEmail] = useState("editor@gmail.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
+
+  const handleDemoLogin = async (e) => {
+    dispatch(demoLogin())
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -37,6 +42,10 @@ function LoginForm(props) {
         />
         <button type="submit">Login</button>
       </form>
+      <button onSubmit={handleDemoLogin}>Demo</button>
+      <div>
+        No Account? Sign Up <Route to="/signUp" component={SignUpForm} />
+      </div>
     </div>
   );
 }

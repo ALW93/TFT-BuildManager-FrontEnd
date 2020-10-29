@@ -1,4 +1,4 @@
-const { TFT_BASE } = require("../../config");
+const { TFT_BASE, demoToken } = require("../../config");
 
 export const TOKEN_KEY = "tft-buildmanager/authentication/token";
 export const SET_TOKEN = "tft-buildmanager/authentication/SET_TOKEN";
@@ -16,6 +16,11 @@ export const loadToken = () => async (dispatch) => {
     console.log("no token found!");
   }
 };
+
+export const demoLogin = () => {
+  window.localStorage.setItem(TOKEN_KEY, demoToken);
+  dispatch(setToken(token))
+}
 
 export const login = (email, password) => async (dispatch) => {
   console.log("hitting login!");

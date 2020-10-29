@@ -1,3 +1,5 @@
-import React from "react";
+import React from 'react';
 
-let keep = 1;
+const SignUpForm = (props) => { }
+
+export default SignUpForm;
