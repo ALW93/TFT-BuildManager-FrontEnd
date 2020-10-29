@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { login, demoLogin } from "../store/actions/authentication";
 import SignUpForm from "./SignUpForm";
 
-function LoginForm(props) {
+const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const dispatch = useDispatch();
@@ -26,6 +26,8 @@ function LoginForm(props) {
     setPassword(e.target.value);
   };
 
+  const showForm;
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -44,9 +46,11 @@ function LoginForm(props) {
         <button type="submit">Login</button>
       </form>
       <button onClick={handleDemoLogin}>Demo</button>
-      <div>No Account? Sign Up Today!</div>
+      <div>
+        No Account? Sign Up <button onClick={showForm}>Here!</button>
+      </div>
     </div>
   );
-}
+};
 
 export default LoginForm;
