@@ -32,8 +32,12 @@ form {
 }
 
 .signup {
-  width: 25%;
-  height: auto;
+  height: 550px;
+  width: 500px;
+  position: fixed;
+  z-index: 1;
+  margin-top: -550px;
+  background-color: white;
   border: 1px solid black;
 }
 
@@ -50,7 +54,5 @@ h1 {
 
 .signup form {
   width: 200px;
-  display: flex;
   padding: 10px;
-  flex-direction: column;
 }

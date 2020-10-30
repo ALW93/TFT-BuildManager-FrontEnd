@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { hideForm } from "../store/actions/utility";
 import { createUser } from "../store/actions/authentication";
+import { TextField, Button } from "@material-ui/core";
 
 const SignUpForm = ({ hideForm, createUser }) => {
   const [email, setEmail] = useState("");
@@ -31,30 +32,40 @@ const SignUpForm = ({ hideForm, createUser }) => {
   };
 
   return (
-    <div className="signup">
+    <>
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
           type="text"
           placeholder="Username"
           value={username}
           onChange={updateUsername}
         />
-        <input
+        <TextField
           type="text"
           placeholder="Email"
           value={email}
           onChange={updateEmail}
         />
-        <input
+        <TextField
           type="text"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="Submit">Sign Up</button>
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: "#9f6c35",
+            color: "white",
+            marginTop: "15px",
+          }}
+          type="Submit"
+        >
+          Sign Up
+        </Button>
       </form>
-      <button onClick={hideForm}>Go back to Log In</button>
-    </div>
+      <Button onClick={hideForm}>return to login</Button>
+    </>
   );
 };
 

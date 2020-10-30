@@ -4,6 +4,7 @@ import { login, demoLogin } from "../store/actions/authentication";
 import SignUpForm from "./SignUpForm";
 import { showForm, hideForm } from "../store/actions/utility";
 import { TextField, Button } from "@material-ui/core";
+import Grow from "@material-ui/core/Grow";
 
 const LoginForm = ({ formVisible, showForm, hideForm, login, demoLogin }) => {
   const [email, setEmail] = useState("");
@@ -75,7 +76,13 @@ const LoginForm = ({ formVisible, showForm, hideForm, login, demoLogin }) => {
           Here!
         </Button>
       </div>
-      {formVisible ? <SignUpForm /> : null}
+      {formVisible ? (
+        <Grow in={true}>
+          <div className="signup">
+            <SignUpForm />
+          </div>
+        </Grow>
+      ) : null}
     </div>
   );
 };
