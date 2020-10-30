@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, demoLogin } from "../store/actions/authentication";
 import SignUpForm from "./SignUpForm";
 import { showForm, hideForm } from "../store/actions/utility";
+import { TextField, Button } from "@material-ui/core";
 
 const LoginForm = ({ formVisible, showForm, hideForm, login, demoLogin }) => {
   const [email, setEmail] = useState("");
@@ -27,28 +28,52 @@ const LoginForm = ({ formVisible, showForm, hideForm, login, demoLogin }) => {
 
   return (
     <div>
-      <h2>log in to continue</h2>
+      <h3>Log in to continue</h3>
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
           type="text"
           placeholder="Email"
           value={email}
           onChange={updateEmail}
         />
-        <input
+        <TextField
           type="password"
           placeholder="Password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
+        <Button
+          variant="contained"
+          className="loginButton"
+          style={{ backgroundColor: "#9f6c35", color: "white", margin: "8px" }}
+          type="submit"
+        >
+          Login
+        </Button>
       </form>
-      <button onClick={handleDemoLogin}>Demo</button>
-      <div>
+      <Button
+        variant="contained"
+        className="loginButton"
+        style={{ backgroundColor: "#9f6c35", color: "white" }}
+        onClick={handleDemoLogin}
+      >
+        Demo
+      </Button>
+      <div className="signUpPrompt">
         No Account? Sign Up
-        <button onClick={showForm} hidden={formVisible}>
+        <Button
+          onClick={showForm}
+          hidden={formVisible}
+          style={{
+            height: "20px",
+            width: "30px",
+            color: "#9f6c35",
+            marginLeft: "-8px",
+            marginTop: "0.9px",
+          }}
+        >
           Here!
-        </button>
+        </Button>
       </div>
       {formVisible ? <SignUpForm /> : null}
     </div>

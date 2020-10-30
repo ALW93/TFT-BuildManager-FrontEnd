@@ -2,11 +2,33 @@ main {
   display: flex;
 }
 
+.loginButton {
+  width: 70px;
+  height: 28px;
+  background-color: #9f6c35;
+  color: white;
+}
+
+.loginForm__div {
+  text-align: -webkit-center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  align-items: center;
+}
+
 .logIn__right {
-  text-align: center;
+  text-align-last: center;
   position: fixed;
-  margin-left: 1000px;
-  margin-top: 200px;
+  margin-left: 50%;
+  margin-top: 150px;
+}
+
+.signUpPrompt {
+  margin: 10px;
 }
 
 .signup {
@@ -21,7 +43,7 @@ img {
 
 h1 {
   margin-top: -10px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   color: #9f6c35;
   font-weight: 700;
 }
