@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/actions/authentication";
 import { hideForm } from "../store/actions/utility";
+import { createUser } from "../store/actions/user";
 
-const SignUpForm = ({ hideForm, login }) => {
+const SignUpForm = ({ hideForm, createUser }) => {
   const [email, setEmail] = useState();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log("hello!");
-    } catch (e) {
-      console.error(e);
-    }
-    login(email, password);
+    const newUser = { email, username, password };
+    await createUser(newUser);
   };
 
   const updateUsername = (e) => {
@@ -65,7 +62,7 @@ const SignUpFormContainer = () => {
     <SignUpForm
       formVisible={formVisible}
       hideForm={() => dispatch(hideForm())}
-      login={() => dispatch(login())}
+      createUser={() => dispatch(createUser())}
     />
   );
 };

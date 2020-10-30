@@ -20,7 +20,6 @@ export const demoLogin = () => async (dispatch) => {
 };
 
 export const login = (email, password) => async (dispatch) => {
-  console.log("hitting login!");
   const response = await fetch(`${TFT_BASE}/users/session`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -32,7 +31,7 @@ export const login = (email, password) => async (dispatch) => {
     window.localStorage.setItem(TOKEN_KEY, token);
     dispatch(setToken(token));
   } else {
-    console.log("failed fetch!");
+    console.log("Login Failed!");
   }
 };
 
