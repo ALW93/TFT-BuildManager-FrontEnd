@@ -30,8 +30,6 @@ export const login = (email, password) => async (dispatch) => {
     const { token } = await response.json();
     window.localStorage.setItem(TOKEN_KEY, token);
     dispatch(setToken(token));
-  } else {
-    console.log("Login Failed!");
   }
 };
 
@@ -39,7 +37,6 @@ export const logout = () => async (dispatch, getState) => {
   const {
     authentication: { token },
   } = getState();
-  console.log(getState());
 
   const response = await fetch(`${TFT_BASE}/users/session`, {
     method: "DELETE",
@@ -49,5 +46,19 @@ export const logout = () => async (dispatch, getState) => {
   if (response.ok) {
     window.localStorage.removeItem(TOKEN_KEY);
     dispatch(removeToken());
+  }
+};
+
+export const createUser = (user) => async (dispatch) => {
+  const response = await fetch(`${TFT_BASE}/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+
+  if (response.ok) {
+    const { token } = await response.json();
+    window.localStorage.setItem(TOKEN_KEY, token);
+    dispatch(setToken(token));
   }
 };

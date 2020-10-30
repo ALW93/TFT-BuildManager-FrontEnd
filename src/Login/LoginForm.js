@@ -5,8 +5,8 @@ import SignUpForm from "./SignUpForm";
 import { showForm, hideForm } from "../store/actions/utility";
 
 const LoginForm = ({ formVisible, showForm, hideForm, login, demoLogin }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ const LoginFormContainer = () => {
       formVisible={formVisible}
       showForm={() => dispatch(showForm())}
       hideForm={() => dispatch(hideForm())}
-      login={() => dispatch(login())}
+      login={(email, password) => dispatch(login(email, password))}
       demoLogin={() => dispatch(demoLogin())}
     />
   );
