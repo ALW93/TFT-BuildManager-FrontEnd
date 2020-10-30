@@ -3,9 +3,10 @@ import { BrowserRouter, Redirect, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loadToken } from "./store/actions/authentication";
 import { ProtectedRoute, PrivateRoute } from "./Utility/route-utility";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import LoginPage from "./Login/LoginPage";
 import HomePage from "./Home/HomePage";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Routes from "./Utility/routes";
 
 const theme = createMuiTheme({
   typography: {
@@ -34,8 +35,14 @@ const App = ({ needLogin, loadToken }) => {
           needLogin={needLogin}
           component={LoginPage}
         />
-        <PrivateRoute path="/Home" needLogin={needLogin} component={HomePage} />
-        <Redirect to="/Home" />
+        <PrivateRoute
+          exact
+          path="/"
+          needLogin={needLogin}
+          component={HomePage}
+        />
+        <Routes />
+        <Redirect to="/login" />
       </Switch>
     </BrowserRouter>
   );

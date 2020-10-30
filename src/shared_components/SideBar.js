@@ -14,11 +14,6 @@ const images = [
 const SideBar = () => {
   const [img, setImg] = useState("Mystic sidebar");
 
-  const getRandom = () => {
-    const random = (max, min) => Math.floor(Math.random() * (max - min) + min);
-    return images[random(images.length, 0)];
-  };
-
   let count = 0;
 
   const counter = () => {
