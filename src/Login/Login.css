@@ -2,6 +2,13 @@ main {
   display: flex;
 }
 
+.logIn__right {
+  text-align: center;
+  position: fixed;
+  margin-left: 1000px;
+  margin-top: 200px;
+}
+
 .signup {
   width: 25%;
   height: auto;
@@ -10,6 +17,13 @@ main {
 
 img {
   width: 500px;
+}
+
+h1 {
+  margin-top: -10px;
+  margin-bottom: 60px;
+  color: #9f6c35;
+  font-weight: 700;
 }
 
 .signup form {

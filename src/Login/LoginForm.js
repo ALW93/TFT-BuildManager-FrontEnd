@@ -27,7 +27,7 @@ const LoginForm = ({ formVisible, showForm, hideForm, login, demoLogin }) => {
 
   return (
     <div>
-      <h1>log in to continue</h1>
+      <h2>log in to continue</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
