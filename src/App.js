@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { loadToken } from "./store/actions/authentication";
