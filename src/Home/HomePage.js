@@ -1,14 +1,11 @@
 import React from "react";
 import "./Home.css";
-import LogoutButton from "./LogoutButton";
-import mockup from "../Page-Mockups/Homepage.png";
-import NavBar from "../shared_components/NavBar";
+import TopBar from "../shared_components/TopBar";
 
 function HomePage() {
   return (
     <div>
-      <NavBar />
-      <LogoutButton />
+      <TopBar />
     </div>
   );
 }

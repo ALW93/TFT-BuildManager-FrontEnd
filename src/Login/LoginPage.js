@@ -11,7 +11,9 @@ function LoginPage(props) {
       <div className="logIn__right">
         <img src={Logo} />
         <h1>build manager</h1>
-        <LoginForm />
+        <div className="loginForm__div">
+          <LoginForm />
+        </div>
       </div>
     </main>
   );
