@@ -1,0 +1,34 @@
+.sidebar {
+  position: static;
+  margin: -10px;
+  height: 100vh;
+  width: 68vw;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transition: all 3s ease-in-out;
+  border-right: 1px solid black;
+}
+
+.Elderwood {
+  background-image: url("../Assets/Traits/Elderwood.jpg");
+}
+
+.Mage {
+  background-image: url("../Assets/Traits/Mage.jpg");
+}
+
+.Keeper {
+  background-image: url("../Assets/Traits/Keeper.jpg");
+}
+
+.Hunter {
+  background-image: url("../Assets/Traits/Hunter.jpg");
+}
+
+.Adept {
+  background-image: url("../Assets/Traits/Adept.jpg");
+}
+
+.Spirit {
+  background-image: url("../Assets/Traits/Spirit.jpg");
+}

@@ -1,17 +1,18 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 import "./Login.css";
-import mockup from "../Page-Mockups/Login-Splash.png";
+import Logo from "../Assets/Logo.png";
+import SideBar from "../shared_components/SideBar";
 
 function LoginPage(props) {
   return (
-    <>
-      <h1>Please Log In!</h1>
-      <LoginForm />
+    <main>
+      <SideBar />
       <div>
-        <img src={mockup} />
+        <img src={Logo} />
+        <LoginForm />
       </div>
-    </>
+    </main>
   );
 }
 
