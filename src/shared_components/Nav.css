@@ -1,16 +1,17 @@
 .sidebar {
   position: static;
   margin: -10px;
-  height: 100vh;
-  width: 68vw;
+  height: 101vh;
+  width: 30vw;
   background-size: 100%;
+  background-position: center top;
   background-repeat: no-repeat;
   transition: all 3s ease-in-out;
   border-right: 1px solid black;
 }
 
-.Elderwood {
-  background-image: url("../Assets/Traits/Elderwood.jpg");
+.Ninja {
+  background-image: url("../Assets/Traits/Ninja.jpg");
 }
 
 .Mage {
@@ -21,8 +22,8 @@
   background-image: url("../Assets/Traits/Keeper.jpg");
 }
 
-.Hunter {
-  background-image: url("../Assets/Traits/Hunter.jpg");
+.Mystic {
+  background-image: url("../Assets/Traits/Mystic.jpg");
 }
 
 .Adept {
@@ -31,4 +32,16 @@
 
 .Spirit {
   background-image: url("../Assets/Traits/Spirit.jpg");
+}
+
+.Dazzler {
+  background-image: url("../Assets/Traits/Dazzler.jpg");
+}
+
+.Divine {
+  background-image: url("../Assets/Traits/Divine.jpg");
+}
+
+.Default {
+  background-image: url("../Assets/Traits/Default.jpg");
 }

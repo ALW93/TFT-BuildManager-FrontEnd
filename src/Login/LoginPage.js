@@ -8,8 +8,9 @@ function LoginPage(props) {
   return (
     <main>
       <SideBar />
-      <div>
+      <div className="logIn__right">
         <img src={Logo} />
+        <h1>build manager</h1>
         <LoginForm />
       </div>
     </main>
