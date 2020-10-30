@@ -1,7 +1,15 @@
+main {
+  display: flex;
+}
+
 .signup {
   width: 25%;
   height: auto;
   border: 1px solid black;
+}
+
+img {
+  width: 500px;
 }
 
 .signup form {
