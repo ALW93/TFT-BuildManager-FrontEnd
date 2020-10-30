@@ -1,0 +1,12 @@
+.signup {
+  width: 25%;
+  height: auto;
+  border: 1px solid black;
+}
+
+.signup form {
+  width: 200px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+}

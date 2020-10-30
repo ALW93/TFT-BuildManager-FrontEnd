@@ -1,5 +1,6 @@
 import React from "react";
 import LoginForm from "./LoginForm";
+import "./Login.css";
 import mockup from "../Page-Mockups/Login-Splash.png";
 
 function LoginPage(props) {
