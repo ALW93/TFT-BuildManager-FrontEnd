@@ -11,6 +11,8 @@ const moreTitle = "View All Meta Builds";
 const HomePage = () => {
   const [data, setData] = useState([]);
 
+  console.log(data);
+
   useEffect(() => {
     async function fetchData() {
       const buildArray = await getEditorBuilds();
