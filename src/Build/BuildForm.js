@@ -6,6 +6,7 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { champions } from "../Utility/game-data";
 import { ICON_IMG_API } from "../config";
 import "./BuildForm.css";
+import { createBuild } from "../Fetches/fetches";
 
 const BuildForm = (props) => {
   const [title, setTitle] = useState("");
@@ -18,26 +19,31 @@ const BuildForm = (props) => {
   const authorId = window.localStorage.getItem("USER_ID");
 
   const generateTeamData = () => {
-    return team.map((charId) => {
-      const data = { championId: charId };
-      carry.forEach((carryId) => {
-        if (team.includes(carryId)) {
-          data.carry = true;
-        }
-      });
-      return data;
+    const initial = team.map((charId) => {
+      return { championId: charId, carry: false };
     });
+
+    initial.forEach((char) => {
+      if (carry.includes(char.championId)) {
+        char.carry = true;
+      }
+    });
+
+    return initial;
   };
 
-  const build = {
-    title: title,
-    playstyle: playstyle,
-    notes: notes,
-    authorId: authorId,
-    team: generateTeamData(),
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newBuild = {
+      title: title,
+      playstyle: playstyle,
+      notes: notes,
+      authorId: authorId,
+      team: await generateTeamData(),
+    };
+    console.log(newBuild);
+    await createBuild(newBuild);
   };
-
-  const handleSubmit = "";
 
   const updateItem = (cb) => (e) => {
     return cb(e.target.value);
@@ -103,7 +109,7 @@ const BuildForm = (props) => {
 
   return (
     <div className="formContainer">
-      <form>
+      <form onSubmit={handleSubmit}>
         <TextField
           type="text"
           placeholder="Title"
@@ -149,7 +155,7 @@ const BuildForm = (props) => {
         </div>
         <div>{JSON.stringify(carry)}</div>
         <TextareaAutosize value={notes} onChange={updateItem(setNotes)} />
-        <Button>Create Build</Button>
+        <Button type="submit">Create Build</Button>
       </form>
     </div>
   );

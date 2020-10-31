@@ -1,4 +1,7 @@
 import { TFT_BASE, IMG_API } from "../config";
+import { Redirect } from "react-router-dom";
+import React from "react";
+import { TOKEN_KEY } from "../store/actions/authentication";
 
 //#region General Use Functions
 const getRandom = (max, min) => Math.floor(Math.random() * (max - min) + min);
@@ -12,7 +15,7 @@ export const getAuthorName = async (id) => {
 };
 //#endregion
 
-// #region Card Data Functions
+//#region Card Data Functions
 export const getEditorBuilds = async () => {
   const response = await fetch(`${TFT_BASE}/users/1/builds`);
   if (response.ok) {
@@ -36,3 +39,25 @@ export const parseCardData = async (object) => {
 };
 
 // #endregion
+
+//#region Create Build Functions
+
+export const createBuild = async (data) => {
+  const token = window.localStorage.getItem(TOKEN_KEY);
+
+  const response = await fetch(`${TFT_BASE}/builds`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    console.log("Build Posted!");
+    return <Redirect to="/" />;
+  } else {
+    console.log("something went wrong");
+  }
+};

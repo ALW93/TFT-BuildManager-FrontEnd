@@ -1,5 +1,6 @@
 import React from "react";
 import BuildContainer from "../Build/Build-Container";
+import BuildView from "../Build/BuildView";
 import { Route } from "react-router-dom";
 import Profile from "../Profile/ProfilePage";
 
@@ -9,7 +10,7 @@ const Routes = () => (
       exact
       path="/build/id/:id"
       type="view"
-      component={() => <BuildContainer type={"view"} />}
+      component={() => <BuildView />}
     />
     <Route
       path="/build-create"
