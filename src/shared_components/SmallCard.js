@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -40,9 +41,11 @@ export default function SmallCard(props) {
           {props.title}
         </Typography>
         <h5>creator: {props.author}</h5>
-        <Button size="small" color="primary">
-          View Build
-        </Button>
+        <Link to={`/build/id/${props.id}`}>
+          <Button size="small" color="primary">
+            View Build
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );

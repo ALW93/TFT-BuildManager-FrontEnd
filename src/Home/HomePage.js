@@ -30,7 +30,13 @@ const HomePage = () => {
 
   const Cards = () => {
     return data.map((e) => (
-      <SmallCard key={e.id} image={e.image} title={e.title} author={e.author} />
+      <SmallCard
+        key={e.id}
+        id={e.id}
+        image={e.image}
+        title={e.title}
+        author={e.author}
+      />
     ));
   };
 

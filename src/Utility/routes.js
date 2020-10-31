@@ -7,7 +7,7 @@ const Routes = () => (
   <>
     <Route
       exact
-      path="/build"
+      path="/build/id/:id"
       type="view"
       component={() => <BuildContainer type={"view"} />}
     />
