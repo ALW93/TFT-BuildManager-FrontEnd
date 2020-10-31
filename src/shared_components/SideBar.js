@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Nav.css";
+import "./Sidebar.css";
 
 const images = [
   "Mystic",
