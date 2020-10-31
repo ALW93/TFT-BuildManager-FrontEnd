@@ -15,6 +15,30 @@ const BuildForm = (props) => {
   const [names, setNames] = useState([]);
   const [carry, setCarry] = useState([]);
 
+  const authorId = window.localStorage.getItem("USER_ID");
+
+  const generateTeamData = () => {
+    return team.map((charId) => {
+      const data = { championId: charId };
+      carry.forEach((carryId) => {
+        if (team.includes(carryId)) {
+          data.carry = true;
+        }
+      });
+      return data;
+    });
+  };
+
+  const build = {
+    title: title,
+    playstyle: playstyle,
+    notes: notes,
+    authorId: authorId,
+    team: generateTeamData(),
+  };
+
+  console.log(build);
+
   const handleSubmit = "";
 
   const updateItem = (cb) => (e) => {
@@ -23,7 +47,8 @@ const BuildForm = (props) => {
 
   const handleCarrySelect = (e) => {
     const carryId = e.target.getAttribute("id");
-    if (carry.includes(carryId)) {
+    const id = parseInt(carryId);
+    if (carry.includes(id)) {
       removeCarry(carryId);
     } else {
       addCarry(carryId);
@@ -31,11 +56,13 @@ const BuildForm = (props) => {
   };
 
   const addCarry = (carryId) => {
-    setCarry((carry) => [...carry, carryId]);
+    const id = parseInt(carryId);
+    setCarry((carry) => [...carry, id]);
   };
 
   const removeCarry = (carryId) => {
-    const index = carry.indexOf(carryId);
+    const id = parseInt(carryId);
+    const index = carry.indexOf(id);
     const newState = [...carry.slice(0, index), ...carry.slice(index + 1)];
     setCarry(newState);
   };
