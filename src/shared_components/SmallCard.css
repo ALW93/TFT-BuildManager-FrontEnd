@@ -1,3 +1,11 @@
 .MuiCardContent-root {
   padding-bottom: -16px;
 }
+
+img {
+  opacity: 0.88;
+}
+
+img:hover {
+  opacity: 1;
+}

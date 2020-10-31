@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import TopBar from "../shared_components/TopBar";
 import SmallCard from "../shared_components/SmallCard";
-import { TFT_BASE } from "../config";
+import { TFT_BASE, IMG_API } from "../config";
 import { getEditorBuilds, parseCardData } from "../Fetches/fetches";
 
-const image = "https://tft-buildmanager.s3.amazonaws.com/Adept.jpg";
+const image = `${IMG_API}/Azir.jpg`;
 const moreTitle = "View All Meta Builds";
 
 const HomePage = () => {
@@ -30,7 +30,7 @@ const HomePage = () => {
 
   const Cards = () => {
     return data.map((e) => (
-      <SmallCard key={e.id} image={image} title={e.title} author={e.author} />
+      <SmallCard key={e.id} image={e.image} title={e.title} author={e.author} />
     ));
   };
 
