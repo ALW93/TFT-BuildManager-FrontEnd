@@ -18,22 +18,30 @@ const useStyles = makeStyles({
 export default function SmallCard(props) {
   const classes = useStyles();
 
+  if (props.utility) {
+    return (
+      <Card className={classes.root}>
+        <CardMedia component="img" height="350" image={props.image} />
+        <CardContent align="center">
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.title}
+          </Typography>
+          <Button size="small" color="primary">
+            click here
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className={classes.root}>
-      <CardMedia
-        component="img"
-        alt="Contemplative Reptile"
-        height="350"
-        image={props.image}
-        title="Contemplative Reptile"
-      />
+      <CardMedia component="img" height="350" image={props.image} />
       <CardContent align="center">
         <Typography gutterBottom variant="h5" component="h2">
           {props.title}
         </Typography>
-        <Typography gutterBottom variant="h8" component="h5">
-          Created By: {props.author}
-        </Typography>
+        <h5>creator: {props.author}</h5>
         <Button size="small" color="primary">
           View Build
         </Button>
