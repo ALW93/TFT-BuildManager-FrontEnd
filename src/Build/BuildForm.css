@@ -1,0 +1,40 @@
+.champion-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . ."
+    ". . . . . . . .";
+}
+
+.team-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . . ."
+    ". . . . .";
+}
+
+.champIcon {
+  height: 60px;
+  width: 60px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+form {
+  margin: auto;
+}
+
+.selected {
+  border-radius: 2px solid yellow;
+}
