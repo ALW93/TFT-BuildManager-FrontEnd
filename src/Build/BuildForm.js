@@ -12,18 +12,48 @@ const BuildForm = (props) => {
   const [playstyle, setPlaystyle] = useState("Standard");
   const [notes, setNotes] = useState("");
   const [team, setTeam] = useState([]);
+  const [names, setNames] = useState([]);
   const [items, setItems] = useState({});
 
   const handleSubmit = "";
-
-  const updateTeam = () => {};
 
   const updateItem = (cb) => (e) => {
     return cb(e.target.value);
   };
 
+  const addChampion = (championId, championName) => {
+    setTeam((team) => [...team, championId]);
+    setNames((names) => [...names, championName]);
+  };
+
+  const removeChampion = (championId, championName) => {
+    const removeId = team.indexOf(championId);
+    const newTeam = [...team.slice(0, removeId), ...team.slice(removeId + 1)];
+    setTeam(newTeam);
+    const champId = names.indexOf(championName);
+    const newNames = [...names.slice(0, champId), ...names.slice(champId + 1)];
+    setNames(newNames);
+  };
+
   const handleSelect = (e) => {
-    console.log(e.target.getAttribute("id"));
+    const championId = parseInt(e.target.getAttribute("id"));
+    const championName = e.target.getAttribute("name");
+
+    if (team.length === 10 || names.length === 10) {
+      if (team.includes(championId)) {
+        removeChampion(championId, championName);
+        e.target.classList.remove("selected");
+      } else {
+        return;
+      }
+    }
+    if (team.includes(championId)) {
+      removeChampion(championId, championName);
+      e.target.classList.remove("selected");
+    } else {
+      addChampion(championId, championName);
+      e.target.classList.add("selected");
+    }
   };
 
   return (
@@ -48,6 +78,7 @@ const BuildForm = (props) => {
         <div className="champion-grid-container">
           {Object.keys(champions).map((c) => (
             <img
+              name={c}
               key={champions[c]}
               id={champions[c]}
               className="champIcon"
@@ -56,7 +87,15 @@ const BuildForm = (props) => {
             />
           ))}
         </div>
-        <div className="team-grid-container">{JSON.stringify(team)}</div>
+        <h1>Team</h1>
+        <div className="team-grid-container">
+          {names.map((n) => (
+            <div key={n}>
+              <img className="selectedIcon" src={`${ICON_IMG_API}${n}.png`} />
+              <h5>{n}</h5>
+            </div>
+          ))}
+        </div>
         <TextareaAutosize value={notes} onChange={updateItem(setNotes)} />
         <Button>Create Build</Button>
       </form>
