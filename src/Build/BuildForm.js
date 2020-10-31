@@ -13,7 +13,7 @@ const BuildForm = (props) => {
   const [notes, setNotes] = useState("");
   const [team, setTeam] = useState([]);
   const [names, setNames] = useState([]);
-  const [items, setItems] = useState({});
+  const [carry, setCarry] = useState([]);
 
   const handleSubmit = "";
 
@@ -21,18 +21,23 @@ const BuildForm = (props) => {
     return cb(e.target.value);
   };
 
-  const addChampion = (championId, championName) => {
-    setTeam((team) => [...team, championId]);
-    setNames((names) => [...names, championName]);
+  const handleCarrySelect = (e) => {
+    const carryId = e.target.getAttribute("id");
+    if (carry.includes(carryId)) {
+      removeCarry(carryId);
+    } else {
+      addCarry(carryId);
+    }
   };
 
-  const removeChampion = (championId, championName) => {
-    const removeId = team.indexOf(championId);
-    const newTeam = [...team.slice(0, removeId), ...team.slice(removeId + 1)];
-    setTeam(newTeam);
-    const champId = names.indexOf(championName);
-    const newNames = [...names.slice(0, champId), ...names.slice(champId + 1)];
-    setNames(newNames);
+  const addCarry = (carryId) => {
+    setCarry((carry) => [...carry, carryId]);
+  };
+
+  const removeCarry = (carryId) => {
+    const index = carry.indexOf(carryId);
+    const newState = [...carry.slice(0, index), ...carry.slice(index + 1)];
+    setCarry(newState);
   };
 
   const handleSelect = (e) => {
@@ -40,6 +45,7 @@ const BuildForm = (props) => {
     const championName = e.target.getAttribute("name");
 
     if (team.length === 10 || names.length === 10) {
+      window.alert("Please Remove a Champion First!");
       if (team.includes(championId)) {
         removeChampion(championId, championName);
         e.target.classList.remove("selected");
@@ -54,6 +60,20 @@ const BuildForm = (props) => {
       addChampion(championId, championName);
       e.target.classList.add("selected");
     }
+  };
+
+  const addChampion = (championId, championName) => {
+    setTeam((team) => [...team, championId]);
+    setNames((names) => [...names, championName]);
+  };
+
+  const removeChampion = (championId, championName) => {
+    const removeId = team.indexOf(championId);
+    const newTeam = [...team.slice(0, removeId), ...team.slice(removeId + 1)];
+    setTeam(newTeam);
+    const champId = names.indexOf(championName);
+    const newNames = [...names.slice(0, champId), ...names.slice(champId + 1)];
+    setNames(newNames);
   };
 
   return (
@@ -88,14 +108,21 @@ const BuildForm = (props) => {
           ))}
         </div>
         <h1>Team</h1>
+        <h3>Select Carries</h3>
         <div className="team-grid-container">
           {names.map((n) => (
             <div key={n}>
-              <img className="selectedIcon" src={`${ICON_IMG_API}${n}.png`} />
+              <img
+                onClick={handleCarrySelect}
+                id={champions[n]}
+                className="selectedIcon"
+                src={`${ICON_IMG_API}${n}.png`}
+              />
               <h5>{n}</h5>
             </div>
           ))}
         </div>
+        <div>{JSON.stringify(carry)}</div>
         <TextareaAutosize value={notes} onChange={updateItem(setNotes)} />
         <Button>Create Build</Button>
       </form>
