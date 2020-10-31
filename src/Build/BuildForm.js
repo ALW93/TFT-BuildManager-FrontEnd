@@ -37,8 +37,6 @@ const BuildForm = (props) => {
     team: generateTeamData(),
   };
 
-  console.log(build);
-
   const handleSubmit = "";
 
   const updateItem = (cb) => (e) => {

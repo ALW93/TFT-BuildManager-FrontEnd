@@ -1,5 +1,18 @@
 import { TFT_BASE, IMG_API } from "../config";
 
+//#region General Use Functions
+const getRandom = (max, min) => Math.floor(Math.random() * (max - min) + min);
+
+export const getAuthorName = async (id) => {
+  const res = await fetch(`${TFT_BASE}/users/${id}`);
+  if (res.ok) {
+    const author = await res.json();
+    return author.username;
+  }
+};
+//#endregion
+
+// #region Card Data Functions
 export const getEditorBuilds = async () => {
   const response = await fetch(`${TFT_BASE}/users/1/builds`);
   if (response.ok) {
@@ -8,8 +21,6 @@ export const getEditorBuilds = async () => {
     return buildArray;
   }
 };
-
-const getRandom = (max, min) => Math.floor(Math.random() * (max - min) + min);
 
 export const parseCardData = async (object) => {
   const { authorId, id, team, title } = object;
@@ -24,10 +35,4 @@ export const parseCardData = async (object) => {
   };
 };
 
-export const getAuthorName = async (id) => {
-  const res = await fetch(`${TFT_BASE}/users/${id}`);
-  if (res.ok) {
-    const author = await res.json();
-    return author.username;
-  }
-};
+// #endregion
