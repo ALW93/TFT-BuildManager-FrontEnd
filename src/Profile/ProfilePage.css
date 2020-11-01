@@ -1,8 +1,11 @@
 .profile__image {
-  length: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
 }
 
 .fuwa {
   background-image: url("../Assets/fuwa.png");
+  background-size: 200px;
+  border-radius: 100px;
+  border: 1px solid white;
 }

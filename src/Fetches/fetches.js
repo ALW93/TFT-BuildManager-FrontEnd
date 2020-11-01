@@ -16,6 +16,15 @@ export const getAuthorName = async (id) => {
 //#endregion
 
 //#region Card Data Functions
+export const getAllbuilds = async () => {
+  const response = await fetch(`${TFT_BASE}/builds`);
+  if (response.ok) {
+    const allBuilds = await response.json();
+    const idArray = allBuilds.map((b) => b.id);
+    return idArray;
+  }
+};
+
 export const getEditorBuilds = async () => {
   const response = await fetch(`${TFT_BASE}/users/1/builds`);
   if (response.ok) {
@@ -94,7 +103,7 @@ export const getUserBuilds = async (id) => {
   const response = await fetch(`${TFT_BASE}/users/${id}/builds`);
   if (response.ok) {
     const buildIds = await response.json();
-    return buildIds;
+    return buildIds.builds;
   }
 };
 

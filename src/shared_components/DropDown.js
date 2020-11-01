@@ -60,6 +60,8 @@ export default function DropDown() {
     setAnchorEl(null);
   };
 
+  const myId = window.localStorage.getItem("USER_ID");
+
   return (
     <div>
       <IconButton onClick={handleClick} color="inherit">
@@ -72,7 +74,7 @@ export default function DropDown() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <NavLink to="/profile/:id">
+        <NavLink to={`/profile/${myId}`}>
           <StyledMenuItem>
             <ListItemIcon>
               <AccountCircleOutlinedIcon fontSize="small" />
@@ -90,7 +92,7 @@ export default function DropDown() {
           </StyledMenuItem>
         </NavLink>
 
-        <NavLink to="/profile/:id/bookmarks">
+        <NavLink to={`/profile/${myId}/bookmarks`}>
           <StyledMenuItem>
             <ListItemIcon>
               <BookOutlinedIcon fontSize="small" />

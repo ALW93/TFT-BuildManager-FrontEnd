@@ -4,12 +4,16 @@ import {
   getUserInfo,
   getUserBuilds,
   getUserBookmarks,
+  parseCardData,
+  getBuildById,
 } from "../Fetches/fetches";
-import { useScrollTrigger } from "@material-ui/core";
+import "./ProfilePage.css";
+import { SettingsSystemDaydreamTwoTone } from "@material-ui/icons";
+import SmallCard from "../shared_components/SmallCard";
 
 const ProfilePage = ({ match }) => {
   const [user, setUser] = useState({});
-  const [builds, setBuilds] = useState([]);
+  const [buildData, setBuildData] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
   const [profpic, setProfpic] = useState("fuwa");
 
@@ -19,19 +23,23 @@ const ProfilePage = ({ match }) => {
       const userInfo = await getUserInfo(userId);
       setUser(userInfo);
 
-      const builds = await getUserBuilds(userId);
-      setBuilds(builds);
-
       const bookmarks = await getUserBookmarks(userId);
       setBookmarks(bookmarks);
+
+      const buildArray = await getUserBuilds(userId);
+
+      buildArray.builds.forEach(async (b, i) => {
+        const response = await getBuildById(b);
+        const info = await parseCardData(response.build);
+        setBuildData((buildData) => [...buildData, info]);
+      });
     };
     getInfo();
-  });
+  }, []);
 
   return (
     <div>
       <TopBar />
-      <h1>Profile Page</h1>
       <div className="profile__topbar">
         <div className={`profile__image ${profpic}`}></div>
         <div className="profile__details">
@@ -40,11 +48,25 @@ const ProfilePage = ({ match }) => {
           <div className="profile__statbar">
             <h5>{user.followers ? user.followers.length : 0} Followers</h5>
             <h5>{user.following ? user.following.length : 0} Following</h5>
-            <h5>10 Bookmarks</h5>
+            <h5>{bookmarks.length ? bookmarks.length : 0} Bookmarks</h5>
           </div>
         </div>
       </div>
-      <h1>My Published Builds</h1>
+      <h1>{user.username}'s Published Builds</h1>
+      {buildData.length > 0 ? (
+        buildData.map((e) => (
+          <SmallCard
+            key={e.id}
+            id={e.id}
+            image={e.image}
+            title={e.title}
+            author={e.author}
+            authorId={e.authorId}
+          />
+        ))
+      ) : (
+        <div>No Publications Yet!</div>
+      )}
     </div>
   );
 };
