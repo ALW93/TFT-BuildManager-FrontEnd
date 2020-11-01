@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 
 const images = [
-  "Mystic",
-  "Keeper",
-  "Adept",
-  "Spirit",
-  "Dazzler",
-  "Default",
-  "Ninja",
+  "Ahri",
+  "Azir",
+  "Teemo",
+  "Lux",
+  "LeeSin",
+  "Kindred",
+  "Yone",
+  "Akali",
 ];
 
 const SideBar = () => {

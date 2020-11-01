@@ -41,7 +41,6 @@ export const parseCardData = async (object) => {
 // #endregion
 
 //#region Create Build Functions
-
 export const createBuild = async (data) => {
   const token = window.localStorage.getItem(TOKEN_KEY);
 
@@ -59,5 +58,24 @@ export const createBuild = async (data) => {
     return <Redirect to="/" />;
   } else {
     console.log("something went wrong");
+  }
+};
+//#endregion
+
+//#region
+// Include Build Info with Team & Items
+export const getBuildById = async (id) => {
+  const response = await fetch(`${TFT_BASE}/builds/id/${id}`);
+  if (response.ok) {
+    const buildData = response.json();
+    return buildData;
+  }
+};
+
+export const getBuildComments = async (id) => {
+  const response = await fetch(`${TFT_BASE}/builds/${id}/comments`);
+  if (response.ok) {
+    const comments = await response.json();
+    return comments;
   }
 };
