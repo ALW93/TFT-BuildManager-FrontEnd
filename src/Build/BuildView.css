@@ -10,12 +10,35 @@
     ". . .";
 }
 
+.championIcon {
+  height: 60px;
+  width: 60px;
+  opacity: 1;
+  border-radius: 50px;
+  border: 1px solid black;
+  margin: 2px;
+}
+
 .character_card {
   width: 150px;
   height: 300px;
   border-radius: 5px;
   border: 1px solid black;
   margin: 0.5px;
+}
+
+.character_card-carry {
+  width: 150px;
+  height: 300px;
+  border-radius: 5px;
+  border: 5px solid rgb(16, 255, 255);
+  margin: 0.5px;
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .buildContainer__teamDisplay {
