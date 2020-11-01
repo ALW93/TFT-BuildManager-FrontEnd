@@ -6,6 +6,7 @@ import {
 } from "../Fetches/fetches";
 import "./BuildView.css";
 import { IMG_API } from "../config";
+import { Grow } from "@material-ui/core";
 
 const BuildView = ({ match }) => {
   const [data, setData] = useState({});
@@ -45,19 +46,21 @@ const BuildView = ({ match }) => {
             <h2>Votes: {data.votes}</h2>
           </div>
           <div className="buildContainer__topBar--info">
-            <h1>Title: {data.title}</h1>
+            <h1>{data.title}</h1>
             <h3>Created By: {author}</h3>
             <h4>Play Style: {data.playstyle}</h4>
           </div>
         </div>
         <div className="buildContainer__teamDisplay">
           {team.map((e) => (
-            <div>
+            <div className="character_container">
               <h3>{e.name}</h3>
-              <img
-                className="character_card"
-                src={`${IMG_API}/${e.name}.jpg`}
-              />
+              <Grow in={true}>
+                <img
+                  className="character_card"
+                  src={`${IMG_API}/${e.name}.jpg`}
+                />
+              </Grow>
             </div>
           ))}
         </div>
