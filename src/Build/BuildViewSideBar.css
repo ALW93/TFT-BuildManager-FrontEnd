@@ -1,0 +1,11 @@
+.view-sidebar {
+  position: static;
+  margin: -10px;
+  height: 101vh;
+  width: 28vw;
+  background-size: 28vw 101vh;
+  background-color: black;
+  background-repeat: no-repeat;
+  transition: all 3s ease-in-out;
+  border-right: 1px solid black;
+}
