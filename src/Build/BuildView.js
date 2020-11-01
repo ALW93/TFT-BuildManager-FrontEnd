@@ -9,6 +9,7 @@ import { IMG_API, ICON_IMG_API } from "../config";
 import { Grow } from "@material-ui/core";
 import MenuBar from "../shared_components/MenuBar";
 import Author from "./Author";
+import { Link } from "react-router-dom";
 
 const BuildView = ({ match }) => {
   const [data, setData] = useState({});
@@ -49,7 +50,11 @@ const BuildView = ({ match }) => {
           </div>
           <div className="buildContainer__topBar--info">
             <h1>{data.title}</h1>
-            <h3>Created By: {author}</h3>
+            <h3>
+              Created By:
+              <Link to={`/profile/${data.authorId}`}>{author}</Link>
+            </h3>
+
             <h4>Play Style: {data.playstyle}</h4>
           </div>
         </div>
@@ -111,7 +116,9 @@ const BuildView = ({ match }) => {
                 <div className="comment__container">
                   <div className="comment__body">{c.message}</div>
                   <div className="comment__author">
-                    <Author id={c.userId} />
+                    <Link to={`/profile/${c.userId}`}>
+                      <Author id={c.userId} />
+                    </Link>
                     on {c.createdAt}
                   </div>
                 </div>

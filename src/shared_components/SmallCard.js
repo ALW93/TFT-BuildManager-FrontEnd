@@ -42,7 +42,12 @@ export default function SmallCard(props) {
         <Typography gutterBottom variant="h5" component="h2">
           {props.title}
         </Typography>
-        <h5>creator: {props.author}</h5>
+
+        <h5>
+          creator:{" "}
+          <Link to={`/profile/${props.authorId}`}>{props.author} </Link>
+        </h5>
+
         <Link to={`/build/id/${props.id}`}>
           <Button size="small" color="primary">
             View Build

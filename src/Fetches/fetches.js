@@ -32,6 +32,7 @@ export const parseCardData = async (object) => {
 
   return {
     author: name,
+    authorId: authorId,
     title: title,
     id: id,
     image: `${IMG_API}/${image}.jpg`,
@@ -77,5 +78,30 @@ export const getBuildComments = async (id) => {
   if (response.ok) {
     const comments = await response.json();
     return comments;
+  }
+};
+
+//#region User Info
+export const getUserInfo = async (id) => {
+  const response = await fetch(`${TFT_BASE}/users/${id}`);
+  if (response.ok) {
+    const user = await response.json();
+    return user;
+  }
+};
+
+export const getUserBuilds = async (id) => {
+  const response = await fetch(`${TFT_BASE}/users/${id}/builds`);
+  if (response.ok) {
+    const buildIds = await response.json();
+    return buildIds;
+  }
+};
+
+export const getUserBookmarks = async (id) => {
+  const response = await fetch(`${TFT_BASE}/users/${id}/bookmarks`);
+  if (response.ok) {
+    const bookmarks = await response.json();
+    return bookmarks;
   }
 };

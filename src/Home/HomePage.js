@@ -34,6 +34,7 @@ const HomePage = () => {
         image={e.image}
         title={e.title}
         author={e.author}
+        authorId={e.authorId}
       />
     ));
   };

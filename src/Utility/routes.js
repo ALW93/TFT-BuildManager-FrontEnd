@@ -18,15 +18,8 @@ const Routes = () => (
       type="edit"
       component={() => <BuildContainer type={"edit"} />}
     />
-    <Route
-      exact
-      path="/profile/:id"
-      component={() => <Profile type={"other"} />}
-    />
-    <Route
-      path="/profile/:id/bookmarks"
-      component={() => <Profile type={"p.bookmark"} />}
-    />
+    <Route exact path="/profile/:id" component={Profile} />
+    <Route path="/profile/:id/bookmarks" component={Profile} />
   </>
 );
 
