@@ -1,13 +1,22 @@
+.Main__Section {
+  display: flex;
+  max-height: 10px;
+}
+
+.buildContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .buildContainer__teamDisplay {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    ". . ."
-    ". . ."
-    ". . ."
-    ". . .";
+    ". . . ."
+    ". . . ."
+    ". . . .";
 }
 
 .championIcon {
@@ -20,25 +29,19 @@
 }
 
 .character_card {
-  width: 150px;
-  height: 300px;
+  width: 130px;
+  height: 280px;
   border-radius: 5px;
   border: 1px solid black;
   margin: 0.5px;
 }
 
 .character_card-carry {
-  width: 150px;
-  height: 300px;
+  width: 130px;
+  height: 280px;
   border-radius: 5px;
   border: 5px solid rgb(16, 255, 255);
   margin: 0.5px;
-}
-
-@keyframes moveGradient {
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 .buildContainer__teamDisplay {

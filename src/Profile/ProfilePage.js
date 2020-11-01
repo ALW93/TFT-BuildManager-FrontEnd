@@ -28,7 +28,7 @@ const ProfilePage = ({ match }) => {
 
       const buildArray = await getUserBuilds(userId);
 
-      buildArray.builds.forEach(async (b, i) => {
+      buildArray.forEach(async (b, i) => {
         const response = await getBuildById(b);
         const info = await parseCardData(response.build);
         setBuildData((buildData) => [...buildData, info]);
@@ -38,7 +38,7 @@ const ProfilePage = ({ match }) => {
   }, []);
 
   return (
-    <div>
+    <div className="Profile__Container">
       <TopBar />
       <div className="profile__topbar">
         <div className={`profile__image ${profpic}`}></div>
@@ -52,21 +52,25 @@ const ProfilePage = ({ match }) => {
           </div>
         </div>
       </div>
-      <h1>{user.username}'s Published Builds</h1>
-      {buildData.length > 0 ? (
-        buildData.map((e) => (
-          <SmallCard
-            key={e.id}
-            id={e.id}
-            image={e.image}
-            title={e.title}
-            author={e.author}
-            authorId={e.authorId}
-          />
-        ))
-      ) : (
-        <div>No Publications Yet!</div>
-      )}
+      <div className="BuildContainer">
+        <h1>{user.username}'s Published Builds</h1>
+        <div className="build_carousel">
+          {buildData.length > 0 ? (
+            buildData.map((e) => (
+              <SmallCard
+                key={e.id}
+                id={e.id}
+                image={e.image}
+                title={e.title}
+                author={e.author}
+                authorId={e.authorId}
+              />
+            ))
+          ) : (
+            <div>No Publications Yet!</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
