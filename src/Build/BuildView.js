@@ -5,7 +5,7 @@ import {
   getAuthorName,
 } from "../Fetches/fetches";
 import "./BuildView.css";
-import { IMG_API } from "../config";
+import { IMG_API, ICON_IMG_API } from "../config";
 import { Grow } from "@material-ui/core";
 
 const BuildView = ({ match }) => {
@@ -13,6 +13,8 @@ const BuildView = ({ match }) => {
   const [comments, setComments] = useState([]);
   const [author, setAuthor] = useState("");
   const [team, setTeam] = useState([]);
+
+  console.log(data);
 
   useEffect(() => {
     const getInfo = async () => {
@@ -52,20 +54,56 @@ const BuildView = ({ match }) => {
           </div>
         </div>
         <div className="buildContainer__teamDisplay">
-          {team.map((e) => (
-            <div className="character_container">
-              <h3>{e.name}</h3>
-              <Grow in={true}>
-                <img
-                  className="character_card"
-                  src={`${IMG_API}/${e.name}.jpg`}
-                />
-              </Grow>
-            </div>
-          ))}
+          {team.map((e) => {
+            let border = "character_card";
+            if (e.carry === true) {
+              border = "character_card-carry";
+            }
+            return (
+              <div className="character_container" key={e.name}>
+                <h3>{e.name}</h3>
+                <Grow in={true}>
+                  <img className={border} src={`${IMG_API}/${e.name}.jpg`} />
+                </Grow>
+              </div>
+            );
+          })}
         </div>
         <div className="buildContainer__bottomBar">
-          <div className="buildContainer__bottomBar--details"></div>
+          <div className="buildContainer__bottomBar--details">
+            <div className="details__itemization">
+              <h2>Itemization</h2>
+              <div>
+                {team.map((e) => {
+                  if (e.carry === true) {
+                    return (
+                      <div className="carry__container" key={e.name}>
+                        <img
+                          className="championIcon"
+                          src={`${ICON_IMG_API}${e.name}.png`}
+                        />
+                        {data.team.map((c) => {
+                          if (e.name === c.name) {
+                            return (
+                              <ul key={c.name}>
+                                {c.default_equipment.map((item) => {
+                                  return <li key={item.id}>{item.name}</li>;
+                                })}
+                              </ul>
+                            );
+                          }
+                        })}
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+            <div className="details__information">
+              <h2>Information</h2>
+              <div>{data.notes}</div>
+            </div>
+          </div>
           <div className="buildContainer__bottomBar--comments"></div>
         </div>
       </div>
