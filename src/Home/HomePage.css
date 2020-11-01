@@ -15,7 +15,10 @@ body {
   color: #211d32;
 }
 
-.BuildContainer__Meta--Carousel {
-  display: flex;
-  justify-content: space-around;
+.BuildContainer__Carousel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: ". . . . . .";
 }
