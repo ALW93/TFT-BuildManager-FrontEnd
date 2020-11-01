@@ -5,7 +5,7 @@ import {
   getUserBuilds,
   getUserBookmarks,
 } from "../Fetches/fetches";
-import { useScrollTrigger } from "@material-ui/core";
+import "./ProfilePage.css";
 
 const ProfilePage = ({ match }) => {
   const [user, setUser] = useState({});
@@ -26,12 +26,11 @@ const ProfilePage = ({ match }) => {
       setBookmarks(bookmarks);
     };
     getInfo();
-  });
+  }, []);
 
   return (
     <div>
       <TopBar />
-      <h1>Profile Page</h1>
       <div className="profile__topbar">
         <div className={`profile__image ${profpic}`}></div>
         <div className="profile__details">
