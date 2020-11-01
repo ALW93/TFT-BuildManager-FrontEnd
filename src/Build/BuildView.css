@@ -44,3 +44,8 @@
 .buildContainer__teamDisplay {
   text-align: center;
 }
+
+.comment__container {
+  background-color: white;
+  border: 1px solid black;
+}

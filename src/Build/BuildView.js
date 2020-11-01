@@ -8,6 +8,7 @@ import "./BuildView.css";
 import { IMG_API, ICON_IMG_API } from "../config";
 import { Grow } from "@material-ui/core";
 import MenuBar from "../shared_components/MenuBar";
+import Author from "./Author";
 
 const BuildView = ({ match }) => {
   const [data, setData] = useState({});
@@ -15,15 +16,11 @@ const BuildView = ({ match }) => {
   const [author, setAuthor] = useState("");
   const [team, setTeam] = useState([]);
 
-  const [userInfo, setUserInfo] = useState([]);
-
   useEffect(() => {
     const getInfo = async () => {
       const buildId = match.params.id;
       const info = await getBuildById(buildId);
       setData({ ...data, ...info.build });
-      const newComments = await getBuildComments(buildId);
-      setComments([...comments, ...newComments]);
       const author = await getAuthorName(info.build.authorId);
       setAuthor(author);
       const newTeam = info.build.team.map((e) => {
@@ -32,21 +29,11 @@ const BuildView = ({ match }) => {
         return obj;
       });
       setTeam([...team, ...newTeam]);
+      const newComments = await getBuildComments(buildId);
+      setComments([...comments, ...newComments]);
     };
     getInfo();
   }, []);
-
-  useEffect(() => {
-    const commentData = async () => {
-      await comments.map(async (e) => {
-        const obj = { ...e, poster: await getAuthorName(e.userId) };
-        setUserInfo(() => [...userInfo, obj]);
-      });
-    };
-    commentData();
-  });
-
-  console.log(userInfo);
 
   return (
     <>
@@ -124,7 +111,8 @@ const BuildView = ({ match }) => {
                 <div className="comment__container">
                   <div className="comment__body">{c.message}</div>
                   <div className="comment__author">
-                    <h4>{c.userId}</h4> on {c.createdAt}
+                    <Author id={c.userId} />
+                    on {c.createdAt}
                   </div>
                 </div>
               );
