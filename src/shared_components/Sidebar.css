@@ -4,10 +4,15 @@
   height: 101vh;
   width: 30vw;
   background-size: 100%;
+  background-color: black;
   background-position: center top;
   background-repeat: no-repeat;
   transition: all 3s ease-in-out;
   border-right: 1px solid black;
+}
+
+.default {
+  background-image: url("../Assets/Ashe.jpg");
 }
 
 .Ahri {

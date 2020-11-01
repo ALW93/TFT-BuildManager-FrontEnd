@@ -13,7 +13,7 @@ const images = [
 ];
 
 const SideBar = () => {
-  const [img, setImg] = useState("Mystic sidebar");
+  const [img, setImg] = useState("default sidebar");
 
   let count = 0;
 
