@@ -1,10 +1,11 @@
 import React from "react";
 import BuildForm from "./BuildForm";
+import MenuBar from "../shared_components/MenuBar";
 
 const BuildContainer = (props) => {
   return (
     <div>
-      <h1>Build Container Under Construction</h1>
+      <MenuBar />
       <BuildForm />
     </div>
   );

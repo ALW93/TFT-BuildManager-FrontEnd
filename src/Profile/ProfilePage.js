@@ -1,7 +1,13 @@
 import React from "react";
+import TopBar from "../shared_components/TopBar";
 
 const ProfilePage = (props) => {
-  return <h1>Profile Container</h1>;
+  return (
+    <div>
+      <TopBar />
+      <h1>Profile Page</h1>
+    </div>
+  );
 };
 
 export default ProfilePage;
