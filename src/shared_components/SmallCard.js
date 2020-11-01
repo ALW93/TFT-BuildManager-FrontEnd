@@ -1,3 +1,4 @@
+//#region Imports
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import React from "react";
@@ -7,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "./SmallCard.css";
+//#endregion
 
 const useStyles = makeStyles({
   root: {

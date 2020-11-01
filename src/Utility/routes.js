@@ -6,12 +6,7 @@ import Profile from "../Profile/ProfilePage";
 
 const Routes = () => (
   <>
-    <Route
-      exact
-      path="/build/id/:id"
-      type="view"
-      component={() => <BuildView />}
-    />
+    <Route exact path="/build/id/:id" type="view" component={BuildView} />
     <Route
       path="/build-create"
       component={() => <BuildContainer type={"create"} />}
