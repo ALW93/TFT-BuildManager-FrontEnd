@@ -7,6 +7,8 @@ import {
 import "./BuildView.css";
 import { IMG_API, ICON_IMG_API } from "../config";
 import { Grow } from "@material-ui/core";
+import MenuBar from "../shared_components/MenuBar";
+import Author from "./Author";
 
 const BuildView = ({ match }) => {
   const [data, setData] = useState({});
@@ -14,15 +16,11 @@ const BuildView = ({ match }) => {
   const [author, setAuthor] = useState("");
   const [team, setTeam] = useState([]);
 
-  console.log(data);
-
   useEffect(() => {
     const getInfo = async () => {
       const buildId = match.params.id;
       const info = await getBuildById(buildId);
       setData({ ...data, ...info.build });
-      const newComments = await getBuildComments(buildId);
-      setComments([...comments, ...newComments]);
       const author = await getAuthorName(info.build.authorId);
       setAuthor(author);
       const newTeam = info.build.team.map((e) => {
@@ -31,13 +29,15 @@ const BuildView = ({ match }) => {
         return obj;
       });
       setTeam([...team, ...newTeam]);
+      const newComments = await getBuildComments(buildId);
+      setComments([...comments, ...newComments]);
     };
     getInfo();
   }, []);
 
   return (
     <>
-      <h1>Build View</h1>
+      <MenuBar />
       <div className="edit_delete">
         <button>edit</button>
         <button>delete</button>
@@ -104,7 +104,20 @@ const BuildView = ({ match }) => {
               <div>{data.notes}</div>
             </div>
           </div>
-          <div className="buildContainer__bottomBar--comments"></div>
+          <div className="buildContainer__bottomBar--comments">
+            <h2>Comments</h2>
+            {comments.map((c) => {
+              return (
+                <div className="comment__container">
+                  <div className="comment__body">{c.message}</div>
+                  <div className="comment__author">
+                    <Author id={c.userId} />
+                    on {c.createdAt}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

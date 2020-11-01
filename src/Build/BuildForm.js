@@ -121,7 +121,7 @@ const BuildForm = (props) => {
           id={playstyle}
           onChange={updateItem(setPlaystyle)}
         >
-          <MenuItem value={"Standard"}>Standard</MenuItem>
+          <MenuItem value="Standard">Standard</MenuItem>
           <MenuItem value="Slow Roll">Slow Roll</MenuItem>
           <MenuItem value="Re-Roll">Re-Roll</MenuItem>
           <MenuItem value="Fast 8">Fast 8</MenuItem>
