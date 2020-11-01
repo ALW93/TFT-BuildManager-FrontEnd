@@ -39,7 +39,7 @@ const StyledMenuItem = withStyles((theme) => ({
     "&:focus": {
       backgroundColor: theme.palette.primary.main,
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white,
+        color: theme.palette.common.black,
       },
     },
   },
@@ -64,7 +64,7 @@ export default function DropDown() {
 
   return (
     <div>
-      <IconButton onClick={handleClick} color="inherit">
+      <IconButton onClick={handleClick} color="white">
         <MenuIcon />
       </IconButton>
       <StyledMenu

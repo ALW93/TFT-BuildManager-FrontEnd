@@ -5,29 +5,36 @@ import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import { NavLink } from "react-router-dom";
 import DropDown from "./DropDown";
+import "./MenuBar.css";
 
 const MenuBar = () => {
   return (
     <nav>
-      <NavLink to="/">
-        <IconButton color="inherit">
-          <HomeOutlinedIcon />
-        </IconButton>
-      </NavLink>
+      <div style={{ display: "flex" }}>
+        <NavLink to="/" activeClassName="active">
+          <IconButton color="white">
+            <HomeOutlinedIcon />
+          </IconButton>
+        </NavLink>
 
-      <NavLink to="/build-create">
-        <IconButton color="inherit">
-          <CreateOutlinedIcon />
-        </IconButton>
-      </NavLink>
+        <NavLink to="/build-create" activeClassName="active">
+          <IconButton color="white">
+            <CreateOutlinedIcon />
+          </IconButton>
+        </NavLink>
 
-      <NavLink to="/profile/1/bookmarks">
-        <IconButton color="inherit">
-          <BookmarksOutlinedIcon />
-        </IconButton>
-      </NavLink>
+        <NavLink
+          to="/profile/1/bookmarks"
+          className="nav"
+          activeClassName="active"
+        >
+          <IconButton color="white">
+            <BookmarksOutlinedIcon />
+          </IconButton>
+        </NavLink>
 
-      <DropDown />
+        <DropDown />
+      </div>
     </nav>
   );
 };

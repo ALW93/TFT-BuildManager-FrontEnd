@@ -45,7 +45,9 @@ const BuildView = ({ match }) => {
     <>
       <div className="Main__Section">
         <BuildViewSideBar array={team} />
-        <MenuBar />
+        <div className="buildview_menu">
+          <MenuBar />
+        </div>
 
         <div className="buildContainer">
           <div className="buildContainer__topBar">
@@ -75,16 +77,19 @@ const BuildView = ({ match }) => {
           <h1>Team</h1>
           <div className="buildContainer__teamDisplay">
             {team.map((e) => {
-              let border = "character_card";
+              let border = "char_name";
               if (e.carry === true) {
-                border = "character_card-carry";
+                border = "carry_name";
               }
               return (
                 <div className="character_container" key={e.name}>
-                  <h3>{e.name}</h3>
                   <Grow in={true}>
-                    <img className={border} src={`${IMG_API}/${e.name}.jpg`} />
+                    <img
+                      className="character_card"
+                      src={`${IMG_API}/${e.name}.jpg`}
+                    />
                   </Grow>
+                  <h3 className={border}>{e.name}</h3>
                 </div>
               );
             })}

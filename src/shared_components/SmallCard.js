@@ -10,23 +10,28 @@ import Typography from "@material-ui/core/Typography";
 import "./SmallCard.css";
 //#endregion
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 220,
-  },
-});
-
 export default function SmallCard(props) {
+  const useStyles = makeStyles({
+    image: {
+      backgroundImage: `url(${props.image})`,
+      maxWidth: "100%",
+      height: "350px",
+      backgroundSize: "220px 440px",
+      backgroundPosition: "center top",
+    },
+    text: {
+      paddingTop: 0,
+    },
+  });
+
   const classes = useStyles();
 
   if (props.utility) {
     return (
-      <Card className={classes.root}>
-        <CardMedia component="img" height="350" image={props.image} />
-        <CardContent align="center">
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
-          </Typography>
+      <Card className="test">
+        <div className={classes.image} />
+        <CardContent align="center" className={classes.text}>
+          <h2> {props.title}</h2>
           <Button size="small" color="primary">
             click here
           </Button>
@@ -36,12 +41,10 @@ export default function SmallCard(props) {
   }
 
   return (
-    <Card className={classes.root}>
-      <CardMedia component="img" height="350" image={props.image} />
-      <CardContent align="center">
-        <Typography gutterBottom variant="h5" component="h2">
-          {props.title}
-        </Typography>
+    <Card className="test">
+      <div className={classes.image} />
+      <CardContent align="center" className={classes.text}>
+        <h2> {props.title}</h2>
 
         <h5>
           creator:{" "}

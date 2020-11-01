@@ -3,6 +3,10 @@
   max-height: 10px;
 }
 
+.buildview_menu {
+  border: 1px solid black;
+}
+
 .buildContainer {
   display: flex;
   justify-content: flex-end;
@@ -27,21 +31,32 @@
   border: 1px solid black;
   margin: 2px;
 }
+.char_name {
+  position: fixed;
+  margin-left: 7px;
+  margin-top: -31px;
+  color: rgb(255, 242, 242);
+}
+
+.carry_name {
+  position: fixed;
+  margin-left: 7px;
+  margin-top: -31px;
+  color: rgb(255, 227, 104);
+  font-weight: 1000;
+  text-shadow: 0 0 3px #ffffff;
+}
 
 .character_card {
-  width: 130px;
+  width: 140px;
   height: 280px;
   border-radius: 5px;
   border: 1px solid black;
   margin: 0.5px;
 }
 
-.character_card-carry {
-  width: 130px;
-  height: 280px;
-  border-radius: 5px;
-  border: 5px solid rgb(16, 255, 255);
-  margin: 0.5px;
+.character_container {
+  text-align: center;
 }
 
 .buildContainer__teamDisplay {
