@@ -4,9 +4,10 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { champions } from "../Utility/game-data";
-import { ICON_IMG_API } from "../config";
+import { ICON_IMG_API, IMG_API } from "../config";
 import "./BuildForm.css";
 import { createBuild } from "../Fetches/fetches";
+import SideBar from "../shared_components/SideBar";
 
 const BuildForm = (props) => {
   const [title, setTitle] = useState("");
@@ -54,8 +55,10 @@ const BuildForm = (props) => {
     const id = parseInt(carryId);
     if (carry.includes(id)) {
       removeCarry(carryId);
+      e.target.classList.remove("selected-carry");
     } else {
       addCarry(carryId);
+      e.target.classList.add("selected-carry");
     }
   };
 
@@ -76,7 +79,6 @@ const BuildForm = (props) => {
     const championName = e.target.getAttribute("name");
 
     if (team.length === 10 || names.length === 10) {
-      window.alert("Please Remove a Champion First!");
       if (team.includes(championId)) {
         removeChampion(championId, championName);
         e.target.classList.remove("selected");
@@ -108,54 +110,67 @@ const BuildForm = (props) => {
   };
 
   return (
-    <div className="formContainer">
+    <div className="mainFormContainer">
+      <SideBar />
       <form onSubmit={handleSubmit}>
-        <TextField
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={updateItem(setTitle)}
-        />
-        <Select
-          placeholder="Choose Playstyle"
-          id={playstyle}
-          onChange={updateItem(setPlaystyle)}
-        >
-          <MenuItem value="Standard">Standard</MenuItem>
-          <MenuItem value="Slow Roll">Slow Roll</MenuItem>
-          <MenuItem value="Re-Roll">Re-Roll</MenuItem>
-          <MenuItem value="Fast 8">Fast 8</MenuItem>
-        </Select>
-        <div className="champion-grid-container">
-          {Object.keys(champions).map((c) => (
-            <img
-              name={c}
-              key={champions[c]}
-              id={champions[c]}
-              className="champIcon"
-              src={`${ICON_IMG_API}${c}.png`}
-              onClick={handleSelect}
-            />
-          ))}
-        </div>
-        <h1>Team</h1>
-        <h3>Select Carries</h3>
-        <div className="team-grid-container">
-          {names.map((n) => (
-            <div key={n}>
-              <img
-                onClick={handleCarrySelect}
-                id={champions[n]}
-                className="selectedIcon"
-                src={`${ICON_IMG_API}${n}.png`}
-              />
-              <h5>{n}</h5>
+        <div className="formContainer">
+          <div className="form_left">
+            <h1>Roster</h1>
+
+            <div className="champion-grid-container">
+              {Object.keys(champions).map((c) => (
+                <img
+                  name={c}
+                  key={champions[c]}
+                  id={champions[c]}
+                  className="champIcon"
+                  src={`${ICON_IMG_API}${c}.png`}
+                  onClick={handleSelect}
+                />
+              ))}
             </div>
-          ))}
+          </div>
+
+          <div className="team__details">
+            <h1>Selected Team</h1>
+            <div className="team-grid-container">
+              {names.map((n) => (
+                <div key={n} onClick={handleCarrySelect}>
+                  <div
+                    id={champions[n]}
+                    className="selectedIcon"
+                    style={{
+                      backgroundImage: `url("${IMG_API}/${n}.jpg")`,
+                    }}
+                  />
+                  <h4 className="champ__name">{n}</h4>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="form_right">
+            <div className="build__details">
+              <TextField
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={updateItem(setTitle)}
+              />
+              <Select
+                placeholder="Choose Playstyle"
+                id={playstyle}
+                onChange={updateItem(setPlaystyle)}
+              >
+                <MenuItem value="Standard">Standard</MenuItem>
+                <MenuItem value="Slow Roll">Slow Roll</MenuItem>
+                <MenuItem value="Re-Roll">Re-Roll</MenuItem>
+                <MenuItem value="Fast 8">Fast 8</MenuItem>
+              </Select>
+              <TextareaAutosize value={notes} onChange={updateItem(setNotes)} />
+              <Button type="submit">Create Build</Button>
+            </div>
+          </div>
         </div>
-        <div>{JSON.stringify(carry)}</div>
-        <TextareaAutosize value={notes} onChange={updateItem(setNotes)} />
-        <Button type="submit">Create Build</Button>
       </form>
     </div>
   );

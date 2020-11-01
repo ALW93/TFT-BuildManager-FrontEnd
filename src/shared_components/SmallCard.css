@@ -2,10 +2,12 @@
   padding-bottom: -16px;
 }
 
-img {
+.test {
   opacity: 0.88;
+  max-width: 220px;
+  height: 500px;
 }
 
-img:hover {
+.test:hover {
   opacity: 1;
 }
