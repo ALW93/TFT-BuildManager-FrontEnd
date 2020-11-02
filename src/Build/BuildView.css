@@ -142,14 +142,45 @@
 
 .buildContainer__bottomBar--comments {
   text-align: center;
-  margin: auto;
   position: fixed;
   margin-left: 340px;
-  margin-top: -199px;
+  margin-top: 120px;
 }
 
 .buildContainer__bottomBar--comments > h2 {
   color: #9f6c35;
   text-shadow: 0 0 2px #ffdbdb;
   margin-bottom: 5px;
+}
+
+.details__information {
+  width: 300px;
+  height: fit-content;
+}
+
+.details__information > h2 {
+  color: #9f6c35;
+  text-shadow: 0 0 2px #ffdbdb;
+  margin-bottom: -20px;
+}
+
+.details__information h3 {
+  color: #9f6c35;
+  text-shadow: 0 0 2px #ffdbdb;
+  margin-top: -7px;
+}
+
+.guide {
+  border: 1px solid rgb(140, 117, 117);
+  height: 400px;
+  width: 270px;
+  padding: 10px;
+  overflow: scroll;
+  margin-top: -20px;
+  color: #57391a;
+}
+
+.buildContainer__bottomBar--details {
+  position: fixed;
+  margin-top: 117px;
 }
