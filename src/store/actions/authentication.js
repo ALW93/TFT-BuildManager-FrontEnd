@@ -20,6 +20,7 @@ export const loadToken = () => async (dispatch) => {
 
 export const demoLogin = () => async (dispatch) => {
   window.localStorage.setItem(TOKEN_KEY, demoToken);
+  window.localStorage.setItem("USER_ID", "999");
   dispatch(setToken(demoToken));
 };
 
