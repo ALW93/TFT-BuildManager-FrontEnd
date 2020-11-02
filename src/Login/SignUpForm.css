@@ -1,0 +1,10 @@
+.signupContainer {
+  margin-top: auto;
+}
+
+.penguin {
+  margin-top: 20px;
+  width: 50%;
+  opacity: 0.8;
+  border-radius: 4px;
+}
