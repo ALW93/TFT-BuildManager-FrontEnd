@@ -4,7 +4,9 @@
 }
 
 .buildview_menu {
-  border: 1px solid black;
+  border: 1px solid white;
+  position: fixed;
+  margin-left: 89vw;
 }
 
 .buildContainer {

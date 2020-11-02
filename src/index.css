@@ -17,3 +17,8 @@ img {
 body {
   font-family: Cinzel;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -114,3 +114,19 @@ export const getUserBookmarks = async (id) => {
     return bookmarks;
   }
 };
+
+export const postComment = async (data) => {
+  const token = window.localStorage.getItem(TOKEN_KEY);
+  const response = await fetch(`${TFT_BASE}/builds/${data.buildId}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    console.log("Comment Posted!");
+  }
+};
