@@ -1,17 +1,22 @@
 .Main__Section {
   display: flex;
-  max-height: 10px;
+  max-height: 1px;
 }
 
 .buildview_menu {
+  display: flex;
   border: 1px solid white;
   position: fixed;
-  margin-left: 89vw;
+  margin-left: 82vw;
+  align-items: center;
+}
+
+.edit_delete {
+  display: flex;
 }
 
 .buildContainer {
   display: flex;
-  justify-content: flex-end;
 }
 
 .buildContainer__teamDisplay {
@@ -23,25 +28,28 @@
     ". . . ."
     ". . . ."
     ". . . .";
+  height: 80vh;
+  max-height: 80vh;
 }
 
 .championIcon {
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   opacity: 1;
-  border-radius: 50px;
-  border: 1px solid black;
-  margin: 2px;
+  border-radius: 10px;
+  border: 2px outset rgb(152, 147, 147);
+  margin: 3px;
 }
+
 .char_name {
-  position: fixed;
+  position: absolute;
   margin-left: 7px;
   margin-top: -31px;
   color: rgb(255, 242, 242);
 }
 
 .carry_name {
-  position: fixed;
+  position: absolute;
   margin-left: 7px;
   margin-top: -31px;
   color: rgb(255, 227, 104);
@@ -66,6 +74,40 @@
 }
 
 .comment__container {
-  background-color: white;
-  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+  border: 0.5px solid rgb(196, 170, 170);
+  border-radius: 5px;
+  font-size: small;
+  margin: 1px 1px 10px 1px;
+  padding: 5px;
+}
+
+.buildContainer__topBar {
+  height: 150px;
+}
+
+.right {
+  margin-left: 70px;
+  margin-top: 20px;
+  margin-right: 40px;
+}
+
+.comment__author {
+  color: goldenrod;
+  font-weight: 900;
+  text-shadow: 0 0 3px #ffffff;
+}
+
+.comments {
+  border: 1px solid rgb(191, 152, 152);
+  border-radius: 5px;
+  width: 17vw;
+  height: 300px;
+  max-height: 300px;
+  overflow: scroll;
+  padding: 5px;
+}
+
+.real-carry-container {
+  display: flex;
 }
