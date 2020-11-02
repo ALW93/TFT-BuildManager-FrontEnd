@@ -129,6 +129,7 @@ const BuildForm = (props) => {
                   className="champIcon"
                   src={`${ICON_IMG_API}${c}.png`}
                   onClick={handleSelect}
+                  alt="champ_pool"
                 />
               ))}
             </div>

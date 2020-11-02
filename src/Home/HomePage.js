@@ -12,8 +12,6 @@ import {
 const image = `${IMG_API}/Azir.jpg`;
 const moreTitle = "View All Meta Builds";
 
-console.log(process.env);
-
 const HomePage = () => {
   const [data, setData] = useState([]);
   const [allData, setAllData] = useState([]);
@@ -61,7 +59,7 @@ const HomePage = () => {
 
   const MetaCards = () => {
     let counter = 0;
-    return data.map((e) => {
+    const cards = data.map((e) => {
       if (counter === 5) return;
       counter++;
       return (
@@ -75,6 +73,7 @@ const HomePage = () => {
         />
       );
     });
+    return cards;
   };
 
   return (

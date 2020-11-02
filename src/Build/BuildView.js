@@ -13,6 +13,7 @@ import BuildViewSideBar from "./BuildViewSideBar";
 import Author from "./Author";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@material-ui/core";
+// import BookmarkButton from "./BookMarkButton";
 
 const BuildView = ({ match }) => {
   const [data, setData] = useState({});
@@ -23,8 +24,6 @@ const BuildView = ({ match }) => {
   const [userId, setUserId] = useState("");
   const [message, setMessage] = useState("");
   const [submit, setSubmit] = useState("");
-
-  console.log(team);
 
   useEffect(() => {
     const getInfo = async () => {
@@ -39,7 +38,6 @@ const BuildView = ({ match }) => {
       const author = await getAuthorName(info.build.authorId);
       setAuthor(author);
 
-      console.log(info);
       const newTeam = info.build.team.map((e) => {
         const obj = { name: e.name, carry: false };
         if (e.build_champion.carry === true) obj.carry = true;
@@ -72,16 +70,16 @@ const BuildView = ({ match }) => {
   return (
     <>
       <div className="buildview_menu">
-        <div className="interaction__bar">
+        {/* <div className="interaction__bar">
           {userId === data.authorId ? (
             <div className="edit_delete">
               <Button>edit</Button>
               <Button>delete</Button>
             </div>
           ) : (
-            <Button variant="contained">bookmark</Button>
+            <BookmarkButton buildId={buildId} followerId={userId} />
           )}
-        </div>
+        </div> */}
         <MenuBar />
       </div>
       <div className="Main__Section">
@@ -111,6 +109,7 @@ const BuildView = ({ match }) => {
                       <img
                         className="character_card"
                         src={`${IMG_API}/${e.name}.jpg`}
+                        alt="card_pic"
                       />
                     </Grow>
                     <h3 className={border}>{e.name}</h3>
@@ -131,6 +130,7 @@ const BuildView = ({ match }) => {
                           <img
                             className="championIcon"
                             src={`${ICON_IMG_API}${e.name}.png`}
+                            alt="champion_pic"
                           />
                           {data.team.map((c) => {
                             if (e.name === c.name) {
@@ -169,7 +169,7 @@ const BuildView = ({ match }) => {
                 </form>
                 {comments.map((c) => {
                   return (
-                    <div className="comment__container">
+                    <div className="comment__container" key={c.id}>
                       <div className="comment__body">{c.message}</div>
                       <div className="comment__author">
                         <Link to={`/profile/${c.userId}`}>

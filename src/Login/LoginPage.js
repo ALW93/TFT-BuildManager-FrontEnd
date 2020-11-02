@@ -9,7 +9,7 @@ function LoginPage(props) {
     <main>
       <SideBar />
       <div className="logIn__right">
-        <img src={Logo} />
+        <img src={Logo} alt="logo" />
         <h1>build manager</h1>
         <div className="loginForm__div">
           <LoginForm />

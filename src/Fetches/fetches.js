@@ -111,12 +111,14 @@ export const getUserBookmarks = async (id) => {
   const response = await fetch(`${TFT_BASE}/users/${id}/bookmarks`);
   if (response.ok) {
     const bookmarks = await response.json();
-    return bookmarks;
+    const arr = bookmarks.bookmarks.map((e) => e.id);
+    return arr;
   }
 };
 
 export const postComment = async (data) => {
   const token = window.localStorage.getItem(TOKEN_KEY);
+  console.log(`${TFT_BASE}/builds/${data.buildId}/comments`);
   const response = await fetch(`${TFT_BASE}/builds/${data.buildId}/comments`, {
     method: "POST",
     headers: {
@@ -128,5 +130,45 @@ export const postComment = async (data) => {
 
   if (response.ok) {
     console.log("Comment Posted!");
+  }
+};
+
+export const bookmark = async (data) => {
+  const token = window.localStorage.getItem(TOKEN_KEY);
+  console.log(token);
+  const response = await fetch(
+    `${TFT_BASE}/users/${data.followerId}/bookmarks`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (response.ok) {
+    console.log(response);
+    console.log("bookmark added!");
+  } else {
+    console.log("something went wrong!");
+  }
+};
+
+export const removeBookmark = async (data) => {
+  const token = window.localStorage.getItem(TOKEN_KEY);
+  const response = await fetch(
+    `${TFT_BASE}/users/${data.followerId}/bookmarks`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (response.ok) {
+    console.log("bookmark removed!");
   }
 };
