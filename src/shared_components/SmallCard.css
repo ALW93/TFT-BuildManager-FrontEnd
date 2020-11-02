@@ -1,13 +1,41 @@
-.MuiCardContent-root {
-  padding-bottom: -16px;
+.card_container {
+  width: 200px;
+  height: 410px;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
 .test {
   opacity: 0.88;
   max-width: 220px;
-  height: 500px;
+  height: 410px;
 }
 
 .test:hover {
   opacity: 1;
+}
+
+.text {
+  color: white;
+  text-shadow: 0 0 3px #ffffff;
+  font-weight: 900;
+  position: absolute;
+  text-align: center;
+  margin-top: -410px;
+  float: right;
+  width: 200px;
+  height: 410px;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text_utility {
+  color: yellow;
+  position: absolute;
+  margin-top: -250px;
+  text-align: center;
+  border: 1px blue solid;
+  max-width: 200px;
 }
