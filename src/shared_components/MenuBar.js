@@ -23,7 +23,7 @@ const MenuBar = () => {
           </IconButton>
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           to="/profile/1/bookmarks"
           className="nav"
           activeClassName="active"
@@ -31,7 +31,7 @@ const MenuBar = () => {
           <IconButton>
             <BookmarksOutlinedIcon />
           </IconButton>
-        </NavLink>
+        </NavLink> */}
 
         <DropDown />
       </div>

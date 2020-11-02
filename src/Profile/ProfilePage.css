@@ -1,11 +1,21 @@
 .profile__topbar {
   display: flex !important;
-  border: 1px solid black;
 }
 
 .profile_details {
   margin-block-start: auto;
   display: flex;
+  align-self: flex-end;
+  margin-inline-end: auto;
+}
+
+.profile_details > h1 {
+  margin-block-start: auto;
+}
+
+.profile_details > h4 {
+  margin-top: -30px;
+  font-size: small;
 }
 
 .profile__statbar {

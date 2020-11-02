@@ -92,14 +92,14 @@ export default function DropDown() {
           </StyledMenuItem>
         </NavLink>
 
-        <NavLink to={`/profile/${myId}/bookmarks`}>
+        {/* <NavLink to={`/profile/${myId}/bookmarks`}>
           <StyledMenuItem>
             <ListItemIcon>
               <BookOutlinedIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText primary="My Bookmarks" />
           </StyledMenuItem>
-        </NavLink>
+        </NavLink> */}
 
         <StyledMenuItem onClick={handleLogout}>
           <ListItemIcon>
