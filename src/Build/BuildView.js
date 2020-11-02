@@ -3,6 +3,7 @@ import {
   getBuildById,
   getBuildComments,
   getAuthorName,
+  postComment,
 } from "../Fetches/fetches";
 import "./BuildView.css";
 import { IMG_API, ICON_IMG_API } from "../config";
@@ -11,13 +12,17 @@ import MenuBar from "../shared_components/MenuBar";
 import BuildViewSideBar from "./BuildViewSideBar";
 import Author from "./Author";
 import { Link } from "react-router-dom";
+import CommentForm from "./CommentForm";
 
 const BuildView = ({ match }) => {
   const [data, setData] = useState({});
   const [comments, setComments] = useState([]);
   const [author, setAuthor] = useState("");
   const [team, setTeam] = useState([]);
+  const [buildId, setBuildId] = useState("");
   const [userId, setUserId] = useState("");
+  const [message, setMessage] = useState("");
+  const [submit, setSubmit] = useState("");
 
   useEffect(() => {
     const getInfo = async () => {
@@ -25,6 +30,8 @@ const BuildView = ({ match }) => {
       setUserId(parseInt(viewer));
 
       const buildId = match.params.id;
+      setBuildId(buildId);
+
       const info = await getBuildById(buildId);
       setData({ ...data, ...info.build });
       const author = await getAuthorName(info.build.authorId);
@@ -41,13 +48,40 @@ const BuildView = ({ match }) => {
     getInfo();
   }, []);
 
+  // useEffect(() => {
+  //   const getComments = async () => {
+  //     const id = match.params.id;
+  //     console.log(id);
+  //     const newComments = await getBuildComments(id);
+  //     setComments(be);
+  //   };
+  //   getComments();
+  // }, [submit]);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const commentData = {
+      userId: userId,
+      buildId: buildId,
+      message: message,
+    };
+    await postComment(commentData);
+    setSubmit(commentData);
+    const newComments = await getBuildComments(buildId);
+    setComments(newComments);
+  };
+
+  const updateMessage = (e) => {
+    setMessage(e.target.value);
+  };
+
   return (
     <>
+      <div className="buildview_menu">
+        <MenuBar />
+      </div>
       <div className="Main__Section">
         <BuildViewSideBar array={team} />
-        <div className="buildview_menu">
-          <MenuBar />
-        </div>
 
         <div className="buildContainer">
           <div className="buildContainer__topBar">
@@ -74,7 +108,6 @@ const BuildView = ({ match }) => {
               <h4>Play Style: {data.playstyle}</h4>
             </div>
           </div>
-          <h1>Team</h1>
           <div className="buildContainer__teamDisplay">
             {team.map((e) => {
               let border = "char_name";
@@ -131,6 +164,14 @@ const BuildView = ({ match }) => {
             </div>
             <div className="buildContainer__bottomBar--comments">
               <h2>Comments</h2>
+              <form onSubmit={submitHandler}>
+                <input
+                  type="text"
+                  placeholder="Leave a comment..."
+                  onChange={updateMessage}
+                />
+                <button type="submit">Submit</button>
+              </form>
               {comments.map((c) => {
                 return (
                   <div className="comment__container">
