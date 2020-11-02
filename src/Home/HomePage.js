@@ -12,6 +12,8 @@ import {
 const image = `${IMG_API}/Azir.jpg`;
 const moreTitle = "View All Meta Builds";
 
+console.log(process.env);
+
 const HomePage = () => {
   const [data, setData] = useState([]);
   const [allData, setAllData] = useState([]);

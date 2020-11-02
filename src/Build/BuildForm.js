@@ -8,6 +8,7 @@ import { ICON_IMG_API, IMG_API } from "../config";
 import "./BuildForm.css";
 import { createBuild } from "../Fetches/fetches";
 import SideBar from "../shared_components/SideBar";
+import MenuBar from "../shared_components/MenuBar";
 
 const BuildForm = (props) => {
   const [title, setTitle] = useState("");
@@ -112,11 +113,12 @@ const BuildForm = (props) => {
   return (
     <div className="mainFormContainer">
       <SideBar />
+      <div className="buildview_menu--form">
+        <MenuBar />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="formContainer">
           <div className="form_left">
-            <h1>Roster</h1>
-
             <div className="champion-grid-container">
               {Object.keys(champions).map((c) => (
                 <img
@@ -135,8 +137,10 @@ const BuildForm = (props) => {
             <h1>Selected Team</h1>
             <div className="team-grid-container">
               {names.map((n) => (
-                <div key={n} onClick={handleCarrySelect}>
+                <div className="champContainer">
                   <div
+                    key={n}
+                    onClick={handleCarrySelect}
                     id={champions[n]}
                     className="selectedIcon"
                     style={{
@@ -150,15 +154,20 @@ const BuildForm = (props) => {
           </div>
           <div className="form_right">
             <div className="build__details">
+              <h2>Title</h2>
               <TextField
                 type="text"
-                placeholder="Title"
+                variant="outlined"
+                label="Name your build..."
                 value={title}
                 onChange={updateItem(setTitle)}
               />
+              <h2>Playstyle</h2>
               <Select
                 placeholder="Choose Playstyle"
                 id={playstyle}
+                defaultValue="Standard"
+                variant="outlined"
                 onChange={updateItem(setPlaystyle)}
               >
                 <MenuItem value="Standard">Standard</MenuItem>
@@ -166,8 +175,25 @@ const BuildForm = (props) => {
                 <MenuItem value="Re-Roll">Re-Roll</MenuItem>
                 <MenuItem value="Fast 8">Fast 8</MenuItem>
               </Select>
-              <TextareaAutosize value={notes} onChange={updateItem(setNotes)} />
-              <Button type="submit">Create Build</Button>
+              <h2>Notes</h2>
+              <textarea
+                className="notes-input"
+                value={notes}
+                onChange={updateItem(setNotes)}
+              />
+              <Button
+                style={{
+                  backgroundColor: "rgb(159,108,53)",
+                  color: "white",
+                  width: "200px",
+                  alignSelf: "center",
+                  marginTop: "8px",
+                }}
+                type="submit"
+                variant="contained"
+              >
+                submit your build
+              </Button>
             </div>
           </div>
         </div>
