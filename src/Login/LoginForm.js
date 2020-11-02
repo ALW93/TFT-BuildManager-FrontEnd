@@ -28,7 +28,7 @@ const LoginForm = ({ formVisible, showForm, hideForm, login, demoLogin }) => {
   };
 
   return (
-    <div>
+    <div className="formBox">
       <h3>Log in to continue</h3>
       <form onSubmit={handleSubmit}>
         <TextField

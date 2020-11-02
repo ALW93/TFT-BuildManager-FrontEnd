@@ -5,16 +5,17 @@
 .profile_details {
   margin-block-start: auto;
   display: flex;
-  align-self: flex-end;
-  margin-inline-end: auto;
+  /* align-self: flex-end;
+  margin-inline-end: auto; */
 }
 
 .profile_details > h1 {
+  margin-top: -20px;
   margin-block-start: auto;
 }
 
 .profile_details > h4 {
-  margin-top: -30px;
+  margin-top: auto;
   font-size: small;
 }
 
