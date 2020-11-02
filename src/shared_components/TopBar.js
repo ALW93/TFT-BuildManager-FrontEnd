@@ -24,8 +24,8 @@ export default function TopBar() {
     <div className={classes.root}>
       <Link to="/">
         <div className="tft-logo">
-          <img src={Logo} />
-          <h1 className="title" variant="h5" noWrap>
+          <img src={Logo} alt="logo" />
+          <h1 className="title" variant="h5">
             Build Manager
           </h1>
         </div>

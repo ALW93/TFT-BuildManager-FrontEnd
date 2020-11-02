@@ -12,13 +12,13 @@ const MenuBar = () => {
     <nav>
       <div style={{ display: "flex" }}>
         <NavLink to="/" activeClassName="active">
-          <IconButton color="white">
+          <IconButton>
             <HomeOutlinedIcon />
           </IconButton>
         </NavLink>
 
         <NavLink to="/build-create" activeClassName="active">
-          <IconButton color="white">
+          <IconButton>
             <CreateOutlinedIcon />
           </IconButton>
         </NavLink>
@@ -28,7 +28,7 @@ const MenuBar = () => {
           className="nav"
           activeClassName="active"
         >
-          <IconButton color="white">
+          <IconButton>
             <BookmarksOutlinedIcon />
           </IconButton>
         </NavLink>

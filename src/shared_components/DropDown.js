@@ -64,7 +64,7 @@ export default function DropDown() {
 
   return (
     <div>
-      <IconButton onClick={handleClick} color="white">
+      <IconButton onClick={handleClick}>
         <MenuIcon />
       </IconButton>
       <StyledMenu
