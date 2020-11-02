@@ -43,7 +43,7 @@ const BuildForm = (props) => {
       authorId: authorId,
       team: await generateTeamData(),
     };
-    console.log(newBuild);
+
     await createBuild(newBuild);
     props.history.push("/");
   };
