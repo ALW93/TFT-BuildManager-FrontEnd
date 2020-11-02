@@ -12,7 +12,7 @@ import MenuBar from "../shared_components/MenuBar";
 import BuildViewSideBar from "./BuildViewSideBar";
 import Author from "./Author";
 import { Link } from "react-router-dom";
-import CommentForm from "./CommentForm";
+import { Button, TextField } from "@material-ui/core";
 
 const BuildView = ({ match }) => {
   const [data, setData] = useState({});
@@ -48,16 +48,6 @@ const BuildView = ({ match }) => {
     getInfo();
   }, []);
 
-  // useEffect(() => {
-  //   const getComments = async () => {
-  //     const id = match.params.id;
-  //     console.log(id);
-  //     const newComments = await getBuildComments(id);
-  //     setComments(be);
-  //   };
-  //   getComments();
-  // }, [submit]);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     const commentData = {
@@ -78,60 +68,65 @@ const BuildView = ({ match }) => {
   return (
     <>
       <div className="buildview_menu">
+        <div className="interaction__bar">
+          {userId === data.authorId ? (
+            <div className="edit_delete">
+              <Button>edit</Button>
+              <Button>delete</Button>
+            </div>
+          ) : (
+            <Button variant="contained">bookmark</Button>
+          )}
+        </div>
         <MenuBar />
       </div>
       <div className="Main__Section">
         <BuildViewSideBar array={team} />
 
         <div className="buildContainer">
-          <div className="buildContainer__topBar">
-            <div className="buildContainer__topBar--votes">
-              <h2>Votes: {data.votes}</h2>
-            </div>
-            <div className="buildContainer__topBar--info">
-              <h1>{data.title}</h1>
-              <div className="interaction__bar">
-                {userId === data.authorId ? (
-                  <div className="edit_delete">
-                    <button>edit</button>
-                    <button>delete</button>
-                  </div>
-                ) : (
-                  <button>bookmark</button>
-                )}
-              </div>
-              <h3>
-                Created By:
-                <Link to={`/profile/${data.authorId}`}>{author}</Link>
-              </h3>
+          <div className="right">
+            <div className="buildContainer__topBar">
+              <div className="buildContainer__topBar--votes"></div>
+              <div className="buildContainer__topBar--info">
+                <h1>{data.title}</h1>
 
-              <h4>Play Style: {data.playstyle}</h4>
+                <h3>
+                  Created By:
+                  <Link to={`/profile/${data.authorId}`}>{author}</Link>
+                </h3>
+
+                <h4>Play Style: {data.playstyle}</h4>
+              </div>
             </div>
-          </div>
-          <div className="buildContainer__teamDisplay">
-            {team.map((e) => {
-              let border = "char_name";
-              if (e.carry === true) {
-                border = "carry_name";
-              }
-              return (
-                <div className="character_container" key={e.name}>
-                  <Grow in={true}>
-                    <img
-                      className="character_card"
-                      src={`${IMG_API}/${e.name}.jpg`}
-                    />
-                  </Grow>
-                  <h3 className={border}>{e.name}</h3>
-                </div>
-              );
-            })}
+            <div className="buildContainer__teamDisplay">
+              {team.map((e) => {
+                let border = "char_name";
+                if (e.carry === true) {
+                  border = "carry_name";
+                }
+                return (
+                  <div className="character_container" key={e.name}>
+                    <Grow in={true}>
+                      <img
+                        className="character_card"
+                        src={`${IMG_API}/${e.name}.jpg`}
+                      />
+                    </Grow>
+                    <h3 className={border}>{e.name}</h3>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="buildContainer__bottomBar">
             <div className="buildContainer__bottomBar--details">
+              <div className="details__information">
+                <h2>Information</h2>
+                <div>{data.notes}</div>
+              </div>
               <div className="details__itemization">
                 <h2>Itemization</h2>
-                <div>
+                <div className="real-carry-container">
                   {team.map((e) => {
                     if (e.carry === true) {
                       return (
@@ -157,34 +152,33 @@ const BuildView = ({ match }) => {
                   })}
                 </div>
               </div>
-              <div className="details__information">
-                <h2>Information</h2>
-                <div>{data.notes}</div>
-              </div>
             </div>
             <div className="buildContainer__bottomBar--comments">
               <h2>Comments</h2>
-              <form onSubmit={submitHandler}>
-                <input
-                  type="text"
-                  placeholder="Leave a comment..."
-                  onChange={updateMessage}
-                />
-                <button type="submit">Submit</button>
-              </form>
-              {comments.map((c) => {
-                return (
-                  <div className="comment__container">
-                    <div className="comment__body">{c.message}</div>
-                    <div className="comment__author">
-                      <Link to={`/profile/${c.userId}`}>
-                        <Author id={c.userId} />
-                      </Link>
+
+              <div className="comments">
+                <form onSubmit={submitHandler}>
+                  <TextField
+                    type="text"
+                    placeholder="Leave a comment..."
+                    onChange={updateMessage}
+                  />
+                  <Button type="submit">Submit</Button>
+                </form>
+                {comments.map((c) => {
+                  return (
+                    <div className="comment__container">
+                      <div className="comment__body">{c.message}</div>
+                      <div className="comment__author">
+                        <Link to={`/profile/${c.userId}`}>
+                          <Author id={c.userId} />
+                        </Link>
+                      </div>
                       on {c.createdAt}
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
