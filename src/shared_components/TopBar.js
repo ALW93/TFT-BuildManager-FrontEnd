@@ -38,7 +38,7 @@ export default function TopBar() {
           backgroundPosition: "right center",
         }}
       >
-        <div>
+        <div className="topbar-menubar">
           <MenuBar />
         </div>
       </AppBar>
