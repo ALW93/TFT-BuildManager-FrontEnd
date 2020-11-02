@@ -1,0 +1,15 @@
+.tft-logo {
+  position: absolute;
+  z-index: 999999;
+  margin-top: 30px;
+  text-align: center;
+  margin-left: 900px;
+  width: min-content;
+  text-shadow: 0 0 5px #9b852e;
+  zoom: 0.8;
+}
+
+.title {
+  font-weight: 900;
+  margin-top: -25px;
+}

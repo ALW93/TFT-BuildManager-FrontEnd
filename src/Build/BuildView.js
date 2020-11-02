@@ -24,6 +24,8 @@ const BuildView = ({ match }) => {
   const [message, setMessage] = useState("");
   const [submit, setSubmit] = useState("");
 
+  console.log(team);
+
   useEffect(() => {
     const getInfo = async () => {
       let viewer = window.localStorage.getItem("USER_ID");
@@ -36,6 +38,8 @@ const BuildView = ({ match }) => {
       setData({ ...data, ...info.build });
       const author = await getAuthorName(info.build.authorId);
       setAuthor(author);
+
+      console.log(info);
       const newTeam = info.build.team.map((e) => {
         const obj = { name: e.name, carry: false };
         if (e.build_champion.carry === true) obj.carry = true;
@@ -89,13 +93,10 @@ const BuildView = ({ match }) => {
               <div className="buildContainer__topBar--votes"></div>
               <div className="buildContainer__topBar--info">
                 <h1>{data.title}</h1>
-
                 <h3>
-                  Created By:
-                  <Link to={`/profile/${data.authorId}`}>{author}</Link>
+                  Author ||
+                  <Link to={`/profile/${data.authorId}`}> {author}</Link>
                 </h3>
-
-                <h4>Play Style: {data.playstyle}</h4>
               </div>
             </div>
             <div className="buildContainer__teamDisplay">
@@ -120,10 +121,6 @@ const BuildView = ({ match }) => {
           </div>
           <div className="buildContainer__bottomBar">
             <div className="buildContainer__bottomBar--details">
-              <div className="details__information">
-                <h2>Information</h2>
-                <div>{data.notes}</div>
-              </div>
               <div className="details__itemization">
                 <h2>Itemization</h2>
                 <div className="real-carry-container">
@@ -150,6 +147,11 @@ const BuildView = ({ match }) => {
                       );
                     }
                   })}
+                </div>
+                <div className="details__information">
+                  <h2>Information</h2>
+                  <h4>Play Style: {data.playstyle}</h4>
+                  <div>{data.notes}</div>
                 </div>
               </div>
             </div>

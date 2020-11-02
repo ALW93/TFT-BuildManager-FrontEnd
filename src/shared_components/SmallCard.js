@@ -20,12 +20,12 @@ export default function SmallCard(props) {
 
   if (props.utility) {
     return (
-      <Link to={`/build/id/${props.id}`}>
+      <Link to="/profile/1">
         <div className="card_container">
           <div className="test">
             <div className={classes.image} />
             <div className="text_utility">
-              <h3> {props.title}</h3>
+              <h2> {props.title}</h2>
             </div>
           </div>
         </div>
@@ -40,11 +40,11 @@ export default function SmallCard(props) {
           <div className={classes.image} />
         </div>
         <div className="text">
+          <h2> {props.title}</h2>
           <h5>
             author ||
             <Link to={`/profile/${props.authorId}`}> {props.author} </Link>
           </h5>
-          <h4> {props.title}</h4>
         </div>
       </div>
     </Link>

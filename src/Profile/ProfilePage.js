@@ -8,7 +8,6 @@ import {
   getBuildById,
 } from "../Fetches/fetches";
 import "./ProfilePage.css";
-import { SettingsSystemDaydreamTwoTone } from "@material-ui/icons";
 import SmallCard from "../shared_components/SmallCard";
 
 const ProfilePage = ({ match }) => {

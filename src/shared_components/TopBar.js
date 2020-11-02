@@ -1,9 +1,11 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import pic from "../Assets/NavBar.jpg";
 import MenuBar from "./MenuBar";
+import Logo from "../Assets/Logo.png";
+import "./TopBar.css";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,10 +15,6 @@ const useStyles = makeStyles((theme) => ({
   AppBar: {
     height: 275,
   },
-  title: {
-    flexGrow: 1,
-    alignSelf: "flex-end",
-  },
 }));
 
 export default function TopBar() {
@@ -24,6 +22,14 @@ export default function TopBar() {
 
   return (
     <div className={classes.root}>
+      <Link to="/">
+        <div className="tft-logo">
+          <img src={Logo} />
+          <h1 className="title" variant="h5" noWrap>
+            Build Manager
+          </h1>
+        </div>
+      </Link>
       <AppBar
         position="sticky"
         className={classes.AppBar}
@@ -32,11 +38,6 @@ export default function TopBar() {
           backgroundPosition: "right center",
         }}
       >
-        <div>
-          <Typography className={classes.title} variant="h5" noWrap>
-            Teamfight Tactics Build Manager
-          </Typography>
-        </div>
         <div>
           <MenuBar />
         </div>
