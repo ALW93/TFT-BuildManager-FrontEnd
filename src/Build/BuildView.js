@@ -150,8 +150,10 @@ const BuildView = ({ match }) => {
                 </div>
                 <div className="details__information">
                   <h2>Information</h2>
-                  <h4>Play Style: {data.playstyle}</h4>
-                  <div>{data.notes}</div>
+                  <h4>
+                    Play Style <h3>{data.playstyle}</h3>
+                  </h4>
+                  <div className="guide">{data.notes}</div>
                 </div>
               </div>
             </div>
