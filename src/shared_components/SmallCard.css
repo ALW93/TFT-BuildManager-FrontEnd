@@ -1,7 +1,7 @@
 .card_container {
   width: 200px;
   height: 410px;
-  border: 1px solid black;
+  border: 4px outset rgb(218, 205, 205);
   border-radius: 3px;
 }
 

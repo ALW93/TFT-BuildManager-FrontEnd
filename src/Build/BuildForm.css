@@ -3,6 +3,11 @@
   max-height: 100px;
 }
 
+.buildview_menu--form {
+  position: fixed;
+  margin-left: 87vw;
+}
+
 .champion-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -22,6 +27,7 @@
     ". . . . ."
     ". . . . .";
   padding: 7px;
+  margin-top: 35px;
 }
 
 .form_left {
@@ -40,30 +46,51 @@
     ". . ."
     ". . ."
     ". . .";
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
 }
 
 .team__details {
   position: fixed;
-  margin-left: -10vw;
+  margin-left: -11.9vw;
   text-align: center;
+  border: 0.2px dashed rgb(228, 195, 195);
+  margin-top: -100px;
+  height: 105vh;
+  width: 420px;
+  padding-top: 160px;
 }
 
 .champ__name {
   position: absolute;
-  margin-left: 6px;
-  margin-top: -21px;
+  margin-left: 12px;
+  text-shadow: 0 0 3px #fff1b4;
+  margin-top: -23px;
   color: white;
 }
 
 .build__details {
-  border: 1px solid black;
+  margin-left: -150px;
+  width: 350px;
+  height: 700px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
+  color: rgb(159, 108, 53);
+}
+
+.build__details > * {
+  margin: 5px;
 }
 
 .form_right {
   position: fixed;
   margin-left: 20vw;
+}
+
+.champContainer {
+  width: fit-content;
 }
 
 .champIcon {
@@ -76,11 +103,13 @@
 }
 
 .selectedIcon {
-  width: 100px;
+  width: 104px;
+  max-width: 104px;
   height: 150px;
   border-radius: 3px;
-  border: 2px outset rgb(255, 255, 255);
-  margin: 2px;
+  border: 2px inset rgb(255, 255, 255);
+  margin: 4px;
+  align-self: center;
   background-size: cover;
 }
 
@@ -143,4 +172,17 @@ form {
 
 .selected {
   opacity: 1;
+}
+
+.notes-input {
+  height: 800px;
+  resize: none;
+  outline: none;
+  border: 1px solid rgb(162, 141, 141);
+  border-radius: 3px;
+  font-family: Cinzel;
+  background-color: rgb(255, 243, 243);
+  font-size: larger;
+  color: rgb(36, 25, 25);
+  padding: 20px;
 }
