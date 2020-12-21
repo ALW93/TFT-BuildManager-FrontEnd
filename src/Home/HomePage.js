@@ -19,24 +19,26 @@ const HomePage = () => {
   useEffect(() => {
     async function fetchData() {
       const buildArray = await getEditorBuilds();
-      buildArray.forEach(async (b, i) => {
-        const response = await fetch(`${TFT_BASE}/builds/id/${b}`);
-        if (response.ok) {
-          const details = await response.json();
-          const info = await parseCardData(details.build);
-          setData((data) => [...data, info]);
-        }
-      });
+      buildArray &&
+        buildArray.forEach(async (b, i) => {
+          const response = await fetch(`${TFT_BASE}/builds/id/${b}`);
+          if (response.ok) {
+            const details = await response.json();
+            const info = await parseCardData(details.build);
+            setData((data) => [...data, info]);
+          }
+        });
 
       const allArray = await getAllbuilds();
-      allArray.forEach(async (b, i) => {
-        const response = await fetch(`${TFT_BASE}/builds/id/${b}`);
-        if (response.ok) {
-          const allDetails = await response.json();
-          const allInfo = await parseCardData(allDetails.build);
-          setAllData((allData) => [...allData, allInfo]);
-        }
-      });
+      allArray &&
+        allArray.forEach(async (b, i) => {
+          const response = await fetch(`${TFT_BASE}/builds/id/${b}`);
+          if (response.ok) {
+            const allDetails = await response.json();
+            const allInfo = await parseCardData(allDetails.build);
+            setAllData((allData) => [...allData, allInfo]);
+          }
+        });
     }
 
     fetchData();

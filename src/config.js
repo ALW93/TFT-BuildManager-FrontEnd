@@ -1,5 +1,5 @@
 export const TFT_BASE =
-  process.env.REACT_APP_BASE_URL || "http://localhost:8000";
+  process.env.REACT_APP_BASE_URL || "http://localhost:8080";
 export const TFT_API = `${TFT_BASE}/api`;
 export const IMG_API = "https://tft-buildmanager.s3.amazonaws.com/Champions";
 export const ICON_IMG_API =
