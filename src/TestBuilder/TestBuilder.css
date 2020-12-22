@@ -37,7 +37,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../Assets/Ahri.jpg");
+  background-color: rgb(60, 83, 103);
   background-size: 100%;
   background-repeat: no-repeat;
   -o-transform: skewY(-30deg) rotate(60deg);
@@ -46,6 +46,10 @@
   -ms-transform: skewY(-30deg) rotate(60deg);
   transform: skewY(-30deg) rotate(60deg);
   overflow: hidden;
+}
+
+.test {
+  background-image: url("../Assets/Ahri.jpg");
 }
 
 #grid li:nth-child(1n + 1) {
