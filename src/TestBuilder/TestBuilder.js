@@ -12,13 +12,8 @@ const TestBuilder = () => {
     return object;
   });
 
-  const onDragStart = (e, id) => {
+  const onDragStart = (e, id, space) => {
     // console.log("dragstart:", id);
-    e.dataTransfer.setData("id", id);
-  };
-
-  const onBoardStart = (e, id, space) => {
-    console.log("boardDrag:", id);
     e.dataTransfer.setData("id", id);
     e.dataTransfer.setData("oldSpot", space);
   };
@@ -31,6 +26,7 @@ const TestBuilder = () => {
     const occupant = board[key];
     const oldSpot = ev.dataTransfer.getData("oldSpot");
     const id = ev.dataTransfer.getData("id");
+
     if (board[oldSpot]) {
       const temp = board;
       temp[oldSpot] = null;
@@ -44,12 +40,21 @@ const TestBuilder = () => {
       newBoard[oldSpot] = occupant;
     }
     setBoard({ ...newBoard });
-    console.log(board);
   };
 
   const getChar = (champion) => {
     if (!champion) return;
     return require(`../Assets/champions/${champion}.png`);
+  };
+
+  const onDropDelete = (e) => {
+    const oldSpot = e.dataTransfer.getData("oldSpot");
+
+    if (board[oldSpot]) {
+      const temp = board;
+      temp[oldSpot] = null;
+      setBoard({ ...temp });
+    }
   };
 
   return (
@@ -61,7 +66,7 @@ const TestBuilder = () => {
               <div
                 onDragOver={(e) => onDragOver(e)}
                 onDrop={(e) => onDrop(e, b)}
-                onDragStart={(e) => onBoardStart(e, board[b], b)}
+                onDragStart={(e) => onDragStart(e, board[b], b)}
                 draggable
                 className="hexagon"
                 style={{
@@ -74,12 +79,16 @@ const TestBuilder = () => {
           );
         })}
       </ul>
-      <div>
+      <div
+        className="character__selection"
+        onDragOver={(e) => onDragOver(e)}
+        onDrop={(e) => onDropDelete(e)}
+      >
         {champions.map((champion) => {
           return (
             <img
               data={JSON.stringify(champion)}
-              onDragStart={(e) => onDragStart(e, champion.championId)}
+              onDragStart={(e) => onDragStart(e, champion.championId, null)}
               draggable
               src={require(`../Assets/champions/${champion.championId}.png`)}
               style={{ width: "64px" }}
