@@ -10,9 +10,15 @@ const Synergy = ({ synData }) => {
       Object.keys(synData).forEach((syn) => {
         let tiers = activeTraits[trait];
         let num = synData[syn];
-        if (trait === syn && tiers.includes(num)) obj[syn] = num;
+        if (trait === syn) {
+          let length = tiers.length;
+          for (let i = length - 1; i >= 0; i--) {
+            if (num >= tiers[i]) return (obj[syn] = tiers[i]);
+          }
+        }
       });
     });
+    console.log(obj);
     setActives(obj);
   }, [synData]);
 
@@ -38,7 +44,7 @@ const Synergy = ({ synData }) => {
                       "invert(70%) sepia(96%) saturate(5422%) hue-rotate(163deg) brightness(98%) contrast(106%)",
                   }}
                 />
-                {synergy}({synData[syn]})
+                {synergy}({actives[syn]})
               </div>
             );
           })}
