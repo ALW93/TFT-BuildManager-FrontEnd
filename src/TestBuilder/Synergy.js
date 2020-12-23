@@ -40,8 +40,6 @@ const Synergy = ({ synData }) => {
                   style={{
                     width: "32px",
                     height: "32px",
-                    filter:
-                      "invert(70%) sepia(96%) saturate(5422%) hue-rotate(163deg) brightness(98%) contrast(106%)",
                   }}
                 />
                 {synergy}({actives[syn]})
