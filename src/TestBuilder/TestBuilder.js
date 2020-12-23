@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { champions } from "../set4/set4";
 import "./TestBuilder.css";
 
 const TestBuilder = () => {
+  const [synergies, setSynergies] = useState({});
+  console.log(synergies);
   const [board, setBoard] = useState(() => {
     const object = {};
     const spaces = Array(28).fill(null);
@@ -12,7 +14,24 @@ const TestBuilder = () => {
     return object;
   });
 
-  const onDragStart = (e, id, space) => {
+  useEffect(() => {
+    const synergies = {};
+    const team = Object.values(board).filter((e) => e);
+    champions.map((champ) => {
+      if (team.includes(champ.championId)) {
+        champ.traits.forEach((trait) => {
+          if (!synergies[trait]) {
+            synergies[trait] = 1;
+          } else {
+            synergies[trait]++;
+          }
+        });
+      }
+    });
+    setSynergies(synergies);
+  }, [board]);
+
+  const onDragStart = (e, id, space, data) => {
     // console.log("dragstart:", id);
     e.dataTransfer.setData("id", id);
     e.dataTransfer.setData("oldSpot", space);
@@ -51,6 +70,10 @@ const TestBuilder = () => {
     const oldSpot = e.dataTransfer.getData("oldSpot");
 
     if (board[oldSpot]) {
+      // const newTeam = new Set(team);
+      // newTeam.delete(board[oldSpot]);
+      // setTeam(newTeam);
+
       const temp = board;
       temp[oldSpot] = null;
       setBoard({ ...temp });
@@ -59,6 +82,7 @@ const TestBuilder = () => {
 
   return (
     <div>
+      {JSON.stringify(synergies)}
       <ul id="grid" className="clear">
         {Object.keys(board).map((b, index) => {
           return (
@@ -80,6 +104,7 @@ const TestBuilder = () => {
         })}
       </ul>
       <div
+        style={{ border: "1px solid black" }}
         className="character__selection"
         onDragOver={(e) => onDragOver(e)}
         onDrop={(e) => onDropDelete(e)}
@@ -87,7 +112,6 @@ const TestBuilder = () => {
         {champions.map((champion) => {
           return (
             <img
-              data={JSON.stringify(champion)}
               onDragStart={(e) => onDragStart(e, champion.championId, null)}
               draggable
               src={require(`../Assets/champions/${champion.championId}.png`)}
