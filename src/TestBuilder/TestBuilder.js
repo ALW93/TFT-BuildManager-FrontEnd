@@ -12,19 +12,15 @@ const TestBuilder = () => {
     return object;
   });
 
-  const selector = (e) => {
-    const parsed = JSON.parse(e.target.getAttribute("data"));
-    console.log(parsed);
-  };
-
-  const test = (e) => {
-    console.log(e.target.id);
-  };
-
   const onDragStart = (e, id) => {
-    console.log("dragstart:", id);
-    const parsed = e.target.getAttribute("data");
-    e.dataTransfer.setData("data", parsed);
+    // console.log("dragstart:", id);
+    e.dataTransfer.setData("id", id);
+  };
+
+  const onBoardStart = (e, id, space) => {
+    console.log("boardDrag:", id);
+    e.dataTransfer.setData("id", id);
+    e.dataTransfer.setData("oldSpot", space);
   };
 
   const onDragOver = (ev) => {
@@ -32,32 +28,41 @@ const TestBuilder = () => {
   };
 
   const onDrop = (ev, key) => {
-    const info = ev.dataTransfer.getData("data");
-    const parsed = JSON.parse(info);
-    const championId = parsed.championId;
-    console.log(key, championId);
+    const occupant = board[key];
+    const oldSpot = ev.dataTransfer.getData("oldSpot");
+    const id = ev.dataTransfer.getData("id");
+    if (board[oldSpot]) {
+      const temp = board;
+      temp[oldSpot] = null;
+      setBoard({ ...temp });
+    }
+
     const newBoard = board;
-    newBoard[key] = championId;
+    newBoard[key] = id;
+
+    if (occupant) {
+      newBoard[oldSpot] = occupant;
+    }
     setBoard({ ...newBoard });
+    console.log(board);
   };
 
-  const getChar = (id) => {
-    console.log(board);
-    if (!id) return;
-    return require(`../Assets/champions/${id}.png`);
+  const getChar = (champion) => {
+    if (!champion) return;
+    return require(`../Assets/champions/${champion}.png`);
   };
 
   return (
     <div>
       <ul id="grid" className="clear">
         {Object.keys(board).map((b, index) => {
-          console.log(b, board[b]);
           return (
             <li>
               <div
-                onClick={test}
                 onDragOver={(e) => onDragOver(e)}
                 onDrop={(e) => onDrop(e, b)}
+                onDragStart={(e) => onBoardStart(e, board[b], b)}
+                draggable
                 className="hexagon"
                 style={{
                   backgroundImage: `url(${getChar(board[b])})`,
@@ -74,9 +79,8 @@ const TestBuilder = () => {
           return (
             <img
               data={JSON.stringify(champion)}
-              onDragStart={(e) => onDragStart(e, JSON.stringify(champion))}
+              onDragStart={(e) => onDragStart(e, champion.championId)}
               draggable
-              onClick={selector}
               src={require(`../Assets/champions/${champion.championId}.png`)}
               style={{ width: "64px" }}
             />
