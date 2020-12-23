@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { champions } from "../set4/set4";
 import "./TestBuilder.css";
+import Synergy from "./Synergy";
 
 const TestBuilder = () => {
   const [synergies, setSynergies] = useState({});
-  console.log(synergies);
   const [board, setBoard] = useState(() => {
     const object = {};
     const spaces = Array(28).fill(null);
-    spaces.map((space, index) => {
+    spaces.map((_, index) => {
       object[index] = null;
     });
     return object;
@@ -55,25 +55,22 @@ const TestBuilder = () => {
     const newBoard = board;
     newBoard[key] = id;
 
-    if (occupant) {
+    if (occupant && oldSpot !== "null") {
       newBoard[oldSpot] = occupant;
     }
     setBoard({ ...newBoard });
   };
 
+  // Fills Hexagon with Selected Champion Picture
   const getChar = (champion) => {
     if (!champion) return;
     return require(`../Assets/champions/${champion}.png`);
   };
 
+  // Removes Champion from Board
   const onDropDelete = (e) => {
     const oldSpot = e.dataTransfer.getData("oldSpot");
-
     if (board[oldSpot]) {
-      // const newTeam = new Set(team);
-      // newTeam.delete(board[oldSpot]);
-      // setTeam(newTeam);
-
       const temp = board;
       temp[oldSpot] = null;
       setBoard({ ...temp });
@@ -82,7 +79,7 @@ const TestBuilder = () => {
 
   return (
     <div>
-      {JSON.stringify(synergies)}
+      <Synergy synData={synergies} />
       <ul id="grid" className="clear">
         {Object.keys(board).map((b, index) => {
           return (
