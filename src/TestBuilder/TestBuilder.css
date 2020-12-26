@@ -1,8 +1,9 @@
 #grid {
   border: 1px solid red;
   position: relative;
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
+  margin-bottom: 50px;
   padding: 0; /* Clears unordered list default of 40px */
 }
 
@@ -48,10 +49,6 @@
   overflow: hidden;
 }
 
-.test {
-  background-image: url("../Assets/Ahri.jpg");
-}
-
 #grid li:nth-child(1n + 1) {
   margin: 0.5%;
 }
@@ -74,4 +71,15 @@
 
 #grid li:nth-child(14n + 8) {
   margin-left: 1%;
+}
+
+.character__selection {
+  border: 1px solid black;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.character__selection img {
+  margin: 3px;
+  border-radius: 3px;
 }

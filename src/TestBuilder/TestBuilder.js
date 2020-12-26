@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { champions } from "../set4/set4";
 import "./TestBuilder.css";
 import Synergy from "./Synergy";
+import SelectionPool from "./SelectionPool";
 
 const TestBuilder = () => {
   const [synergies, setSynergies] = useState({});
@@ -100,23 +101,11 @@ const TestBuilder = () => {
           );
         })}
       </ul>
-      <div
-        style={{ border: "1px solid black" }}
-        className="character__selection"
-        onDragOver={(e) => onDragOver(e)}
-        onDrop={(e) => onDropDelete(e)}
-      >
-        {champions.map((champion) => {
-          return (
-            <img
-              onDragStart={(e) => onDragStart(e, champion.championId, null)}
-              draggable
-              src={require(`../Assets/champions/${champion.championId}.png`)}
-              style={{ width: "64px" }}
-            />
-          );
-        })}
-      </div>
+      <SelectionPool
+        onDragOver={onDragOver}
+        onDropDelete={onDropDelete}
+        onDragStart={onDragStart}
+      />
     </div>
   );
 };
