@@ -25,6 +25,7 @@ const SelectionPool = ({ onDragOver, onDropDelete, onDragStart }) => {
         data = await fetch(`${TFT_API}/champions`);
       }
       const parsed = await data.json();
+      console.log(parsed);
       setChampions(parsed);
     })();
   }, [filter]);
@@ -53,6 +54,7 @@ const SelectionPool = ({ onDragOver, onDropDelete, onDragStart }) => {
             <img
               onDragStart={(e) => onDragStart(e, champion.championId, null)}
               draggable
+              className={`border${champion.cost}`}
               src={require(`../Assets/champions/${champion.championId}.png`)}
               style={{ width: "64px" }}
             />

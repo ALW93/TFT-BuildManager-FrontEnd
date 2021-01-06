@@ -64,6 +64,7 @@ const TestBuilder = () => {
 
   // Fills Hexagon with Selected Champion Picture
   const getChar = (champion) => {
+    console.log(champion);
     if (!champion) return;
     return require(`../Assets/champions/${champion}.png`);
   };
