@@ -1,0 +1,41 @@
+.hexagon-gallery {
+  margin: auto;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  border: 5px solid blue;
+}
+
+.hex {
+  position: relative;
+  width: 140px;
+  height: 155px;
+  background-color: #424242;
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hex-container:nth-child(n + 8):nth-child(-n + 14) {
+  border: 5px solid red;
+  margin-top: -2.9285714285%;
+  margin-bottom: -2.9285714285%;
+  transform: translateX(50%);
+}
+
+.trait-gallery {
+  position: absolute;
+  display: flex;
+}
+
+.item-gallery {
+  position: absolute;
+  display: flex;
+}

@@ -3,6 +3,7 @@ import { champions } from "../set4/set4";
 import "./TestBuilder.css";
 import Synergy from "./Synergy";
 import SelectionPool from "./SelectionPool";
+import HexBuilder from "./HexBuilder";
 
 const TestBuilder = () => {
   const [synergies, setSynergies] = useState({});
@@ -81,27 +82,30 @@ const TestBuilder = () => {
 
   return (
     <div>
+      <HexBuilder />
       <Synergy synData={synergies} />
-      <ul id="grid" className="clear">
+      <div id="grid" className="clear">
         {Object.keys(board).map((b, index) => {
           return (
-            <li>
-              <div
-                onDragOver={(e) => onDragOver(e)}
-                onDrop={(e) => onDrop(e, b)}
-                onDragStart={(e) => onDragStart(e, board[b], b)}
-                draggable
-                className="hexagon"
-                style={{
-                  backgroundImage: `url(${getChar(board[b])})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center bottom",
-                }}
-              ></div>
-            </li>
+            <>
+              <li>
+                <div
+                  onDragOver={(e) => onDragOver(e)}
+                  onDrop={(e) => onDrop(e, b)}
+                  onDragStart={(e) => onDragStart(e, board[b], b)}
+                  draggable
+                  className="hexagon"
+                  style={{
+                    backgroundImage: `url(${getChar(board[b])})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center bottom",
+                  }}
+                ></div>
+              </li>
+            </>
           );
         })}
-      </ul>
+      </div>
       <SelectionPool
         onDragOver={onDragOver}
         onDropDelete={onDropDelete}
