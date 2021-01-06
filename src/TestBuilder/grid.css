@@ -4,10 +4,10 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 10px;
-  border: 5px solid blue;
 }
 
 .hex {
+  display: inline-block;
   position: relative;
   width: 140px;
   height: 155px;
@@ -23,11 +23,40 @@
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
+.hex__inner {
+  position: absolute;
+  top: 5px; /* equal to border thickness */
+  left: 5px; /* equal to border thickness */
+  width: 130px;
+  height: 145px;
+  background-image: url(https://i.pinimg.com/236x/ea/a6/68/eaa668ece7e463e23e42db4c9bab09b2.jpg);
+  background-position: center;
+
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
 .hex-container:nth-child(n + 8):nth-child(-n + 14) {
-  border: 5px solid red;
   margin-top: -2.9285714285%;
   margin-bottom: -2.9285714285%;
-  transform: translateX(50%);
+  transform: translate(53%, -23%);
+}
+
+.hex-container:nth-child(n + 15):nth-child(-n + 21) {
+  transform: translateY(-46%);
+}
+
+.hex-container:nth-child(n + 22):nth-child(-n + 28) {
+  margin-top: -2.9285714285%;
+  margin-bottom: -2.9285714285%;
+  transform: translate(53%, -69%);
 }
 
 .trait-gallery {
@@ -38,4 +67,8 @@
 .item-gallery {
   position: absolute;
   display: flex;
+}
+
+.cost-5 {
+  background-color: goldenrod;
 }
