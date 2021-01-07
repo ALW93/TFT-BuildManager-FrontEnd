@@ -11,7 +11,11 @@ export const SelectionPool = ({
   return (
     <div>
       <h2>Selector</h2>
-      <div className="character__selection">
+      <div
+        className="character__selection"
+        onDragOver={onDragOver}
+        onDrop={onDropDelete}
+      >
         {champions.map((champion) => {
           return (
             <img

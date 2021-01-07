@@ -54,20 +54,19 @@ const NewBuilder = () => {
     const oldSpot = ev.dataTransfer.getData("oldSpot");
     const id = ev.dataTransfer.getData("id");
 
-    console.log("OnDrop", id, occupant, oldSpot);
-
-    // if (board[oldSpot]) {
-    //   const temp = board;
-    //   temp[oldSpot] = null;
-    //   setBoard({ ...temp });
-    // }
+    if (board[oldSpot]) {
+      const temp = board;
+      temp[oldSpot] = null;
+      setBoard({ ...temp });
+    }
 
     const newBoard = board;
     newBoard[position] = id;
 
-    // if (occupant && oldSpot !== "null") {
-    //   newBoard[oldSpot] = occupant;
-    // }
+    if (occupant && oldSpot !== "null") {
+      newBoard[oldSpot] = occupant;
+    }
+
     setBoard({ ...newBoard });
   };
 

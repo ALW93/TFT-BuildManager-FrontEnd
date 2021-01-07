@@ -4,20 +4,25 @@ import { TFT_API } from "../config";
 
 const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   const [occupant, setOccupant] = useState({});
+  const [draggable, setDraggable] = useState(false);
 
   useEffect(() => {
     (async () => {
       if (champion) {
         const response = await fetch(`${TFT_API}/champions/${champion}`);
         const data = await response.json();
-        console.log(data);
-        setOccupant(data);
+        setOccupant(data[0]);
+        setDraggable(true);
+      } else {
+        setDraggable(false);
       }
     })();
   }, [champion]);
 
-  const getChar = () => {
-    return require(`${occupant.image}`);
+  const getChar = (charId) => {
+    console.log("CHARID", charId);
+    if (!charId) return;
+    return require(`../Assets/champions/${charId}.png`);
   };
 
   return (
@@ -31,18 +36,20 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
         <div>Trait 2</div>
       </div>
       <div className="hex">
-        <div
-          draggable
-          onDragStart={(e) => onDragStart(e, champion, position)}
-          className="hex__inner"
-          style={
-            occupant
-              ? {
-                  backgroundImage: `url(${require("../Assets/champions/TFT4_Ahri.png")})`,
-                }
-              : null
-          }
-        ></div>
+        {occupant ? (
+          <div
+            draggable={draggable}
+            onDragStart={(e) => onDragStart(e, champion, position)}
+            className="hex__inner"
+            style={
+              champion
+                ? {
+                    backgroundImage: `url(${getChar(occupant.championId)})`,
+                  }
+                : null
+            }
+          />
+        ) : null}
       </div>
       <div className="item-gallery">
         <div>Item 1</div>
