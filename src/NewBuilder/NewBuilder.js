@@ -16,6 +16,7 @@ const NewBuilder = () => {
     return object;
   });
 
+  // *** Toggles Database Retrieval of Champion Pool ***
   useEffect(() => {
     (async () => {
       let data;
@@ -38,6 +39,48 @@ const NewBuilder = () => {
     })();
   }, [filter]);
 
+  const onDragStart = (e, id, space) => {
+    console.log("dragstart:", id);
+    e.dataTransfer.setData("id", id);
+    e.dataTransfer.setData("oldSpot", space);
+  };
+
+  const onDragOver = (ev) => {
+    ev.preventDefault();
+  };
+
+  const onDrop = (ev, position) => {
+    const occupant = board[position];
+    const oldSpot = ev.dataTransfer.getData("oldSpot");
+    const id = ev.dataTransfer.getData("id");
+
+    console.log("OnDrop", id, occupant, oldSpot);
+
+    // if (board[oldSpot]) {
+    //   const temp = board;
+    //   temp[oldSpot] = null;
+    //   setBoard({ ...temp });
+    // }
+
+    const newBoard = board;
+    newBoard[position] = id;
+
+    // if (occupant && oldSpot !== "null") {
+    //   newBoard[oldSpot] = occupant;
+    // }
+    setBoard({ ...newBoard });
+  };
+
+  // *** Removes Champion from Board ***
+  const onDropDelete = (e) => {
+    const oldSpot = e.dataTransfer.getData("oldSpot");
+    if (board[oldSpot]) {
+      const temp = board;
+      temp[oldSpot] = null;
+      setBoard({ ...temp });
+    }
+  };
+
   return (
     <div className="Builder__Container">
       <h1>New Builder</h1>
@@ -45,14 +88,27 @@ const NewBuilder = () => {
         <div className="synergy-gallery">Traits</div>
         <div className="hexagon-gallery">
           {Object.keys(board).map((node) => {
-            return <Node />;
+            return (
+              <Node
+                champion={board[node]}
+                onDragOver={onDragOver}
+                onDragStart={onDragStart}
+                onDrop={onDrop}
+                position={node}
+              />
+            );
           })}
         </div>
         <div className="itemPool">Items</div>
       </div>
       <div className="Builder__Container--Bottom">
         <GUI filter={filter} setFilter={setFilter} />
-        <SelectionPool champions={pool} />
+        <SelectionPool
+          champions={pool}
+          onDragOver={onDragOver}
+          onDropDelete={onDropDelete}
+          onDragStart={onDragStart}
+        />
       </div>
     </div>
   );

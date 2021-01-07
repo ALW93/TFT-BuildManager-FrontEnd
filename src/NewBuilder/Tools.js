@@ -2,7 +2,12 @@ import React from "react";
 import { Radio } from "@material-ui/core";
 import "./Builder.css";
 
-export const SelectionPool = ({ champions }) => {
+export const SelectionPool = ({
+  champions,
+  onDragOver,
+  onDropDelete,
+  onDragStart,
+}) => {
   return (
     <div>
       <h2>Selector</h2>
@@ -10,6 +15,7 @@ export const SelectionPool = ({ champions }) => {
         {champions.map((champion) => {
           return (
             <img
+              onDragStart={(e) => onDragStart(e, champion.id, null)}
               draggable
               className={`border${champion.cost}`}
               src={require(`../Assets/champions/${champion.championId}.png`)}

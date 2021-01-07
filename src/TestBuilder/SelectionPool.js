@@ -51,7 +51,7 @@ const SelectionPool = ({ onDragOver, onDropDelete, onDragStart }) => {
         {champions.map((champion) => {
           return (
             <img
-              onDragStart={(e) => onDragStart(e, champion.championId, null)}
+              onDragStart={(e) => onDragStart(e, champion.id, null)}
               draggable
               className={`border${champion.cost}`}
               src={require(`../Assets/champions/${champion.championId}.png`)}

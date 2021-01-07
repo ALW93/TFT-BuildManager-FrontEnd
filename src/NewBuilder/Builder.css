@@ -59,7 +59,7 @@
 
 .hexagon-gallery {
   margin: auto;
-  min-width: 50%;
+  min-width: fit-content;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 7px;
@@ -89,6 +89,8 @@
   width: 90px;
   height: 105px;
   background-position: center;
+  background-size: 120%;
+  background-repeat: no-repeat;
   -webkit-clip-path: polygon(
     50% 0%,
     100% 25%,
