@@ -1,5 +1,5 @@
 import React from "react";
-import { RadioGroup, Radio, FormControlLabel } from "@material-ui/core";
+import { Radio } from "@material-ui/core";
 import "./Builder.css";
 
 export const SelectionPool = ({ champions }) => {
@@ -41,13 +41,13 @@ export const GUI = ({ filter, setFilter }) => {
         {Object.keys(costs).map((cost) => {
           return (
             <>
-              <label>{cost}</label>
               <Radio
                 checked={filter.cost === costs[cost]}
                 onChange={costHandler}
                 value={costs[cost]}
                 name="radio-button-demo"
               />
+              <label>{cost}</label>
             </>
           );
         })}

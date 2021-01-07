@@ -8,11 +8,6 @@
   justify-content: space-around;
 }
 
-.Builder__Container--Top div {
-  border: 1px dotted black;
-  width: 100%;
-}
-
 .Builder__Container--Bottom {
   text-align: center;
   border: 1px solid blue;
@@ -52,4 +47,85 @@
 
 .cost__buttons {
   display: none;
+}
+
+.synergy-gallery {
+  min-width: 20%;
+}
+
+.itemPool {
+  min-width: 30%;
+}
+
+.hexagon-gallery {
+  margin: auto;
+  min-width: 50%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 7px;
+}
+
+.hex {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 115px;
+  background-color: #424242;
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hex__inner {
+  position: absolute;
+  top: 5px; /* equal to border thickness */
+  left: 5px; /* equal to border thickness */
+  width: 90px;
+  height: 105px;
+  background-position: center;
+  -webkit-clip-path: polygon(
+    50% 0%,
+    100% 25%,
+    100% 75%,
+    50% 100%,
+    0% 75%,
+    0% 25%
+  );
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hex-container:nth-child(n + 8):nth-child(-n + 14) {
+  margin-top: -2.9285714285%;
+  margin-bottom: -2.9285714285%;
+  transform: translate(53%, -27%);
+}
+
+.hex-container:nth-child(n + 15):nth-child(-n + 21) {
+  transform: translateY(-54%);
+}
+
+.hex-container:nth-child(n + 22):nth-child(-n + 28) {
+  margin-top: -2.9285714285%;
+  margin-bottom: -2.9285714285%;
+  transform: translate(53%, -81%);
+}
+
+.trait-gallery,
+.item-gallery {
+  position: absolute;
+  display: flex;
+  border: 3px solid red;
+  background-color: white;
+  z-index: 999;
+  display: none;
+}
+
+.cost-5 {
+  background-color: goldenrod;
 }

@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { TFT_API } from "../config";
 import { SelectionPool, GUI } from "./Tools";
+import Node from "./Node";
 import "./Builder.css";
 
 const NewBuilder = () => {
   const [pool, setPool] = useState([]);
   const [filter, setFilter] = useState({ cost: null, trait: null });
+  const [board, setBoard] = useState(() => {
+    const object = {};
+    const spaces = Array(28).fill(null);
+    spaces.map((_, index) => {
+      object[index] = null;
+    });
+    return object;
+  });
 
   useEffect(() => {
     (async () => {
@@ -33,9 +42,13 @@ const NewBuilder = () => {
     <div className="Builder__Container">
       <h1>New Builder</h1>
       <div className="Builder__Container--Top">
-        <div>Traits</div>
-        <div>Board</div>
-        <div>Items</div>
+        <div className="synergy-gallery">Traits</div>
+        <div className="hexagon-gallery">
+          {Object.keys(board).map((node) => {
+            return <Node />;
+          })}
+        </div>
+        <div className="itemPool">Items</div>
       </div>
       <div className="Builder__Container--Bottom">
         <GUI filter={filter} setFilter={setFilter} />

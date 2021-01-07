@@ -1,4 +1,4 @@
-.hexagon-gallery {
+/* .hexagon-gallery {
   margin: auto;
   max-width: fit-content;
   display: grid;
@@ -25,8 +25,8 @@
 
 .hex__inner {
   position: absolute;
-  top: 5px; /* equal to border thickness */
-  left: 5px; /* equal to border thickness */
+  top: 5px;
+  left: 5px;
   width: 90px;
   height: 105px;
   background-image: url(https://i.pinimg.com/236x/ea/a6/68/eaa668ece7e463e23e42db4c9bab09b2.jpg);
@@ -70,4 +70,4 @@
 
 .cost-5 {
   background-color: goldenrod;
-}
+} */
