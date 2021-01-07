@@ -49,3 +49,7 @@
 .border5 {
   border: 3px outset goldenrod;
 }
+
+.cost__buttons {
+  display: none;
+}

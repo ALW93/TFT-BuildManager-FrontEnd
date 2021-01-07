@@ -25,7 +25,6 @@ const SelectionPool = ({ onDragOver, onDropDelete, onDragStart }) => {
         data = await fetch(`${TFT_API}/champions`);
       }
       const parsed = await data.json();
-      console.log(parsed);
       setChampions(parsed);
     })();
   }, [filter]);
