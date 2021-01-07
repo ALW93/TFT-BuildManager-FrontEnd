@@ -19,6 +19,7 @@ const HexBuilder = () => {
             <div>Item 3</div>
           </div>
         </div>
+
         <div className="hex-container">
           <div className="trait-gallery">
             <div>Trait 1</div>

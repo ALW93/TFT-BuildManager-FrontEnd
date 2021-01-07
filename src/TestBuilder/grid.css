@@ -1,16 +1,16 @@
 .hexagon-gallery {
   margin: auto;
-  max-width: 1000px;
+  max-width: fit-content;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
+  grid-gap: 7px;
 }
 
 .hex {
   display: inline-block;
   position: relative;
-  width: 140px;
-  height: 155px;
+  width: 100px;
+  height: 115px;
   background-color: #424242;
   -webkit-clip-path: polygon(
     50% 0%,
@@ -27,11 +27,10 @@
   position: absolute;
   top: 5px; /* equal to border thickness */
   left: 5px; /* equal to border thickness */
-  width: 130px;
-  height: 145px;
+  width: 90px;
+  height: 105px;
   background-image: url(https://i.pinimg.com/236x/ea/a6/68/eaa668ece7e463e23e42db4c9bab09b2.jpg);
   background-position: center;
-
   -webkit-clip-path: polygon(
     50% 0%,
     100% 25%,
@@ -46,27 +45,27 @@
 .hex-container:nth-child(n + 8):nth-child(-n + 14) {
   margin-top: -2.9285714285%;
   margin-bottom: -2.9285714285%;
-  transform: translate(53%, -23%);
+  transform: translate(53%, -27%);
 }
 
 .hex-container:nth-child(n + 15):nth-child(-n + 21) {
-  transform: translateY(-46%);
+  transform: translateY(-54%);
 }
 
 .hex-container:nth-child(n + 22):nth-child(-n + 28) {
   margin-top: -2.9285714285%;
   margin-bottom: -2.9285714285%;
-  transform: translate(53%, -69%);
+  transform: translate(53%, -81%);
 }
 
-.trait-gallery {
-  position: absolute;
-  display: flex;
-}
-
+.trait-gallery,
 .item-gallery {
   position: absolute;
   display: flex;
+  border: 3px solid red;
+  background-color: white;
+  z-index: 999;
+  display: none;
 }
 
 .cost-5 {

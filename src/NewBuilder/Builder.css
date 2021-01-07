@@ -1,0 +1,51 @@
+.Builder__Container {
+  border: 1px solid black;
+}
+
+.Builder__Container--Top {
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Builder__Container--Top div {
+  border: 1px dotted black;
+  width: 100%;
+}
+
+.Builder__Container--Bottom {
+  text-align: center;
+  border: 1px solid blue;
+}
+
+.character__selection {
+  border: 1px solid black;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.character__selection img {
+  margin: 3px;
+  border-radius: 3px;
+  width: 52px;
+}
+
+.border1 {
+  border: 3px outset rgb(173, 169, 169);
+}
+
+.border2 {
+  border: 3px outset rgb(71, 216, 144);
+}
+
+.border3 {
+  border: 3px outset rgb(74, 124, 232);
+}
+
+.border4 {
+  border: 3px outset magenta;
+}
+
+.border5 {
+  border: 3px outset goldenrod;
+}
