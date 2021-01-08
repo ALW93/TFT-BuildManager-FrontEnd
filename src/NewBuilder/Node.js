@@ -6,6 +6,7 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   const [occupant, setOccupant] = useState({});
   const [tripleTrait, setTripleTrait] = useState("");
   const [draggable, setDraggable] = useState(false);
+  const [border, setBorder] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -14,9 +15,11 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
         const data = await response.json();
         if (data[0].traits.length === 3) setTripleTrait("triple_trait");
         setOccupant(data[0]);
+        setBorder(`cost${data[0].cost}`);
         setDraggable(true);
       } else {
         setDraggable(false);
+        setBorder("");
       }
     })();
   }, [champion]);
@@ -56,7 +59,7 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
             })
           : null}
       </div>
-      <div className="hex">
+      <div className={`hex ${border}`}>
         {occupant ? (
           <div
             draggable={draggable}

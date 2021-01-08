@@ -51,8 +51,24 @@
   border: 3px ridge goldenrod;
 }
 
-.cost__buttons {
-  display: none;
+.cost1 {
+  background-color: rgb(173, 169, 169) !important;
+}
+
+.cost2 {
+  background-color: rgb(71, 216, 144) !important;
+}
+
+.cost3 {
+  background-color: rgb(74, 124, 232) !important;
+}
+
+.cost4 {
+  background-color: magenta !important;
+}
+
+.cost5 {
+  background-color: goldenrod !important;
 }
 
 .synergy-gallery {
@@ -69,7 +85,7 @@
   min-width: fit-content;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 7px;
+  grid-gap: 12px;
 }
 
 .hex {
@@ -109,27 +125,33 @@
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
+.hex-container:nth-child(n + 1):nth-child(-n + 14) {
+  margin-top: -2.9285714285%;
+  margin-bottom: -2.9285714285%;
+  transform: translateY(-10%);
+}
+
 .hex-container:nth-child(n + 8):nth-child(-n + 14) {
   margin-top: -2.9285714285%;
   margin-bottom: -2.9285714285%;
-  transform: translate(53%, -22%);
+  transform: translate(53%, -28%);
 }
 
 .hex-container:nth-child(n + 15):nth-child(-n + 21) {
-  transform: translateY(-45%);
+  transform: translateY(-47%);
 }
 
 .hex-container:nth-child(n + 22):nth-child(-n + 28) {
   margin-top: -2.9285714285%;
   margin-bottom: -2.9285714285%;
-  transform: translate(53%, -68%);
+  transform: translate(53%, -67%);
 }
 
 .item-gallery {
   position: absolute;
   display: flex;
   z-index: 1;
-  margin-top: -27%;
+  margin-top: -23%;
   width: fit-content;
   left: 0;
   right: 0;
@@ -149,14 +171,10 @@
   margin-right: auto;
 }
 
-.cost-5 {
-  background-color: goldenrod;
-}
-
 .equipped {
   position: relative;
   width: 23px;
-  margin-top: -3px;
+  margin-top: -10px;
   border-radius: 50px;
   z-index: 999;
   border: 1px solid #424242;

@@ -17,6 +17,10 @@ const NewBuilder = () => {
     return object;
   });
 
+  const submitBuild = () => {
+    console.log(JSON.stringify(board));
+  };
+
   useEffect(() => {
     (async () => {
       const response = await fetch(`${TFT_API}/items`);
@@ -138,6 +142,7 @@ const NewBuilder = () => {
           onDragStart={onDragStart}
         />
       </div>
+      <button onClick={submitBuild}>Submit</button>
     </div>
   );
 };
