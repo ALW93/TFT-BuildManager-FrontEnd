@@ -37,7 +37,10 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   return (
     <div
       onDragOver={onDragOver}
-      onDrop={(e) => onDrop(e, position)}
+      onDrop={(e) => {
+        onDrop(e, position);
+        setTripleTrait("");
+      }}
       className="hex-container"
     >
       <div className="trait-gallery">
