@@ -32,23 +32,23 @@
 }
 
 .border1 {
-  border: 3px outset rgb(173, 169, 169);
+  border: 3px ridge rgb(173, 169, 169);
 }
 
 .border2 {
-  border: 3px outset rgb(71, 216, 144);
+  border: 3px ridge rgb(71, 216, 144);
 }
 
 .border3 {
-  border: 3px outset rgb(74, 124, 232);
+  border: 3px ridge rgb(74, 124, 232);
 }
 
 .border4 {
-  border: 3px outset magenta;
+  border: 3px ridge magenta;
 }
 
 .border5 {
-  border: 3px outset goldenrod;
+  border: 3px ridge goldenrod;
 }
 
 .cost__buttons {
@@ -112,24 +112,41 @@
 .hex-container:nth-child(n + 8):nth-child(-n + 14) {
   margin-top: -2.9285714285%;
   margin-bottom: -2.9285714285%;
-  transform: translate(53%, -27%);
+  transform: translate(53%, -22%);
 }
 
 .hex-container:nth-child(n + 15):nth-child(-n + 21) {
-  transform: translateY(-54%);
+  transform: translateY(-45%);
 }
 
 .hex-container:nth-child(n + 22):nth-child(-n + 28) {
   margin-top: -2.9285714285%;
   margin-bottom: -2.9285714285%;
-  transform: translate(53%, -81%);
+  transform: translate(53%, -68%);
 }
 
-.trait-gallery,
 .item-gallery {
   position: absolute;
   display: flex;
-  z-index: 999;
+  z-index: 1;
+  margin-top: -30%;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trait-gallery {
+  position: absolute;
+  display: flex;
+  z-index: 1;
+  margin-top: 2px;
+  width: fit-content;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cost-5 {
@@ -137,5 +154,36 @@
 }
 
 .equipped {
+  position: relative;
+  width: 23px;
+  margin-top: -3px;
+  border-radius: 50px;
+  z-index: 999;
+  border: 1px solid #424242;
+}
+
+.traits {
+  margin: 1px;
+  background-color: #424242;
   width: 20px;
+  height: 18px;
+  padding-bottom: 1px;
+  text-align-last: center;
+  border-radius: 50px;
+  border: 0.5px ridge white;
+}
+
+.traits img {
+  width: 12px;
+  height: 20px;
+  filter: drop-shadow(16px 16px 20px red) invert(75%);
+}
+
+.triple_trait:nth-child(1),
+.triple_trait:nth-child(3) {
+  margin-top: 5px;
+}
+
+.triple_trait:nth-child(2) {
+  margin-top: -3px;
 }

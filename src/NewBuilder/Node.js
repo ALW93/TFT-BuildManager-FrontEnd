@@ -4,6 +4,7 @@ import { TFT_API } from "../config";
 
 const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   const [occupant, setOccupant] = useState({});
+  const [tripleTrait, setTripleTrait] = useState("");
   const [draggable, setDraggable] = useState(false);
 
   useEffect(() => {
@@ -11,6 +12,7 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
       if (champion) {
         const response = await fetch(`${TFT_API}/champions/${champion.id}`);
         const data = await response.json();
+        if (data[0].traits.length === 3) setTripleTrait("triple_trait");
         setOccupant(data[0]);
         setDraggable(true);
       } else {
@@ -24,6 +26,14 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
     return require(`../Assets/champions/${charId}.png`);
   };
 
+  const getTrait = (trait) => {
+    if (trait.indexOf("Set4_") > -1) {
+      return trait.split("").splice(5).join("").toLowerCase();
+    } else {
+      return trait.toLowerCase();
+    }
+  };
+
   return (
     <div
       onDragOver={onDragOver}
@@ -31,8 +41,17 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
       className="hex-container"
     >
       <div className="trait-gallery">
-        <div>Trait 1</div>
-        <div>Trait 2</div>
+        {champion && occupant.traits
+          ? occupant.traits.map((trait) => {
+              return (
+                <div className={`traits ${tripleTrait}`}>
+                  <img
+                    src={require(`../Assets/traits/${getTrait(trait)}.svg`)}
+                  />
+                </div>
+              );
+            })
+          : null}
       </div>
       <div className="hex">
         {occupant ? (
