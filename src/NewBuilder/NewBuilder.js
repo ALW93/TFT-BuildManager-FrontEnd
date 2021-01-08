@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { TFT_API } from "../config";
-import { SelectionPool, GUI } from "./Tools";
+import { SelectionPool, GUI, ItemPool } from "./Tools";
 import Node from "./Node";
 import "./Builder.css";
 
 const NewBuilder = () => {
   const [pool, setPool] = useState([]);
+  const [items, setItems] = useState([]);
   const [filter, setFilter] = useState({ cost: null, trait: null });
   const [board, setBoard] = useState(() => {
     const object = {};
@@ -15,6 +16,14 @@ const NewBuilder = () => {
     });
     return object;
   });
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`${TFT_API}/items`);
+      const data = await response.json();
+      setItems(data);
+    })();
+  }, []);
 
   // *** Toggles Database Retrieval of Champion Pool ***
   useEffect(() => {
@@ -43,6 +52,7 @@ const NewBuilder = () => {
     console.log("dragstart:", id);
     e.dataTransfer.setData("id", id);
     e.dataTransfer.setData("oldSpot", space);
+    e.dataTransfer.setData("type", "champion");
   };
 
   const onDragOver = (ev) => {
@@ -53,21 +63,38 @@ const NewBuilder = () => {
     const occupant = board[position];
     const oldSpot = ev.dataTransfer.getData("oldSpot");
     const id = ev.dataTransfer.getData("id");
-
-    if (board[oldSpot]) {
-      const temp = board;
-      temp[oldSpot] = null;
-      setBoard({ ...temp });
-    }
-
+    const itemId = ev.dataTransfer.getData("itemId");
+    const type = ev.dataTransfer.getData("type");
     const newBoard = board;
-    newBoard[position] = id;
 
-    if (occupant && oldSpot !== "null") {
-      newBoard[oldSpot] = occupant;
+    if (type === "champion") {
+      if (board[oldSpot]) {
+        const temp = board;
+        temp[oldSpot] = null;
+        setBoard({ ...temp });
+      }
+      newBoard[position] = { id: id };
+      if (occupant && oldSpot !== "null") {
+        newBoard[oldSpot] = occupant;
+      }
+      setBoard({ ...newBoard });
     }
 
-    setBoard({ ...newBoard });
+    if (type === "item") {
+      console.log("dropping an item", itemId);
+      if (board[position]) {
+        if (newBoard[position]["items"]) {
+          if (newBoard[position]["items"].length === 3) return;
+          newBoard[position]["items"].push(itemId);
+        } else {
+          newBoard[position]["items"] = [itemId];
+        }
+        // newBoard[position]["items"] = [itemId];
+        setBoard({ ...newBoard });
+      } else {
+        console.log("no champion"); // TODO: Alert User No Champion
+      }
+    }
   };
 
   // *** Removes Champion from Board ***
@@ -98,7 +125,9 @@ const NewBuilder = () => {
             );
           })}
         </div>
-        <div className="itemPool">Items</div>
+        <div className="itemPool">
+          <ItemPool items={items} />
+        </div>
       </div>
       <div className="Builder__Container--Bottom">
         <GUI filter={filter} setFilter={setFilter} />

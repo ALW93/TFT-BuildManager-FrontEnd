@@ -9,7 +9,7 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   useEffect(() => {
     (async () => {
       if (champion) {
-        const response = await fetch(`${TFT_API}/champions/${champion}`);
+        const response = await fetch(`${TFT_API}/champions/${champion.id}`);
         const data = await response.json();
         setOccupant(data[0]);
         setDraggable(true);
@@ -20,7 +20,6 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   }, [champion]);
 
   const getChar = (charId) => {
-    console.log("CHARID", charId);
     if (!charId) return;
     return require(`../Assets/champions/${charId}.png`);
   };
@@ -39,7 +38,7 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
         {occupant ? (
           <div
             draggable={draggable}
-            onDragStart={(e) => onDragStart(e, champion, position)}
+            onDragStart={(e) => onDragStart(e, champion.id, position)}
             className="hex__inner"
             style={
               champion
@@ -52,9 +51,16 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
         ) : null}
       </div>
       <div className="item-gallery">
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
+        {champion && champion.items
+          ? champion.items.map((item) => {
+              return (
+                <img
+                  className="equipped"
+                  src={require(`../Assets/items/${item}`)}
+                />
+              );
+            })
+          : null}
       </div>
     </div>
   );

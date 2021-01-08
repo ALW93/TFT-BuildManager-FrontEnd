@@ -19,7 +19,13 @@
   margin: 0 auto;
 }
 
-.character__selection img {
+.item__selection {
+  border: 1px solid blue;
+  width: 80%;
+}
+
+.character__selection img,
+.item__selection img {
   margin: 3px;
   border-radius: 3px;
   width: 52px;
@@ -55,6 +61,7 @@
 
 .itemPool {
   min-width: 30%;
+  margin-left: 100px;
 }
 
 .hexagon-gallery {
@@ -122,12 +129,13 @@
 .item-gallery {
   position: absolute;
   display: flex;
-  border: 3px solid red;
-  background-color: white;
   z-index: 999;
-  display: none;
 }
 
 .cost-5 {
   background-color: goldenrod;
+}
+
+.equipped {
+  width: 20px;
 }

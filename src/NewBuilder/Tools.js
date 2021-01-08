@@ -2,6 +2,35 @@ import React from "react";
 import { Radio } from "@material-ui/core";
 import "./Builder.css";
 
+export const ItemPool = ({ items }) => {
+  const itemDragStart = (e, itemId) => {
+    console.log("itemStart", itemId);
+    e.dataTransfer.setData("itemId", itemId);
+    e.dataTransfer.setData("type", "item");
+  };
+
+  return (
+    <>
+      <h2>Item Pool</h2>
+      <div className="item__selection">
+        {items &&
+          items.map((item) => {
+            const ref = item.image.slice(16);
+            return (
+              <>
+                <img
+                  onDragStart={(e) => itemDragStart(e, ref)}
+                  draggable={true}
+                  src={require(`../Assets/items/${ref}`)}
+                />
+              </>
+            );
+          })}
+      </div>
+    </>
+  );
+};
+
 export const SelectionPool = ({
   champions,
   onDragOver,
