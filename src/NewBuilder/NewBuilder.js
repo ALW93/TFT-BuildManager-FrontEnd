@@ -3,6 +3,7 @@ import { TFT_API } from "../config";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
 import Node from "./Node";
 import "./Builder.css";
+import { createBoard } from "./BoardService";
 
 const NewBuilder = () => {
   const [pool, setPool] = useState([]);
@@ -19,6 +20,8 @@ const NewBuilder = () => {
 
   const submitBuild = () => {
     console.log(JSON.stringify(board));
+    const info = { board: board, authorId: 1, title: "test" };
+    createBoard(info);
   };
 
   useEffect(() => {
