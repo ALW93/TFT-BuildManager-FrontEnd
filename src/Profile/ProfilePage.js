@@ -7,7 +7,6 @@ import {
   getBuildById,
 } from "../Fetches/fetches";
 import "./ProfilePage.css";
-import SmallCard from "../shared_components/SmallCard";
 
 const ProfilePage = ({ match }) => {
   const [user, setUser] = useState({});
@@ -54,16 +53,7 @@ const ProfilePage = ({ match }) => {
         <h1>{user.username}'s Published Builds</h1>
         <div className="build_carousel">
           {buildData.length > 0 ? (
-            buildData.map((e) => (
-              <SmallCard
-                key={e.id}
-                id={e.id}
-                image={e.image}
-                title={e.title}
-                author={e.author}
-                authorId={e.authorId}
-              />
-            ))
+            <div>Under Construction</div>
           ) : (
             <div>No Publications Yet!</div>
           )}
