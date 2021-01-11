@@ -50,12 +50,10 @@ export const logout = () => async (dispatch, getState) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 
-  if (response.ok) {
-    window.localStorage.removeItem(TOKEN_KEY);
-    window.localStorage.removeItem("USER_ID");
-    dispatch(removeId());
-    dispatch(removeToken());
-  }
+  window.localStorage.removeItem(TOKEN_KEY);
+  window.localStorage.removeItem("USER_ID");
+  dispatch(removeId());
+  dispatch(removeToken());
 };
 
 export const createUser = (user) => async (dispatch) => {

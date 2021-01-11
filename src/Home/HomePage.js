@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import TopBar from "../shared_components/TopBar";
-import { TFT_BASE, IMG_API, TFT_API } from "../config";
-import { parseCover } from "../NewBuilder/BoardService";
+import { TFT_BASE } from "../config";
 import Card from "./Card";
 
 const HomePage = () => {
   const [meta, setMeta] = useState([]);
+  const [all, setAll] = useState([]);
 
   useEffect(() => {
     (async () => {
       const response = await fetch(`${TFT_BASE}/boards/meta`);
       const data = await response.json();
       setMeta(data);
+      const res = await fetch(`${TFT_BASE}/boards`);
+      const info = await res.json();
+      setAll(info);
     })();
   }, []);
 
@@ -29,7 +32,12 @@ const HomePage = () => {
             })}
         </div>
         <h1 className="metaTitle">Community Builds</h1>
-        <div className="BuildContainer__Carousel"></div>
+        <div className="BuildContainer__Carousel">
+          {all &&
+            all.map((e) => {
+              return <Card data={e} />;
+            })}
+        </div>
       </div>
     </div>
   );
