@@ -1,20 +1,15 @@
-import React from "react";
-import { DateTime } from "luxon";
+import React, { useState } from "react";
+import ViewNode from "./ViewNode";
 
-const ViewBoard = ({ board, author }) => {
-  const created = DateTime.fromISO(board.createdAt).toLocaleString(
-    DateTime.DATE_MED
-  );
-  console.log(created);
-
+const ViewBoard = ({ data }) => {
   return (
-    <div>
-      <h1>Board</h1>
-      <h2>{board.title}</h2>
-      <h2>Votes {board.votes || 0}</h2>
-      <h3>Last Updated {created}</h3>
-      <h3>Created By {author.username}</h3>
-      {board.guide || <button>Add a Guide</button>}
+    <div className="Builder__Container--Top">
+      <div className="hexagon-gallery">
+        {data &&
+          Object.keys(data).map((node) => {
+            return <ViewNode champion={data[node]} position={node} />;
+          })}
+      </div>
     </div>
   );
 };

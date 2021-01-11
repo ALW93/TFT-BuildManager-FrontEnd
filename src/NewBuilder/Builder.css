@@ -3,7 +3,7 @@
 }
 
 .Builder__Container--Top {
-  border: 1px solid red;
+  width: fit-content;
   display: flex;
   justify-content: space-around;
 }

@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { TFT_BASE } from "../config";
+import { DateTime } from "luxon";
 import ViewBoard from "./ViewBoard";
+import Editor from "../shared_components/Editor";
 
 const View = ({ match }) => {
   const buildId = match.params.id;
   const [board, setBoard] = useState([]);
   const [author, setAuthor] = useState({});
+  const [editor, showEditor] = useState(true);
+
+  const created = DateTime.fromISO(board.createdAt).toLocaleString(
+    DateTime.DATE_MED
+  );
 
   useEffect(() => {
     (async () => {
@@ -19,7 +26,17 @@ const View = ({ match }) => {
   return (
     <div>
       <h1>Build Preview</h1>
-      <ViewBoard board={board} author={author} />
+      <h1>Board</h1>
+      <h2>{board.title}</h2>
+      <h2>Votes {board.votes || 0}</h2>
+      <h3>Last Updated {created}</h3>
+      <h3>Created By {author.username}</h3>
+      <ViewBoard data={board.board} />
+
+      {board.guide || (
+        <button onClick={() => showEditor(true)}>Add a Guide</button>
+      )}
+      {editor ? <Editor /> : null}
     </div>
   );
 };
