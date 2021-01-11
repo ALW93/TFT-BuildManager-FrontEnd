@@ -29,19 +29,12 @@ const SelectionPool = ({ onDragOver, onDropDelete, onDragStart }) => {
     })();
   }, [filter]);
 
-  const costHandler = (e) => {
-    setFilter({ ...filter, cost: e.target.value });
-    console.log(filter);
-  };
+  const costHandler = (e) => setFilter({ ...filter, cost: e.target.value });
+  const traitHandler = (e) => setFilter({ ...filter, trait: e.target.value });
 
   return (
     <div>
-      <RadioGroup
-        aria-label="gender"
-        name="gender1"
-        value={filter.cost}
-        onChange={costHandler}
-      >
+      <RadioGroup value={filter.cost} onChange={costHandler}>
         <FormControlLabel value="" control={<Radio />} label="None" />
         <FormControlLabel value="1" control={<Radio />} label="One" />
         <FormControlLabel value="2" control={<Radio />} label="Two" />
@@ -49,6 +42,7 @@ const SelectionPool = ({ onDragOver, onDropDelete, onDragStart }) => {
         <FormControlLabel value="4" control={<Radio />} label="Four" />
         <FormControlLabel value="5" control={<Radio />} label="Five" />
       </RadioGroup>
+      <RadioGroup value={filter.trait} onChange={traitHandler}></RadioGroup>
       <div
         className="character__selection"
         onDragOver={(e) => onDragOver(e)}
@@ -57,8 +51,9 @@ const SelectionPool = ({ onDragOver, onDropDelete, onDragStart }) => {
         {champions.map((champion) => {
           return (
             <img
-              onDragStart={(e) => onDragStart(e, champion.championId, null)}
+              onDragStart={(e) => onDragStart(e, champion.id, null)}
               draggable
+              className={`border${champion.cost}`}
               src={require(`../Assets/champions/${champion.championId}.png`)}
               style={{ width: "64px" }}
             />

@@ -9,7 +9,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { NavLink } from "react-router-dom";
 import MeetingRoomOutlinedIcon from "@material-ui/icons/MeetingRoomOutlined";
-import BookOutlinedIcon from "@material-ui/icons/BookOutlined";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/actions/authentication";
@@ -48,8 +47,8 @@ const StyledMenuItem = withStyles((theme) => ({
 export default function DropDown() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await dispatch(logout());
   };
 
   const handleClick = (event) => {

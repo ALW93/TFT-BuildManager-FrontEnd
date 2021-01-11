@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import { champions } from "../Utility/game-data";
-import { ICON_IMG_API, IMG_API } from "../config";
+import { champions } from "../../Utility/game-data";
+import { ICON_IMG_API, IMG_API } from "../../config";
 import "./BuildForm.css";
-import { createBuild } from "../Fetches/fetches";
-import SideBar from "../shared_components/SideBar";
-import MenuBar from "../shared_components/MenuBar";
+import { createBuild } from "../../Fetches/fetches";
+import SideBar from "../../shared_components/SideBar";
+import MenuBar from "../../shared_components/MenuBar";
 import { withRouter } from "react-router-dom";
 
 const BuildForm = (props) => {
