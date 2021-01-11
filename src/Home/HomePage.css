@@ -17,9 +17,19 @@ body {
 }
 
 .BuildContainer__Carousel {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 10px 0px;
-  grid-template-areas: ". . . . . .";
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Build__Preview {
+  width: 300px;
+  height: 480px;
+  border: 2px solid blue;
+  overflow: hidden;
+}
+
+.preview_image {
+  width: 100%;
+  overflow: hidden;
 }
