@@ -9,6 +9,7 @@ import { createBoard } from "./BoardService";
 const NewBuilder = () => {
   const [pool, setPool] = useState(champPool);
   const [filter, setFilter] = useState({ cost: null, trait: null });
+  const [synergies, setSynergies] = useState({});
   const [board, setBoard] = useState(() => {
     const object = {};
     const spaces = Array(28).fill(null);
@@ -23,6 +24,26 @@ const NewBuilder = () => {
     const info = { board: board, authorId: 1, title: "test" };
     createBoard(info);
   };
+
+  // *** Grabs Synergies for Current Board ***
+  useEffect(() => {
+    const synergies = {};
+    const team = Object.values(board)
+      .map((e) => (e ? e.id : null))
+      .filter((i) => i);
+    champPool.map((champ) => {
+      if (team.includes(champ.championId)) {
+        champ.traits.forEach((trait) => {
+          if (!synergies[trait]) {
+            synergies[trait] = 1;
+          } else {
+            synergies[trait]++;
+          }
+        });
+      }
+    });
+    setSynergies(synergies);
+  }, [board]);
 
   // *** Toggles Database Retrieval of Champion Pool ***
   useEffect(() => {
@@ -65,7 +86,6 @@ const NewBuilder = () => {
     const oldSpot = ev.dataTransfer.getData("oldSpot");
     const id = ev.dataTransfer.getData("id");
     const items = ev.dataTransfer.getData("items");
-    console.log("ITEMMS", items);
     const itemId = ev.dataTransfer.getData("itemId");
     const type = ev.dataTransfer.getData("type");
     const newBoard = board;
@@ -116,7 +136,7 @@ const NewBuilder = () => {
     <div className="Builder__Container">
       <h1>New Builder</h1>
       <div className="Builder__Container--Top">
-        <div className="synergy-gallery">Traits</div>
+        <div className="synergy-gallery">Traits{JSON.stringify(synergies)}</div>
         <div className="hexagon-gallery">
           {Object.keys(board).map((node) => {
             return (

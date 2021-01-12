@@ -48,7 +48,7 @@ export const SelectionPool = ({
         {champions.map((champion, index) => {
           return (
             <img
-              onDragStart={(e) => onDragStart(e, index, null)}
+              onDragStart={(e) => onDragStart(e, champion.championId, null)}
               draggable
               className={`border${champion.cost}`}
               src={require(`../Assets/champions/${champion.championId}.png`)}

@@ -12,7 +12,7 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   useEffect(() => {
     (async () => {
       if (champion) {
-        const data = champPool[champion.id];
+        const data = champPool.filter((e) => e.championId === champion.id)[0];
         if (data.traits.length === 3) setTripleTrait("triple_trait");
         setOccupant(data);
         setBorder(`cost${data.cost}`);
