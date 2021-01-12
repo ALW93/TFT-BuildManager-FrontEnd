@@ -1,7 +1,7 @@
-import { TFT_BASE, IMG_API } from "../config";
+import { TFT_BASE, IMG_API } from "../../config";
 import { Redirect } from "react-router-dom";
 import React from "react";
-import { TOKEN_KEY } from "../store/actions/authentication";
+import { TOKEN_KEY } from "../../store/actions/authentication";
 
 //#region General Use Functions
 const getRandom = (max, min) => Math.floor(Math.random() * (max - min) + min);

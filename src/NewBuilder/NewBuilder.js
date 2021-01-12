@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, cloneElement } from "react";
 import { TFT_API } from "../config";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
 import Node from "./Node";
+import { items as itemPool, champions as champPool } from "../set4/set4";
 import "./Builder.css";
 import { createBoard } from "./BoardService";
 
 const NewBuilder = () => {
-  const [pool, setPool] = useState([]);
-  const [items, setItems] = useState([]);
+  const [pool, setPool] = useState(champPool);
   const [filter, setFilter] = useState({ cost: null, trait: null });
   const [board, setBoard] = useState(() => {
     const object = {};
@@ -24,41 +24,35 @@ const NewBuilder = () => {
     createBoard(info);
   };
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(`${TFT_API}/items`);
-      const data = await response.json();
-      setItems(data);
-    })();
-  }, []);
-
   // *** Toggles Database Retrieval of Champion Pool ***
   useEffect(() => {
     (async () => {
-      let data;
+      let data = champPool;
       if (filter.cost && !filter.trait) {
-        data = await fetch(`${TFT_API}/champions/filter/cost/${filter.cost}`);
+        return setPool(data.filter((e) => e.cost === parseInt(filter.cost)));
       }
       if (!filter.cost && filter.trait) {
-        data = await fetch(`${TFT_API}/champions/filter/trait/${filter.trait}`);
+        return setPool(data.filter((e) => e.trait.includes(filter.trait)));
       }
       if (filter.cost && filter.trait) {
-        data = await fetch(
-          `${TFT_API}/champions/filter/cost/${filter.cost}/trait/${filter.trait}`
+        return setPool(
+          data.filter(
+            (e) =>
+              e.cost === parseInt(filter.cost) && e.trait.includes(filter.trait)
+          )
         );
       }
-      if (!filter.cost && !filter.trait) {
-        data = await fetch(`${TFT_API}/champions`);
-      }
-      const parsed = await data.json();
-      setPool(parsed);
+      setPool(data);
     })();
   }, [filter]);
 
   const onDragStart = (e, id, space) => {
-    console.log("dragstart:", id);
+    console.log("dragstart:", id, space);
     e.dataTransfer.setData("id", id);
     e.dataTransfer.setData("oldSpot", space);
+    if (space && board[space].items) {
+      e.dataTransfer.setData("items", board[space].items);
+    }
     e.dataTransfer.setData("type", "champion");
   };
 
@@ -70,6 +64,8 @@ const NewBuilder = () => {
     const occupant = board[position];
     const oldSpot = ev.dataTransfer.getData("oldSpot");
     const id = ev.dataTransfer.getData("id");
+    const items = ev.dataTransfer.getData("items");
+    console.log("ITEMMS", items);
     const itemId = ev.dataTransfer.getData("itemId");
     const type = ev.dataTransfer.getData("type");
     const newBoard = board;
@@ -80,7 +76,11 @@ const NewBuilder = () => {
         temp[oldSpot] = null;
         setBoard({ ...temp });
       }
-      newBoard[position] = { id: id };
+      if (items.length) {
+        newBoard[position] = { id: id, items: items.split(",") };
+      } else {
+        newBoard[position] = { id: id };
+      }
       if (occupant && oldSpot !== "null") {
         newBoard[oldSpot] = occupant;
       }
@@ -88,7 +88,6 @@ const NewBuilder = () => {
     }
 
     if (type === "item") {
-      console.log("dropping an item", itemId);
       if (board[position]) {
         if (newBoard[position]["items"]) {
           if (newBoard[position]["items"].length === 3) return;
@@ -96,7 +95,6 @@ const NewBuilder = () => {
         } else {
           newBoard[position]["items"] = [itemId];
         }
-        // newBoard[position]["items"] = [itemId];
         setBoard({ ...newBoard });
       } else {
         console.log("no champion"); // TODO: Alert User No Champion
@@ -133,7 +131,7 @@ const NewBuilder = () => {
           })}
         </div>
         <div className="itemPool">
-          <ItemPool items={items} />
+          <ItemPool items={itemPool} />
         </div>
       </div>
       <div className="Builder__Container--Bottom">

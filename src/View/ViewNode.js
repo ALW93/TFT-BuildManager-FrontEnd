@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TFT_API } from "../config";
+import { champions as champPool } from "../set4/set4";
 
 const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   const [occupant, setOccupant] = useState({});
@@ -9,11 +9,10 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   useEffect(() => {
     (async () => {
       if (champion) {
-        const response = await fetch(`${TFT_API}/champions/${champion.id}`);
-        const data = await response.json();
-        if (data[0].traits.length === 3) setTripleTrait("triple_trait");
-        setOccupant(data[0]);
-        setBorder(`cost${data[0].cost}`);
+        const data = champPool[champion.id];
+        if (data.traits.length === 3) setTripleTrait("triple_trait");
+        setOccupant(data);
+        setBorder(`cost${data.cost}`);
       } else {
         setBorder("");
       }
