@@ -1,4 +1,4 @@
-import { TFT_BASE, TFT_API } from "../config";
+import { TFT_BASE } from "../config";
 
 export const createBoard = async (payload) => {
   const response = await fetch(`${TFT_BASE}/boards`, {

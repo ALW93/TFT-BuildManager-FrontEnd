@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TopBar from "../shared_components/TopBar";
-import {
-  getUserInfo,
-  getUserBuilds,
-  parseCardData,
-  getBuildById,
-} from "../Fetches/fetches";
+
 import "./ProfilePage.css";
 
 const ProfilePage = ({ match }) => {
@@ -17,19 +12,9 @@ const ProfilePage = ({ match }) => {
   useEffect(() => {
     const getInfo = async () => {
       const userId = match.params.id;
-      const userInfo = await getUserInfo(userId);
-      setUser(userInfo);
 
       // const bookmarks = await getUserBookmarks(userId);
       // setBookmarks(bookmarks.bookmarks);
-
-      const buildArray = await getUserBuilds(userId);
-
-      buildArray.forEach(async (b, i) => {
-        const response = await getBuildById(b);
-        const info = await parseCardData(response.build);
-        setBuildData((buildData) => [...buildData, info]);
-      });
     };
     getInfo();
   }, [match.params.id]);
