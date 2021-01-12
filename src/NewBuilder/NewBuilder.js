@@ -1,9 +1,9 @@
-import React, { useState, useEffect, cloneElement } from "react";
-import { TFT_API } from "../config";
+import React, { useState, useEffect } from "react";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
 import Node from "./Node";
 import { items as itemPool, champions as champPool } from "../set4/set4";
 import "./Builder.css";
+import Synergies from "./Synergies";
 import { createBoard } from "./BoardService";
 
 const NewBuilder = () => {
@@ -136,7 +136,9 @@ const NewBuilder = () => {
     <div className="Builder__Container">
       <h1>New Builder</h1>
       <div className="Builder__Container--Top">
-        <div className="synergy-gallery">Traits{JSON.stringify(synergies)}</div>
+        <div className="synergy-gallery">
+          <Synergies data={synergies} />
+        </div>
         <div className="hexagon-gallery">
           {Object.keys(board).map((node) => {
             return (
