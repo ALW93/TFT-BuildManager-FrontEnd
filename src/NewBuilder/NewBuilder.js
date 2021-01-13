@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
 import Node from "./Node";
+import { useSelector } from "react-redux";
 import { items as itemPool, champions as champPool } from "../set4/set4";
 import "./Builder.css";
 import Synergies from "./Synergies";
 import { createBoard } from "./BoardService";
 
 const NewBuilder = () => {
+  const user = useSelector((state) => state.authentication.user);
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [actives, setActives] = useState({});
+
   const [pool, setPool] = useState(champPool);
   const [filter, setFilter] = useState({ cost: null, trait: null });
   const [synergies, setSynergies] = useState({});
@@ -20,8 +26,21 @@ const NewBuilder = () => {
   });
 
   const submitBuild = () => {
-    console.log(JSON.stringify(board));
-    const info = { board: board, authorId: 1, title: "test" };
+    let reduced = Object.keys(board)
+      .map((e, index) => {
+        if (board[e]) {
+          return { ...board[e], position: index };
+        }
+      })
+      .filter((i) => i);
+    const info = {
+      authorId: user.id,
+      grid: reduced,
+      actives: actives,
+      title: title,
+      subtitle: subtitle,
+    };
+
     createBoard(info);
   };
 
@@ -135,9 +154,24 @@ const NewBuilder = () => {
   return (
     <div className="Builder__Container">
       <h1>New Builder</h1>
+      <div>
+        <label>Title</label>
+        <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
+      </div>
+      <div>
+        <label>Subtitle</label>
+        <input
+          type="text"
+          onChange={(e) => setSubtitle(e.target.value)}
+        ></input>
+      </div>
       <div className="Builder__Container--Top">
         <div className="synergy-gallery">
-          <Synergies data={synergies} />
+          <Synergies
+            data={synergies}
+            setActives={setActives}
+            actives={actives}
+          />
         </div>
         <div className="hexagon-gallery">
           {Object.keys(board).map((node) => {
@@ -165,6 +199,7 @@ const NewBuilder = () => {
           onDragStart={onDragStart}
         />
       </div>
+
       <button onClick={submitBuild}>Submit</button>
     </div>
   );

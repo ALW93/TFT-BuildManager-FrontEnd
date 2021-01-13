@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { activeTraits } from "../set4/set4";
 
-const Synergies = ({ data }) => {
-  const [actives, setActives] = useState({});
+const Synergies = ({ data, actives, setActives }) => {
   const [sorted, setSorted] = useState([]);
 
   useEffect(() => {
