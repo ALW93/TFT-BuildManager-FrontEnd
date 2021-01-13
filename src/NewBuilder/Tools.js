@@ -19,7 +19,7 @@ export const ItemPool = ({ items }) => {
             return (
               <>
                 <img
-                  onDragStart={(e) => itemDragStart(e, ref)}
+                  onDragStart={(e) => itemDragStart(e, item.acronym)}
                   draggable={true}
                   src={require(`../Assets/items/${ref}`)}
                 />
