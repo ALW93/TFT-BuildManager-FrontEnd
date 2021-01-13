@@ -21,8 +21,7 @@ const HomePage = () => {
 
   return (
     <div className="HomePage__Container">
-      <TopBar />
-
+      <h1>HOMEPAGE</h1>
       <div className="BuildContainer__Meta">
         <h1 className="metaTitle">Meta Builds for Patch 10.25</h1>
         <div className="BuildContainer__Carousel">
