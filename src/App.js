@@ -7,6 +7,7 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import LoginPage from "./Login/LoginPage";
 import Routes from "./Utility/routes";
 import AppWrapper from "./AppWrapper";
+import HomePage from "./Home/HomePage";
 
 const theme = createMuiTheme({
   typography: {
@@ -31,17 +32,11 @@ const App = ({ needLogin, loadToken }) => {
       <Switch>
         <ProtectedRoute
           path="/login"
-          exact={true}
+          exact
           needLogin={needLogin}
           component={LoginPage}
         />
-        <PrivateRoute
-          exact
-          path="/"
-          needLogin={needLogin}
-          component={AppWrapper}
-        />
-
+        <PrivateRoute path="/" needLogin={needLogin} component={AppWrapper} />
         <Redirect to="/login" />
       </Switch>
     </BrowserRouter>

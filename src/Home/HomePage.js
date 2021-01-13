@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
-import TopBar from "../shared_components/TopBar";
+import { Switch, Router, BrowserRouter } from "react-router-dom";
 import { TFT_BASE } from "../config";
 import Card from "./Card";
+import Routes from "../Utility/routes";
 
 const HomePage = () => {
   const [meta, setMeta] = useState([]);

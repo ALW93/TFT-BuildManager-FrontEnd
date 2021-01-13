@@ -1,6 +1,7 @@
 import React from "react";
+import Routes from "./Utility/routes";
 import HomePage from "./Home/HomePage";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch, Switch, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AppWrapper() {
   const classes = useStyles();
+  let { path, url } = useRouteMatch();
 
   return (
     <div className={classes.root}>
@@ -75,12 +77,14 @@ export default function AppWrapper() {
           <List>
             {["Home", "My Profile", "Bookmarks", "Board Collection"].map(
               (text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
+                <Link to="/build-create">
+                  <ListItem button key={text}>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
               )
             )}
           </List>
@@ -99,7 +103,10 @@ export default function AppWrapper() {
         </div>
       </Drawer>
       <main className={classes.content}>
-        <HomePage />
+        <Switch>
+          <Route path="/HomePage" component={HomePage} />
+          <Routes />
+        </Switch>
       </main>
     </div>
   );
