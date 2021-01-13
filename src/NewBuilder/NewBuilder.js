@@ -8,11 +8,11 @@ import Synergies from "./Synergies";
 import { createBoard } from "./BoardService";
 
 const NewBuilder = () => {
+  //#region
   const user = useSelector((state) => state.authentication.user);
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [actives, setActives] = useState({});
-
   const [pool, setPool] = useState(champPool);
   const [filter, setFilter] = useState({ cost: null, trait: null });
   const [synergies, setSynergies] = useState({});
@@ -150,6 +150,7 @@ const NewBuilder = () => {
       setBoard({ ...temp });
     }
   };
+  //#endregion
 
   return (
     <div className="Builder__Container">

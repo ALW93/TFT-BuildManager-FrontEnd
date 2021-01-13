@@ -14,15 +14,18 @@ const Editor = () => {
   };
 
   return (
-    <div>
+    <div style={{ border: "2px solid red", width: "100%" }}>
       <h1>Quill Editor</h1>
 
       <ReactQuill
         // readOnly={true}
         // theme="bubble"
-        value={content}
-        onChange={updateContent}
-      />
+        style={{ border: "2px solid blue", width: "inherit" }}
+      >
+        <div onChange={updateContent} style={{ width: "10vw" }}>
+          Area
+        </div>
+      </ReactQuill>
     </div>
   );
 };

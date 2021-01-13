@@ -18,14 +18,15 @@ const HomePage = () => {
 
   return (
     <div className="HomePage__Container">
-      <h1>HOMEPAGE</h1>
+      <h1>DISCOVER</h1>
       <div className="BuildContainer__Meta">
-        <h1 className="metaTitle">Meta Builds for Patch 10.25</h1>
-        <div className="BuildContainer__Carousel">
-          {/* {meta &&
-            meta.map((e) => {
-              return <Card data={e} />;
-            })} */}
+        <div>
+          <h1 className="metaTitle">Meta Guides for Patch 10.25</h1>
+          <div className="BuildContainer__Carousel"></div>
+        </div>
+        <div>
+          <h1 className="metaTitle">Guides</h1>
+          <div className="BuildContainer__Carousel"></div>
         </div>
       </div>
     </div>

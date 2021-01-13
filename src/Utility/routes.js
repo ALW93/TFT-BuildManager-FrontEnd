@@ -4,14 +4,14 @@ import { Route, Switch } from "react-router-dom";
 import Profile from "../Profile/ProfilePage";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import HomePage from "../Home/HomePage";
+import GuideBuilder from "../GuideBuilder/GuideBuilder";
 
 export const InteriorSwitch = () => (
   <Switch>
     <Route exact path="/board/id/:id" component={View} />
     <Route exact path="/board-create" component={NewBuilder} />
-    <Route exact path="/guide-create">
-      <h1>New Guide</h1>
-    </Route>
+    <Route exact path="/guide-create" component={GuideBuilder} />
+
     <Route exact path="/profile/id/:id" component={Profile} />
     <Route exact path="/guide-create">
       <h1>New Guide</h1>
@@ -36,5 +36,3 @@ export const routeRefs = (id) => {
     "Create Board": "/board-create",
   };
 };
-
-// "Home", "My Profile", "Bookmarks", "Board Collection";

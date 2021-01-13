@@ -8,8 +8,13 @@ body {
 }
 
 .BuildContainer__Meta {
+  display: flex;
   margin: 30px 50px 0 50px;
   text-align: center;
+}
+
+.BuildContainer__Meta div {
+  margin: 20px;
 }
 
 .metaTitle {
