@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { champions as champPool } from "../set4/set4";
+import { champions as champPool, itemRef, champRef } from "../set4/set4";
 
 const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   const [occupant, setOccupant] = useState({});
@@ -9,7 +9,8 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   useEffect(() => {
     (async () => {
       if (champion) {
-        const data = champPool[champion.id];
+        const data = champRef[champion.id];
+        console.log(data);
         if (data.traits.length === 3) setTripleTrait("triple_trait");
         setOccupant(data);
         setBorder(`cost${data.cost}`);
@@ -61,7 +62,7 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
             style={
               champion
                 ? {
-                    backgroundImage: `url(${getChar(occupant.championId)})`,
+                    backgroundImage: `url(${getChar(champion.id)})`,
                   }
                 : null
             }
@@ -71,10 +72,11 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
       <div className="item-gallery">
         {champion && champion.items
           ? champion.items.map((item) => {
+              let ref = itemRef[item].image;
               return (
                 <img
                   className="equipped"
-                  src={require(`../Assets/items/${item}`)}
+                  src={require(`../Assets/items/${ref}`)}
                 />
               );
             })
