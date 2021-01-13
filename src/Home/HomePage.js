@@ -7,16 +7,12 @@ import Routes from "../Utility/routes";
 
 const HomePage = () => {
   const [meta, setMeta] = useState([]);
-  const [all, setAll] = useState([]);
 
   useEffect(() => {
     (async () => {
       const response = await fetch(`${TFT_BASE}/boards/meta`);
       const data = await response.json();
       setMeta(data);
-      const res = await fetch(`${TFT_BASE}/boards`);
-      const info = await res.json();
-      setAll(info);
     })();
   }, []);
 
@@ -28,13 +24,6 @@ const HomePage = () => {
         <div className="BuildContainer__Carousel">
           {/* {meta &&
             meta.map((e) => {
-              return <Card data={e} />;
-            })} */}
-        </div>
-        <h1 className="metaTitle">Community Builds</h1>
-        <div className="BuildContainer__Carousel">
-          {/* {all &&
-            all.map((e) => {
               return <Card data={e} />;
             })} */}
         </div>

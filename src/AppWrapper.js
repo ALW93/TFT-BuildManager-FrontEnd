@@ -1,7 +1,8 @@
 import React from "react";
-import Routes from "./Utility/routes";
-import HomePage from "./Home/HomePage";
-import { Link, useRouteMatch, Switch, Route } from "react-router-dom";
+import { InteriorSwitch, routeRefs } from "./Utility/routes";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "./store/actions/authentication";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
   },
   content: {
+    border: "5px solid red",
     marginTop: appbarHeight,
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -54,7 +56,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AppWrapper() {
   const classes = useStyles();
-  let { path, url } = useRouteMatch();
+  const user = useSelector((state) => state.authentication.user);
+  const dispatch = useDispatch();
+
+  const logoutApp = async () => {
+    await dispatch(logout());
+  };
 
   return (
     <div className={classes.root}>
@@ -76,37 +83,44 @@ export default function AppWrapper() {
         <div className={classes.drawerContainer}>
           <List>
             {["Home", "My Profile", "Bookmarks", "Board Collection"].map(
-              (text, index) => (
-                <Link to="/build-create">
-                  <ListItem button key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                </Link>
-              )
+              (text, index) => {
+                return (
+                  <Link to={routeRefs(user && user.id)[text]}>
+                    <ListItem button key={text}>
+                      <ListItemIcon>
+                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                      </ListItemIcon>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  </Link>
+                );
+              }
             )}
           </List>
           <Divider />
           <List>
-            {["Publish Guide", "Create Board", "Logout"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
+            {["Publish Guide", "Create Board"].map((text, index) => (
+              <Link to={routeRefs(user && user.id)[text]}>
+                <ListItem button key={text}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              </Link>
             ))}
           </List>
           <Divider />
+          <ListItem button key="logout" onClick={logoutApp}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="logout" />
+          </ListItem>
         </div>
       </Drawer>
       <main className={classes.content}>
-        <Switch>
-          <Route path="/HomePage" component={HomePage} />
-          <Routes />
-        </Switch>
+        <InteriorSwitch />
       </main>
     </div>
   );
