@@ -26,17 +26,17 @@ const HomePage = () => {
       <div className="BuildContainer__Meta">
         <h1 className="metaTitle">Meta Builds for Patch 10.25</h1>
         <div className="BuildContainer__Carousel">
-          {meta &&
+          {/* {meta &&
             meta.map((e) => {
               return <Card data={e} />;
-            })}
+            })} */}
         </div>
         <h1 className="metaTitle">Community Builds</h1>
         <div className="BuildContainer__Carousel">
-          {all &&
+          {/* {all &&
             all.map((e) => {
               return <Card data={e} />;
-            })}
+            })} */}
         </div>
       </div>
     </div>

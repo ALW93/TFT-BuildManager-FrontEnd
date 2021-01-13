@@ -15,7 +15,7 @@ export const ItemPool = ({ items }) => {
       <div className="item__selection">
         {items &&
           items.map((item) => {
-            const ref = item.image.slice(16);
+            const ref = item.image;
             return (
               <>
                 <img
