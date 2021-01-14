@@ -1,6 +1,6 @@
 import React from "react";
 import Editor from "../shared_components/Editor";
-import NewBuilder from "../NewBuilder/NewBuilder";
+import MiniBuilder from "../NewBuilder/MiniBuilder";
 
 const GuideBuilder = () => {
   return (
@@ -11,7 +11,7 @@ const GuideBuilder = () => {
       </div>
       <div style={{ width: "50%" }}>
         <h1>Board Tool</h1>
-        <NewBuilder />
+        <MiniBuilder />
       </div>
     </div>
   );

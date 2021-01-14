@@ -1,9 +1,12 @@
 .Builder__Container {
-  border: 1px solid black;
+  border: 1px solid #000000;
+  width: 100%;
+  text-align: center;
 }
 
 .Builder__Container--Top {
-  width: fit-content;
+  width: 100%;
+  border: 3px solid green;
   display: flex;
   justify-content: space-around;
 }
@@ -15,13 +18,14 @@
 
 .character__selection {
   border: 1px solid black;
-  width: 1000px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .item__selection {
   border: 1px solid blue;
-  width: 80%;
+  width: 100%;
+  margin: auto;
 }
 
 .character__selection img,
@@ -82,7 +86,7 @@
 
 .hexagon-gallery {
   margin: auto;
-  min-width: fit-content;
+  padding: 20px 55px 0px 7px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 12px;

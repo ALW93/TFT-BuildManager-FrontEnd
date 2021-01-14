@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import TopBar from "../shared_components/TopBar";
 
 import "./ProfilePage.css";
 

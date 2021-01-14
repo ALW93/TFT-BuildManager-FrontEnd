@@ -3,6 +3,7 @@ import { SelectionPool, GUI, ItemPool } from "./Tools";
 import Node from "./Node";
 import { useSelector } from "react-redux";
 import { items as itemPool, champions as champPool } from "../set4/set4";
+import "./MiniBuilder.css";
 import "./Builder.css";
 import Synergies from "./Synergies";
 import { createBoard } from "./BoardService";
@@ -154,30 +155,30 @@ const NewBuilder = () => {
 
   return (
     <div className="Builder__Container">
-      <h1>Create a Board</h1>
+      <h1>Add a Board</h1>
       <div>
-        <div>
-          <label>Title</label>
-          <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
-        </div>
-        <div>
-          <label>Subtitle</label>
-          <input
-            type="text"
-            onChange={(e) => setSubtitle(e.target.value)}
-          ></input>
-        </div>
-        <GUI filter={filter} setFilter={setFilter} />
+        <label>Title</label>
+        <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
       </div>
-      <div className="Builder__Container--Top">
-        <div className="synergy-gallery">
+      <div>
+        <label>Subtitle</label>
+        <input
+          type="text"
+          onChange={(e) => setSubtitle(e.target.value)}
+        ></input>
+      </div>
+      <div className="itemPool">
+        <ItemPool items={itemPool} />
+      </div>
+      <div className="Mini__Container--Top">
+        <div className="mini-synergy-gallery">
           <Synergies
             data={synergies}
             setActives={setActives}
             actives={actives}
           />
         </div>
-        <div className="hexagon-gallery">
+        <div className="mini-hexagon-gallery">
           {Object.keys(board).map((node) => {
             return (
               <Node
@@ -190,16 +191,16 @@ const NewBuilder = () => {
             );
           })}
         </div>
-        <div className="itemPool">
-          <ItemPool items={itemPool} />
-        </div>
       </div>
+
       <div className="Builder__Container--Bottom">
+        <GUI filter={filter} setFilter={setFilter} />
         <SelectionPool
           champions={pool}
           onDragOver={onDragOver}
           onDropDelete={onDropDelete}
           onDragStart={onDragStart}
+          style="mini"
         />
       </div>
 

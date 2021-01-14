@@ -22,7 +22,10 @@ const Editor = () => {
         // theme="bubble"
         style={{ border: "2px solid blue", width: "inherit" }}
       >
-        <div onChange={updateContent} style={{ width: "10vw" }}>
+        <div
+          onChange={updateContent}
+          style={{ width: "100%", fontSize: "larger" }}
+        >
           Area
         </div>
       </ReactQuill>
