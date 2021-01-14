@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Builder.css";
-import { TFT_API } from "../config";
-import { champions as champPool } from "../set4/set4";
+import { champions as champPool, itemRef } from "../set4/set4";
 
 const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   const [occupant, setOccupant] = useState({});
@@ -78,10 +77,11 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
       <div className="item-gallery">
         {champion && champion.items
           ? champion.items.map((item) => {
+              let ref = itemRef[item].image;
               return (
                 <img
                   className="equipped"
-                  src={require(`../Assets/items/${item}`)}
+                  src={require(`../Assets/items/${ref}`)}
                 />
               );
             })

@@ -1,19 +1,38 @@
 import React from "react";
 import View from "../View/View";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Profile from "../Profile/ProfilePage";
-import TestBuilder from "../TestBuilder/TestBuilder";
 import NewBuilder from "../NewBuilder/NewBuilder";
+import HomePage from "../Home/HomePage";
+import GuideBuilder from "../GuideBuilder/GuideBuilder";
 
-const Routes = () => (
-  <>
-    <Route exact path="/build/id/:id" component={View} />
-    <Route exact path="/build-create" component={NewBuilder} />
-    <Route exact path="/profile/:id" component={Profile} />
-    <Route path="/profile/:id/bookmarks" component={Profile} />
-    <Route path="/test" component={TestBuilder} />
-    <Route path="/construction" component={NewBuilder} />
-  </>
+export const InteriorSwitch = () => (
+  <Switch>
+    <Route exact path="/board/id/:id" component={View} />
+    <Route exact path="/board-create" component={NewBuilder} />
+    <Route exact path="/guide-create" component={GuideBuilder} />
+
+    <Route exact path="/profile/id/:id" component={Profile} />
+    <Route exact path="/guide-create">
+      <h1>New Guide</h1>
+    </Route>
+    <Route exact path="/profile/id/:id/bookmarks">
+      <h1>User Guide Bookmarks</h1>
+    </Route>
+    <Route exact path="/profile/id/:id/collection">
+      <h1>User Saved Boards</h1>
+    </Route>
+    <Route exact path="/home" component={HomePage} />
+  </Switch>
 );
 
-export default Routes;
+export const routeRefs = (id) => {
+  return {
+    Home: "/home",
+    "My Profile": `/profile/id/${id}`,
+    Bookmarks: `/profile/id/${id}/bookmarks`,
+    "Board Collection": `/profile/id/${id}/collection`,
+    "Publish Guide": "/guide-create",
+    "Create Board": "/board-create",
+  };
+};

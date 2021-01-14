@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import TopBar from "../shared_components/TopBar";
 
 import "./ProfilePage.css";
 
@@ -21,7 +20,6 @@ const ProfilePage = ({ match }) => {
 
   return (
     <div className="Profile__Container">
-      <TopBar />
       <div className="profile__topbar">
         <div className={`profile__image fuwa`}></div>
         <div className="profile__details">

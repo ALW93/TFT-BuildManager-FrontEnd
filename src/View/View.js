@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { TFT_BASE } from "../config";
 import { DateTime } from "luxon";
 import ViewBoard from "./ViewBoard";
-import Editor from "../shared_components/Editor";
 
 const View = ({ match }) => {
   const buildId = match.params.id;
@@ -19,7 +18,7 @@ const View = ({ match }) => {
       const response = await fetch(`${TFT_BASE}/boards/id/${buildId}`);
       const data = await response.json();
       setBoard(data);
-      setAuthor(data.Author);
+      setAuthor(data.Creator);
     })();
   }, []);
 
@@ -31,12 +30,7 @@ const View = ({ match }) => {
       <h2>Votes {board.votes || 0}</h2>
       <h3>Last Updated {created}</h3>
       <h3>Created By {author.username}</h3>
-      <ViewBoard data={board.board} />
-
-      {board.guide || (
-        <button onClick={() => showEditor(true)}>Add a Guide</button>
-      )}
-      {editor ? <Editor /> : null}
+      <ViewBoard data={board.grid} />
     </div>
   );
 };

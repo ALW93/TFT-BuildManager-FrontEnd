@@ -15,11 +15,11 @@ export const ItemPool = ({ items }) => {
       <div className="item__selection">
         {items &&
           items.map((item) => {
-            const ref = item.image.slice(16);
+            const ref = item.image;
             return (
               <>
                 <img
-                  onDragStart={(e) => itemDragStart(e, ref)}
+                  onDragStart={(e) => itemDragStart(e, item.acronym)}
                   draggable={true}
                   src={require(`../Assets/items/${ref}`)}
                 />
