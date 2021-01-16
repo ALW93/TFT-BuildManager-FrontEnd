@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
-import { Switch, Router, BrowserRouter } from "react-router-dom";
 import { TFT_BASE } from "../config";
-import Card from "./Card";
-import Routes from "../Utility/routes";
+import BoardPreview from "./BoardPreview";
 
 const HomePage = () => {
   const [meta, setMeta] = useState([]);
@@ -21,12 +19,18 @@ const HomePage = () => {
       <h1>DISCOVER</h1>
       <div className="BuildContainer__Meta">
         <div>
-          <h1 className="metaTitle">Meta Guides for Patch 10.25</h1>
-          <div className="BuildContainer__Carousel"></div>
-        </div>
-        <div>
-          <h1 className="metaTitle">Guides</h1>
-          <div className="BuildContainer__Carousel"></div>
+          <h1 className="metaTitle">Meta Builds for Patch 11.1</h1>
+          <div>
+            <button>Tierlist</button>
+            <button>Meta Guides</button>
+            <button>Community</button>
+          </div>
+          <div className="BuildContainer__Carousel">
+            {meta &&
+              meta.map((build) => {
+                return <BoardPreview data={build} />;
+              })}
+          </div>
         </div>
       </div>
     </div>
