@@ -10,7 +10,7 @@ import "./Builder.css";
 import Synergies from "./Synergies";
 import { createBoard } from "./BoardService";
 
-const NewBuilder = ({ type }) => {
+const NewBuilder = ({ type, showBuilder }) => {
   //#region
   const user = useSelector((state) => state.authentication.user);
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const NewBuilder = ({ type }) => {
       createBoard(info);
     } else {
       dispatch(addBoard(info));
-      history.push("/guide-create");
+      showBuilder(false);
     }
   };
 
