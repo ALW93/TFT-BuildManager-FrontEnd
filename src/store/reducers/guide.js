@@ -1,6 +1,11 @@
-import { ADD_BOARD, REMOVE_BOARD, MOVE_BOARD } from "../actions/guide";
+import {
+  ADD_BOARD,
+  REMOVE_BOARD,
+  MOVE_BOARD,
+  SAVE_GUIDE,
+} from "../actions/guide";
 
-export default function reducer(state = { boards: [] }, action) {
+export default function reducer(state = { boards: [], guide: [] }, action) {
   switch (action.type) {
     case ADD_BOARD: {
       return { ...state, boards: action.payload };
@@ -15,7 +20,9 @@ export default function reducer(state = { boards: [] }, action) {
     case MOVE_BOARD: {
       return { ...state };
     }
-
+    case SAVE_GUIDE: {
+      return { ...state, guide: action.payload };
+    }
     default:
       return state;
   }
