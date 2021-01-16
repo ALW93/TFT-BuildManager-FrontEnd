@@ -14,17 +14,18 @@ const Editor = () => {
   };
 
   return (
-    <div style={{ border: "2px solid red", width: "100%" }}>
-      <h1>Quill Editor</h1>
-
+    <div style={{ width: "100%" }}>
       <ReactQuill
         // readOnly={true}
         // theme="bubble"
-        style={{ border: "2px solid blue", width: "inherit" }}
+        style={{
+          width: "inherit",
+          height: "71vh",
+        }}
       >
         <div
           onChange={updateContent}
-          style={{ width: "100%", fontSize: "larger" }}
+          style={{ width: "100%", fontSize: "larger", height: "100%" }}
         >
           Area
         </div>

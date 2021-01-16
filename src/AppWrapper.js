@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
   },
   content: {
-    border: "5px solid red",
     marginTop: appbarHeight,
     flexGrow: 1,
     padding: theme.spacing(3),

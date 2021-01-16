@@ -11,7 +11,8 @@ const GuideBuilder = () => {
       </div>
       <div style={{ width: "50%" }}>
         <h1>Board Tool</h1>
-        <MiniBuilder />
+        <button>Create New Board</button>
+        <button>Add From Collection</button>
       </div>
     </div>
   );
