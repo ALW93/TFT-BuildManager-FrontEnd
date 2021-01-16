@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { TFT_BASE } from "../config";
-import BoardPreview from "./BoardPreview";
+import BoardPreview from "../shared_components/BoardPreview";
 
 const HomePage = () => {
   const [meta, setMeta] = useState([]);

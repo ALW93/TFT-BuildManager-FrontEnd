@@ -82,7 +82,7 @@ export default function AppWrapper() {
       >
         <div className={classes.drawerContainer}>
           <List>
-            {["Home", "My Profile", "Bookmarks", "Board Collection"].map(
+            {["Browse", "Guide Collection", "Board Collection"].map(
               (text, index) => {
                 return (
                   <Link to={routeRefs(user && user.id)[text]}>
@@ -111,6 +111,14 @@ export default function AppWrapper() {
             ))}
           </List>
           <Divider />
+          <Link to={`/profile/id/${user && user.id}`}>
+            <ListItem button key="Account">
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Account" />
+            </ListItem>
+          </Link>
           <ListItem button key="logout" onClick={logoutApp}>
             <ListItemIcon>
               <InboxIcon />
