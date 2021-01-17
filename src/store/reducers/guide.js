@@ -8,7 +8,7 @@ import {
 export default function reducer(state = { boards: [], guide: [] }, action) {
   switch (action.type) {
     case ADD_BOARD: {
-      return { ...state, boards: action.payload };
+      return { ...state, boards: [...state.boards, action.payload] };
     }
     case REMOVE_BOARD: {
       const newBoards = state.boards;

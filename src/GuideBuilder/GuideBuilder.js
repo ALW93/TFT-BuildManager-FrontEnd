@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Editor from "../shared_components/Editor";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
 import NewBuilder from "../NewBuilder/NewBuilder";
+import ViewBoard from "../View/ViewBoard";
 
 const GuideBuilder = () => {
   const [saved, initSave] = useState(false);
   const [builder, showBuilder] = useState(false);
+  const boards = useSelector((state) => state.guide.boards);
 
   const setSave = (e) => {
     console.log("saving");
@@ -34,6 +36,19 @@ const GuideBuilder = () => {
         >
           <NewBuilder type="add" showBuilder={showBuilder} />
         </Dialog>
+        {boards &&
+          boards.map((e) => {
+            return (
+              <div
+                draggable
+                style={{ border: "2px solid blue", textAlign: "center" }}
+              >
+                <h3>{e.title}</h3>
+                <ViewBoard data={e.grid} />
+                <h4 style={{ marginTop: "-50px" }}>notes: {e.subtitle}</h4>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

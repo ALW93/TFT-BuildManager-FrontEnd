@@ -214,9 +214,15 @@ const NewBuilder = ({ type, showBuilder }) => {
       </div>
 
       {type === "normal" ? (
-        <button onClick={submitBuild}>Submit</button>
+        <>
+          <button onClick={submitBuild}>Submit</button>
+          <button>Clear</button>
+        </>
       ) : (
-        <button onClick={submitBuild}>Add to Guide</button>
+        <>
+          <button onClick={submitBuild}>Add to Guide</button>
+          <button onClick={() => showBuilder(false)}>Cancel</button>
+        </>
       )}
     </div>
   );
