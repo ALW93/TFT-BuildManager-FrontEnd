@@ -9,6 +9,8 @@ const GuideBuilder = () => {
   const [saved, initSave] = useState(false);
   const [builder, showBuilder] = useState(false);
   const boards = useSelector((state) => state.guide.boards);
+  const guide = useSelector((state) => state.guide.guide);
+  const user = useSelector((state) => state.authentication.user);
 
   const setSave = (e) => {
     console.log("saving");
@@ -16,11 +18,18 @@ const GuideBuilder = () => {
     initSave(true);
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setSave(e);
+    console.log(guide, boards);
+  };
+
   return (
     <div style={{ display: "flex", width: "100%" }}>
       <div style={{ width: "50%" }}>
         <h1>Guide Builder</h1>
         <button onClick={setSave}>Save</button>
+        <button onClick={submitHandler}>Publish</button>
         <Editor save={saved} initSave={initSave} />
       </div>
       <div style={{ width: "50%" }}>
