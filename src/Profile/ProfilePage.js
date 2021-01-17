@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-
+import { TFT_BASE } from "../config";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import "./ProfilePage.css";
 
 const ProfilePage = ({ match }) => {
   const [user, setUser] = useState({});
   const [buildData, setBuildData] = useState([]);
-  // const [bookmarks, setBookmarks] = useState([]);
-  // const [profpic, setProfpic] = useState("fuwa");
 
   useEffect(() => {
     const getInfo = async () => {
       const userId = match.params.id;
-
-      // const bookmarks = await getUserBookmarks(userId);
-      // setBookmarks(bookmarks.bookmarks);
+      const response = await fetch(`${TFT_BASE}/users/id/${userId}`);
+      const data = await response.json();
+      setUser(data);
     };
     getInfo();
   }, [match.params.id]);
@@ -24,17 +23,28 @@ const ProfilePage = ({ match }) => {
         <div className={`profile__image fuwa`}></div>
         <div className="profile__details">
           <h1>{user.username}</h1>
-          <h4>Joined On: {user.createdAt}</h4>
-          {/* <div className="profile__statbar">
-            <h5>{user.followers ? user.followers.length : 0} Followers</h5>
-            <h5>{user.following ? user.following.length : 0} Following</h5>
-            <h5>{bookmarks.length ? bookmarks.length : 0} Bookmarks</h5>
-          </div> */}
+          <h2>
+            Rank: {user.rank}
+            {user.verified ? <CheckBoxIcon /> : null}
+          </h2>
+          <h4>Joined On: {user.joined}</h4>
+          <h5>
+            Followers: {user.followerCount} Following: {user.followingCount}
+          </h5>
         </div>
       </div>
-      <div className="BuildContainer">
-        <h1>{user.username}'s Published Builds</h1>
+      <div className="BuildContainer flex">
         <div className="build_carousel">
+          <h1>{user.username}'s Boards</h1>
+          {buildData.length > 0 ? (
+            <div>Under Construction</div>
+          ) : (
+            <div>No Publications Yet!</div>
+          )}
+        </div>
+
+        <div className="build_carousel">
+          <h1>{user.username}'s Published Guides</h1>
           {buildData.length > 0 ? (
             <div>Under Construction</div>
           ) : (

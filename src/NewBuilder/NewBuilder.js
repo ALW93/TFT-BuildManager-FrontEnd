@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { addBoard } from "../store/actions/guide";
 import Node from "./Node";
 import { useSelector } from "react-redux";
 import { items as itemPool, champions as champPool } from "../set4/set4";
@@ -7,9 +10,11 @@ import "./Builder.css";
 import Synergies from "./Synergies";
 import { createBoard } from "./BoardService";
 
-const NewBuilder = () => {
+const NewBuilder = ({ type, showBuilder }) => {
   //#region
   const user = useSelector((state) => state.authentication.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [actives, setActives] = useState({});
@@ -40,8 +45,12 @@ const NewBuilder = () => {
       title: title,
       subtitle: subtitle,
     };
-
-    createBoard(info);
+    if (type === "normal") {
+      createBoard(info);
+    } else {
+      dispatch(addBoard(info));
+      showBuilder(false);
+    }
   };
 
   // *** Grabs Synergies for Current Board ***
@@ -154,7 +163,8 @@ const NewBuilder = () => {
 
   return (
     <div className="Builder__Container">
-      <h1>Create a Board</h1>
+      {type === "normal" ? <h1>Create a Board</h1> : <h1>Add a Board</h1>}
+
       <div>
         <div>
           <label>Title</label>
@@ -203,7 +213,17 @@ const NewBuilder = () => {
         />
       </div>
 
-      <button onClick={submitBuild}>Submit</button>
+      {type === "normal" ? (
+        <>
+          <button onClick={submitBuild}>Submit</button>
+          <button>Clear</button>
+        </>
+      ) : (
+        <>
+          <button onClick={submitBuild}>Add to Guide</button>
+          <button onClick={() => showBuilder(false)}>Cancel</button>
+        </>
+      )}
     </div>
   );
 };

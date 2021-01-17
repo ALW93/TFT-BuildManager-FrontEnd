@@ -24,8 +24,6 @@ body {
 
 .BuildContainer__Carousel {
   border: 2px solid red;
-  display: flex;
-  justify-content: space-around;
 }
 
 .Build__Preview {

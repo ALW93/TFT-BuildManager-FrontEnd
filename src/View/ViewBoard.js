@@ -12,6 +12,7 @@ const init = () => {
 
 const ViewBoard = ({ data }) => {
   const [board, setBoard] = useState(init());
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -25,13 +26,16 @@ const ViewBoard = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="Builder__Container--Top">
-      <div className="hexagon-gallery">
-        {data &&
-          Object.keys(board).map((node) => {
-            return <ViewNode champion={board[node]} position={node} />;
-          })}
-      </div>
+    <div>
+      <h1 onClick={() => setToggle((prev) => !prev)}>title</h1>
+      {toggle ? (
+        <div className="hexagon-gallery">
+          {data &&
+            Object.keys(board).map((node) => {
+              return <ViewNode champion={board[node]} position={node} />;
+            })}
+        </div>
+      ) : null}
     </div>
   );
 };

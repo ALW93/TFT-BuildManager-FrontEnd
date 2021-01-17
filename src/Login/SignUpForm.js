@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { hideForm } from "../store/actions/utility";
 import { createUser } from "../store/actions/authentication";
 import { TextField, Button } from "@material-ui/core";
 import "./SignUpForm.css";
 import art from "../Assets/favicon.png";
 
-const SignUpForm = ({ hideForm, createUser }) => {
+const SignUpForm = ({ createUser }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +30,10 @@ const SignUpForm = ({ hideForm, createUser }) => {
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const hideForm = (e) => {
+    //
   };
 
   return (
@@ -74,16 +77,4 @@ const SignUpForm = ({ hideForm, createUser }) => {
   );
 };
 
-const SignUpFormContainer = () => {
-  const formVisible = useSelector((state) => state.utility.formVisible);
-  const dispatch = useDispatch();
-  return (
-    <SignUpForm
-      formVisible={formVisible}
-      hideForm={() => dispatch(hideForm())}
-      createUser={(user) => dispatch(createUser(user))}
-    />
-  );
-};
-
-export default SignUpFormContainer;
+export default SignUpForm;

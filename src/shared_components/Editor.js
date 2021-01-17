@@ -1,33 +1,46 @@
-import React, { useState } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import React, { useEffect, createRef, useState } from "react";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
+import { saveGuide } from "../store/actions/guide";
 
-const Delta = Quill.import("delta");
+const Editor = ({ save, initSave }) => {
+  const dispatch = useDispatch();
+  const editRef = createRef();
+  const content = useSelector((state) => state.guide.guide);
 
-const Editor = () => {
-  const [content, setContent] = useState("");
-  const [data, setData] = useState("");
+  useEffect(() => {
+    if (content.length) {
+      const editor = editRef.current.getEditor();
+      editor.setContents(content);
+    }
+  }, []);
 
-  const updateContent = (e) => {
-    setContent(e);
-    setData(new Delta().insert(e));
-  };
+  useEffect(() => {
+    if (save) {
+      console.log("saving content");
+      const quill = editRef.current.getEditor();
+      const saveContent = quill.editor.delta.ops;
+      dispatch(saveGuide(saveContent));
+      initSave(false);
+    }
+  }, [save]);
 
   return (
-    <div style={{ border: "2px solid red", width: "100%" }}>
-      <h1>Quill Editor</h1>
-
+    <div style={{ width: "100%" }}>
       <ReactQuill
         // readOnly={true}
         // theme="bubble"
-        style={{ border: "2px solid blue", width: "inherit" }}
+
+        ref={editRef}
+        style={{
+          width: "inherit",
+          height: "71vh",
+        }}
       >
         <div
-          onChange={updateContent}
-          style={{ width: "100%", fontSize: "larger" }}
-        >
-          Area
-        </div>
+          style={{ width: "100%", fontSize: "larger", height: "100%" }}
+        ></div>
       </ReactQuill>
     </div>
   );
