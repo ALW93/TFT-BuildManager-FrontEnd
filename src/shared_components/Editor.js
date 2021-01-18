@@ -4,9 +4,9 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { saveGuide } from "../store/actions/guide";
 
-const Editor = ({ save, initSave }) => {
+const Editor = ({ save, initSave, editRef }) => {
   const dispatch = useDispatch();
-  const editRef = createRef();
+
   const content = useSelector((state) => state.guide.guide);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ const Editor = ({ save, initSave }) => {
           style={{ width: "100%", fontSize: "larger", height: "100%" }}
         ></div>
       </ReactQuill>
+      <button>Submit</button>
     </div>
   );
 };

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import Editor from "../shared_components/Editor";
 import { useSelector } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import ViewBoard from "../View/ViewBoard";
+import { TFT_BASE } from "../config";
 
 const GuideBuilder = () => {
   const [saved, initSave] = useState(false);
   const [builder, showBuilder] = useState(false);
   const boards = useSelector((state) => state.guide.boards);
-  const guide = useSelector((state) => state.guide.guide);
-  const user = useSelector((state) => state.authentication.user);
+  const editRef = createRef();
 
   const setSave = (e) => {
     console.log("saving");
@@ -18,10 +18,20 @@ const GuideBuilder = () => {
     initSave(true);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    setSave(e);
-    console.log(guide, boards);
+    const quill = editRef.current.getEditor();
+    const saveContent = quill.editor.delta.ops;
+    const response = await fetch(`${TFT_BASE}/guides`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        //   Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ guide: saveContent, title: "Some Title", id: 1 }),
+    });
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
@@ -30,7 +40,7 @@ const GuideBuilder = () => {
         <h1>Guide Builder</h1>
         <button onClick={setSave}>Save</button>
         <button onClick={submitHandler}>Publish</button>
-        <Editor save={saved} initSave={initSave} />
+        <Editor save={saved} initSave={initSave} editRef={editRef} />
       </div>
       <div style={{ width: "50%" }}>
         <h1>Board Tool</h1>
