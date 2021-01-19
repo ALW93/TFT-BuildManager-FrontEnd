@@ -33,25 +33,6 @@ const ProfilePage = ({ match }) => {
           </h5>
         </div>
       </div>
-      <div className="BuildContainer flex">
-        <div className="build_carousel">
-          <h1>{user.username}'s Boards</h1>
-          {buildData.length > 0 ? (
-            <div>Under Construction</div>
-          ) : (
-            <div>No Publications Yet!</div>
-          )}
-        </div>
-
-        <div className="build_carousel">
-          <h1>{user.username}'s Published Guides</h1>
-          {buildData.length > 0 ? (
-            <div>Under Construction</div>
-          ) : (
-            <div>No Publications Yet!</div>
-          )}
-        </div>
-      </div>
     </div>
   );
 };

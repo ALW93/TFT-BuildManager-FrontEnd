@@ -5,6 +5,7 @@ import Profile from "../Profile/ProfilePage";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import HomePage from "../Home/HomePage";
 import GuideBuilder from "../GuideBuilder/GuideBuilder";
+import BoardCollection from "../Collection/BoardCollection";
 
 export const InteriorSwitch = () => (
   <Switch>
@@ -20,9 +21,12 @@ export const InteriorSwitch = () => (
     <Route exact path="/profile/id/:id/bookmarks">
       <h1>User Guide Bookmarks</h1>
     </Route>
-    <Route exact path="/profile/id/:id/collection">
-      <h1>User Saved Boards</h1>
-    </Route>
+    <Route
+      exact
+      path="/profile/id/:id/collection"
+      component={BoardCollection}
+    />
+
     <Route exact path="/home" component={HomePage} />
   </Switch>
 );
