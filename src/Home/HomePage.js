@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { TFT_BASE } from "../config";
-import BoardPreview from "../shared_components/BoardPreview";
 import ViewBoard from "../View/ViewBoard";
+import BoardAccordion from "../shared_components/BoardAccordion";
 
 const HomePage = () => {
   const [meta, setMeta] = useState([]);
@@ -19,14 +19,7 @@ const HomePage = () => {
     <div>
       <h1>DISCOVER</h1>
       <div className="BuildContainer__Meta"></div>
-      {meta &&
-        meta.map((build) => {
-          return (
-            <div>
-              <ViewBoard data={build.grid} />
-            </div>
-          );
-        })}
+      <BoardAccordion boards={meta} />
     </div>
   );
 };
