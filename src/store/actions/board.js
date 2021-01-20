@@ -1,4 +1,10 @@
 import { TFT_BASE } from "../../config";
+export const SET_BOARDS = "tft-buildmanager/authentication/SET_BOARDS";
+export const SET_GUIDES = "tft-buildmanager/authentication/SET_GUIDES";
+export const SET_COMMENTS = "tft-buildmanager/authentication/SET_COMMENTS";
+
+export const setBoards = (payload) => ({ type: SET_BOARDS, payload });
+export const setGuides = (payload) => ({ type: SET_GUIDES, payload });
 
 export const addBoard = (id, boardId, token) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/id/${id}/boards`, {
