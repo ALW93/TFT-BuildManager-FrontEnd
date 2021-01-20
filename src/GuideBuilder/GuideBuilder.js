@@ -9,6 +9,7 @@ import { TFT_BASE } from "../config";
 const GuideBuilder = () => {
   const [saved, initSave] = useState(false);
   const [builder, showBuilder] = useState(false);
+  const [collection, showCollection] = useState(false);
   const boards = useSelector((state) => state.editor.boards);
   const editRef = createRef();
 
@@ -22,13 +23,18 @@ const GuideBuilder = () => {
     e.preventDefault();
     const quill = editRef.current.getEditor();
     const saveContent = quill.editor.delta.ops;
+    const title = document.getElementById("guideTitle");
     const response = await fetch(`${TFT_BASE}/guides`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         //   Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ guide: saveContent, title: "Some Title", id: 1 }),
+      body: JSON.stringify({
+        guide: saveContent,
+        title: title.value || "untitled",
+        id: 1,
+      }),
     });
     const data = await response.json();
     console.log(data);
@@ -38,6 +44,8 @@ const GuideBuilder = () => {
     <div style={{ display: "flex", width: "100%" }}>
       <div style={{ width: "50%" }}>
         <h1>Guide Builder</h1>
+        <label>Title</label>
+        <input type="text" id="guideTitle"></input>
         <button onClick={setSave}>Save</button>
         <button onClick={submitHandler}>Publish</button>
         <Editor save={saved} initSave={initSave} editRef={editRef} />

@@ -42,7 +42,6 @@ const Editor = ({ save, initSave, editRef }) => {
           style={{ width: "100%", fontSize: "larger", height: "100%" }}
         ></div>
       </ReactQuill>
-      <button>Submit</button>
     </div>
   );
 };
