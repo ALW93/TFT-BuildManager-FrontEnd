@@ -16,7 +16,7 @@ export default function BoardAccordion({ boards, type }) {
         Object.keys(boards).map((e) => {
           return (
             <div>
-              <ActionButtons user={user} board={e} />
+              <ActionButtons user={user} boardId={e} data={boards[e]} />
 
               <Accordion
                 style={{

@@ -14,7 +14,6 @@ const HomePage = () => {
       setMeta(data);
       const res = await fetch(`${TFT_BASE}/boards/community`);
       const parsed = await res.json();
-      console.log(parsed);
       setCommunity(parsed);
     })();
   }, []);
