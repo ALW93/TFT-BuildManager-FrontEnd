@@ -9,7 +9,7 @@ import { TFT_BASE } from "../config";
 const GuideBuilder = () => {
   const [saved, initSave] = useState(false);
   const [builder, showBuilder] = useState(false);
-  const boards = useSelector((state) => state.guide.boards);
+  const boards = useSelector((state) => state.editor.boards);
   const editRef = createRef();
 
   const setSave = (e) => {

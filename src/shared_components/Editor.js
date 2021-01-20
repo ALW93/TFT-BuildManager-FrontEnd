@@ -1,13 +1,13 @@
-import React, { useEffect, createRef, useState } from "react";
+import React, { useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
-import { saveGuide } from "../store/actions/guide";
+import { saveGuide } from "../store/actions/editor";
 
 const Editor = ({ save, initSave, editRef }) => {
   const dispatch = useDispatch();
 
-  const content = useSelector((state) => state.guide.guide);
+  const content = useSelector((state) => state.editor.guide);
 
   useEffect(() => {
     if (content.length) {

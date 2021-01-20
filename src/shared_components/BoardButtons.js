@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addBoard, removeBoard, deleteBoard } from "../store/actions/board";
+import { useHistory } from "react-router-dom";
 
 const ActionButtons = ({ user, boardId, data }) => {
   const [saved, setSaved] = useState(false);
   const [owner, setOwner] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
   const token = useSelector((state) => state.authentication.token);
 
   const saveBuild = async () => {
@@ -21,6 +23,7 @@ const ActionButtons = ({ user, boardId, data }) => {
   const deleteYourBoard = async () => {
     if (window.confirm(`Are you sure you want to delete ${data.title}?`)) {
       await dispatch(deleteBoard(boardId));
+      history.push(`/profile/id/${user.id}/collection`);
     }
   };
 

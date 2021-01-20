@@ -3,7 +3,7 @@ import {
   REMOVE_BOARD,
   MOVE_BOARD,
   SAVE_GUIDE,
-} from "../actions/guide";
+} from "../actions/editor";
 
 export default function reducer(state = { boards: [], guide: [] }, action) {
   switch (action.type) {

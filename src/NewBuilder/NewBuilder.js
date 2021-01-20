@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addBoard } from "../store/actions/guide";
+import { addBoard } from "../store/actions/editor";
 import Node from "./Node";
 import { useSelector } from "react-redux";
 import { items as itemPool, champions as champPool } from "../set4/set4";
