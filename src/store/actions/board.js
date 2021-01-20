@@ -26,3 +26,13 @@ export const removeBoard = (id, boardId, token) => async (dispatch) => {
     body: JSON.stringify({ boardId }),
   });
 };
+
+export const deleteBoard = (boardId, token) => async (dispatch) => {
+  const response = await fetch(`${TFT_BASE}/boards/id/${boardId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

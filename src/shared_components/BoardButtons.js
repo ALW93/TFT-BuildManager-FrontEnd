@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addBoard, removeBoard } from "../store/actions/board";
+import { addBoard, removeBoard, deleteBoard } from "../store/actions/board";
 
 const ActionButtons = ({ user, boardId, data }) => {
   const [saved, setSaved] = useState(false);
@@ -15,6 +15,12 @@ const ActionButtons = ({ user, boardId, data }) => {
     } else {
       await dispatch(addBoard(user.id, boardId, token));
       setSaved(true);
+    }
+  };
+
+  const deleteYourBoard = async () => {
+    if (window.confirm(`Are you sure you want to delete ${data.title}?`)) {
+      await dispatch(deleteBoard(boardId));
     }
   };
 
@@ -47,7 +53,7 @@ const ActionButtons = ({ user, boardId, data }) => {
       {owner ? (
         <>
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={deleteYourBoard}>Delete</button>
         </>
       ) : null}
     </div>
