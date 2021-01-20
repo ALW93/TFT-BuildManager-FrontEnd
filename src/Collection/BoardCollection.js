@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import BoardAccordion from "../shared_components/BoardAccordion";
 
-const BoardCollection = () => {
+const BoardCollection = ({ type, showBuilder }) => {
   const boards = useSelector((state) => state.info.boards);
 
   return (
