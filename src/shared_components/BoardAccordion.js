@@ -16,27 +16,30 @@ export default function BoardAccordion({ boards, type }) {
         Object.keys(boards).map((e) => {
           return (
             <div>
-              <ActionButtons
-                user={user}
-                boardId={e}
-                data={boards[e]}
-                type={type}
-              />
-
               <Accordion
                 style={{
                   backgroundImage: `url(${IMG_API}/${boards[e].grid[
                     boards[e].grid.length - 1
                   ].id.slice(5)}.jpg)`,
                   backgroundRepeat: "no-repeat",
-                  backgroundSize: "37%",
+                  backgroundSize: "40%",
                   backgroundPosition: "right 23%",
                   backdropFilter: "blur(10px)",
+                  border: "1px solid black",
+                  margin: "2px",
                 }}
               >
                 <AccordionSummary>
-                  <h1>{boards[e].title}</h1>
-                  <h2>{boards[e].subtitle}</h2>
+                  <div>
+                    <h1>{boards[e].title}</h1>
+                    <h2>{boards[e].subtitle}</h2>
+                  </div>
+                  <ActionButtons
+                    user={user}
+                    boardId={e}
+                    data={boards[e]}
+                    type={type}
+                  />
                 </AccordionSummary>
                 <AccordionDetails>
                   <ViewBoard data={boards[e].grid} />

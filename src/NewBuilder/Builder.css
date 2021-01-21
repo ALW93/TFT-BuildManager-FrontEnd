@@ -3,6 +3,7 @@
   width: 100%;
   text-align: center;
   overflow: scroll;
+  height: fit-content;
 }
 
 .Builder__Container--Top {

@@ -20,14 +20,9 @@ const HomePage = () => {
 
   return (
     <div className="w100">
-      <h1>DISCOVER</h1>
       <div className="flex">
-        <div className="b1 w50">
-          <h1>Meta Builds</h1>
+        <div className="b1 w100">
           <BoardAccordion boards={meta} type="browser" />
-        </div>
-        <div className="b2 w50">
-          <h1>Community</h1>
           <BoardAccordion boards={community} type="browser" />
         </div>
       </div>
