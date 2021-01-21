@@ -26,3 +26,19 @@ a {
 .flex {
   display: flex;
 }
+
+.b1 {
+  border: 3px solid red;
+}
+
+.b2 {
+  border: 3px solid blue;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w100 {
+  width: 100%;
+}

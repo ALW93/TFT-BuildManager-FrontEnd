@@ -27,9 +27,7 @@ const Synergies = ({ data, actives, setActives }) => {
 
   return (
     <div>
-      <h1>Actives</h1>
       {JSON.stringify(actives)}
-      <h1>Synergies</h1>
       {data &&
         Object.keys(data).map((syn) => {
           let synergy = syn.toLowerCase();

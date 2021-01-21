@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     marginTop: appbarHeight,
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     maxWidth: "85vw",
     minHeight: "80vh",
     maxHeight: "80vh",
