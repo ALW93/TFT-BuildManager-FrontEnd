@@ -18,6 +18,7 @@ export const loadToken = () => async (dispatch) => {
 
     dispatch(setUser(data.user));
     dispatch(setBoards(data.boards));
+    dispatch(setGuides(data.guides));
   }
 };
 

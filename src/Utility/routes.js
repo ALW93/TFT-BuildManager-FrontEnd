@@ -1,11 +1,13 @@
 import React from "react";
 import View from "../View/View";
+import GuideView from "../View/GuideView";
 import { Route, Switch } from "react-router-dom";
 import Profile from "../Profile/ProfilePage";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import HomePage from "../Home/HomePage";
 import GuideBuilder from "../GuideBuilder/GuideBuilder";
 import BoardCollection from "../Collection/BoardCollection";
+import GuideCollection from "../Collection/GuideCollection";
 
 export const InteriorSwitch = () => (
   <Switch>
@@ -17,10 +19,9 @@ export const InteriorSwitch = () => (
     <Route exact path="/guide-create/add">
       <NewBuilder type="add" />
     </Route>
+    <Route exact path="/guide/id/:id" component={GuideView} />
     <Route exact path="/profile/id/:id" component={Profile} />
-    <Route exact path="/profile/id/:id/bookmarks">
-      <h1>User Guide Bookmarks</h1>
-    </Route>
+    <Route exact path="/profile/id/:id/bookmarks" component={GuideCollection} />
     <Route
       exact
       path="/profile/id/:id/collection"

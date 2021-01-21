@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { saveGuide } from "../store/actions/editor";
 
-const Editor = ({ save, initSave, editRef }) => {
+const Editor = ({ save, initSave, editRef, type }) => {
   const dispatch = useDispatch();
-
   const content = useSelector((state) => state.editor.guide);
 
   useEffect(() => {
@@ -29,9 +28,6 @@ const Editor = ({ save, initSave, editRef }) => {
   return (
     <div style={{ width: "100%" }}>
       <ReactQuill
-        // readOnly={true}
-        // theme="bubble"
-
         ref={editRef}
         style={{
           width: "inherit",
