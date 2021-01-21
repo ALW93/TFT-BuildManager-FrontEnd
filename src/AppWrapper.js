@@ -19,8 +19,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import pic from "./Assets/NavBar.jpg";
 import logo from "./Assets/Logo.png";
 
-const drawerWidth = 280;
-const appbarHeight = 180;
+const drawerWidth = "15vw";
+const appbarHeight = "20vh";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +50,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: appbarHeight,
     flexGrow: 1,
     padding: theme.spacing(3),
+    maxWidth: "85vw",
+    minHeight: "80vh",
+    maxHeight: "80vh",
+    overflow: "scroll",
+    border: "3px solid blue",
   },
 }));
 

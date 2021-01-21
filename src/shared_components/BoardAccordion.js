@@ -25,9 +25,13 @@ export default function BoardAccordion({ boards, type }) {
 
               <Accordion
                 style={{
-                  backgroundImage: `url(${IMG_API}/${boards[e].grid[0].id.slice(
-                    5
-                  )})`,
+                  backgroundImage: `url(${IMG_API}/${boards[e].grid[
+                    boards[e].grid.length - 1
+                  ].id.slice(5)}.jpg)`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "37%",
+                  backgroundPosition: "right 23%",
+                  backdropFilter: "blur(10px)",
                 }}
               >
                 <AccordionSummary>
