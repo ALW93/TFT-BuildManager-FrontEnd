@@ -14,7 +14,6 @@ const HomePage = () => {
       setMeta(data);
       const res = await fetch(`${TFT_BASE}/boards/community`);
       const parsed = await res.json();
-      console.log(parsed);
       setCommunity(parsed);
     })();
   }, []);
@@ -25,11 +24,11 @@ const HomePage = () => {
       <div className="flex">
         <div>
           <h1>Meta Builds</h1>
-          <BoardAccordion boards={meta} type="general" />
+          <BoardAccordion boards={meta} type="browser" />
         </div>
         <div>
           <h1>Community</h1>
-          <BoardAccordion boards={community} type="general" />
+          <BoardAccordion boards={community} type="browser" />
         </div>
       </div>
     </div>

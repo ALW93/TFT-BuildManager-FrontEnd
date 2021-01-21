@@ -10,7 +10,6 @@ const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
     (async () => {
       if (champion) {
         const data = champRef[champion.id];
-        console.log(data);
         if (data.traits.length === 3) setTripleTrait("triple_trait");
         setOccupant(data);
         setBorder(`cost${data.cost}`);
