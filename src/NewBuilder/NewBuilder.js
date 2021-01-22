@@ -163,48 +163,38 @@ const NewBuilder = ({ type, showBuilder }) => {
 
   return (
     <div className="Builder__Container">
-      {type === "normal" ? <h1>Create a Board</h1> : <h1>Add a Board</h1>}
-
-      <div>
-        <div>
-          <label>Title</label>
-          <input type="text" onChange={(e) => setTitle(e.target.value)}></input>
-        </div>
-        <div>
-          <label>Subtitle</label>
-          <input
-            type="text"
-            onChange={(e) => setSubtitle(e.target.value)}
-          ></input>
-        </div>
-        <GUI filter={filter} setFilter={setFilter} />
-      </div>
       <div className="Builder__Container--Top">
         <div className="synergy-gallery">
+          <h2>Synergies</h2>
           <Synergies
             data={synergies}
             setActives={setActives}
             actives={actives}
           />
         </div>
-        <div className="hexagon-gallery">
-          {Object.keys(board).map((node) => {
-            return (
-              <Node
-                champion={board[node]}
-                onDragOver={onDragOver}
-                onDragStart={onDragStart}
-                onDrop={onDrop}
-                position={node}
-              />
-            );
-          })}
+        <div className="middle">
+          {type === "normal" ? <h2>Create a Board</h2> : <h2>Add a Board</h2>}
+          <div className="hexagon-gallery">
+            {Object.keys(board).map((node) => {
+              return (
+                <Node
+                  champion={board[node]}
+                  onDragOver={onDragOver}
+                  onDragStart={onDragStart}
+                  onDrop={onDrop}
+                  position={node}
+                />
+              );
+            })}
+          </div>
         </div>
         <div className="itemPool">
+          <h2>Items</h2>
           <ItemPool items={itemPool} />
         </div>
       </div>
       <div className="Builder__Container--Bottom">
+        <GUI filter={filter} setFilter={setFilter} />
         <SelectionPool
           champions={pool}
           onDragOver={onDragOver}
@@ -213,6 +203,16 @@ const NewBuilder = ({ type, showBuilder }) => {
         />
       </div>
 
+      <div className="flex">
+        <div>
+          <label>Title</label>
+          <input type="text" onChange={(e) => setTitle(e.target.value)} />
+        </div>
+        <div>
+          <label>Subtitle</label>
+          <input type="text" onChange={(e) => setSubtitle(e.target.value)} />
+        </div>
+      </div>
       {type === "normal" ? (
         <>
           <button onClick={submitBuild}>Submit</button>

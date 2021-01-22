@@ -19,17 +19,13 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>DISCOVER</h1>
+    <div className="w100">
       <div className="flex">
-        <div>
-          <h1>Meta Builds</h1>
+        <div className="b1 w100">
           <BoardAccordion boards={meta} type="browser" />
-        </div>
-        <div>
-          <h1>Community</h1>
           <BoardAccordion boards={community} type="browser" />
         </div>
+        <div style={{ width: "25%" }}>Something</div>
       </div>
     </div>
   );

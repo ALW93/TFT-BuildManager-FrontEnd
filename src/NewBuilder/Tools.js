@@ -11,7 +11,6 @@ export const ItemPool = ({ items }) => {
 
   return (
     <>
-      <h2>Item Pool</h2>
       <div className="item__selection">
         {items &&
           items.map((item) => {
@@ -39,7 +38,6 @@ export const SelectionPool = ({
 }) => {
   return (
     <div>
-      <h2>Selector</h2>
       <div
         className="character__selection"
         onDragOver={onDragOver}
@@ -75,7 +73,6 @@ export const GUI = ({ filter, setFilter }) => {
 
   return (
     <div>
-      <h2>TOGGLE GUI</h2>
       <div>
         {Object.keys(costs).map((cost) => {
           return (

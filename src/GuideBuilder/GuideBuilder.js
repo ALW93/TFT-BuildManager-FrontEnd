@@ -7,6 +7,7 @@ import ViewBoard from "../View/ViewBoard";
 import { TFT_BASE } from "../config";
 import { addBoard } from "../store/actions/editor";
 import "./GuideBuilder.css";
+import { TextField, Button } from "@material-ui/core";
 
 const GuideBuilder = () => {
   const [saved, initSave] = useState(false);
@@ -50,19 +51,23 @@ const GuideBuilder = () => {
   };
 
   return (
-    <div style={{ display: "flex", width: "100%" }}>
-      <div style={{ width: "50%" }}>
-        <h1>Guide Builder</h1>
-        <label>Title</label>
-        <input type="text" id="guideTitle"></input>
-        <button onClick={setSave}>Save</button>
-        <button onClick={submitHandler}>Publish</button>
+    <div className="flex w100">
+      <div className="w50">
+        <TextField label="Title" type="text" id="guideTitle" />
+        <button className="action b_green" onClick={setSave}>
+          SAVE
+        </button>
+        <button className="action b_blue" onClick={submitHandler}>
+          PUBLISH
+        </button>
+
         <Editor save={saved} initSave={initSave} editRef={editRef} />
       </div>
       <div style={{ width: "50%" }}>
-        <h1>Board Tool</h1>
-        <button onClick={() => showBuilder(true)}>Create New Board</button>
-        <button onClick={() => showCollection(true)}>
+        <button className="action" onClick={() => showBuilder(true)}>
+          Create New Board
+        </button>
+        <button className="action" onClick={() => showCollection(true)}>
           Add From Collection
         </button>
         <Dialog
