@@ -25,6 +25,7 @@ const HomePage = () => {
           <BoardAccordion boards={meta} type="browser" />
           <BoardAccordion boards={community} type="browser" />
         </div>
+        <div style={{ width: "25%" }}>Something</div>
       </div>
     </div>
   );

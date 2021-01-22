@@ -14,6 +14,10 @@ img {
   color: green;
 }
 
+.b_red {
+  color: rgb(208, 16, 16);
+}
+
 .action {
   font-family: Anton, sans-serif;
   margin: 2px;

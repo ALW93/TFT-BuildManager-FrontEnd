@@ -6,6 +6,8 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ViewBoard from "../View/ViewBoard";
 import ActionButtons from "./BoardButtons";
+import { requirePropFactory } from "@material-ui/core";
+import SynergyPreview from "./SynergyPreview";
 
 export default function BoardAccordion({ boards, type }) {
   const user = useSelector((state) => state.authentication.user);
@@ -31,15 +33,21 @@ export default function BoardAccordion({ boards, type }) {
               >
                 <AccordionSummary>
                   <div>
-                    <h1>{boards[e].title}</h1>
+                    <div className="flex">
+                      <h1>{boards[e].title}</h1>
+                      <ActionButtons
+                        user={user}
+                        boardId={e}
+                        data={boards[e]}
+                        type={type}
+                      />
+                    </div>
                     <h2>{boards[e].subtitle}</h2>
+                    {boards[e].feature_count ? (
+                      <button>Explore {boards[e].feature_count} Guides</button>
+                    ) : null}
+                    <SynergyPreview synergies={boards[e].actives} />
                   </div>
-                  <ActionButtons
-                    user={user}
-                    boardId={e}
-                    data={boards[e]}
-                    type={type}
-                  />
                 </AccordionSummary>
                 <AccordionDetails>
                   <ViewBoard data={boards[e].grid} />
