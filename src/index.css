@@ -1,7 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 img {
   width: 50%;
+}
+
+.b_blue {
+  color: #0079d0;
+}
+
+.b_green {
+  color: green;
+}
+
+.action {
+  font-family: Anton, sans-serif;
+  margin: 2px;
+  border-radius: 4px;
+  padding: 0 15px;
+  cursor: pointer;
+  height: 32px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.action:hover {
+  box-shadow: 1px 1px #b6b6b6, 2px 2px #b6b6b6, 3px 3px #b6b6b6;
+  transform: translateX(-3px);
 }
 
 .sidebar {
