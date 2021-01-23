@@ -14,7 +14,9 @@ const GuidePreview = ({ guides }) => {
         Object.keys(guides).map((id) => {
           return (
             <div onClick={() => openGuide(id)}>
-              {JSON.stringify(guides[id])}
+              <h1>{guides[id].title}</h1>
+              <h2>By {guides[id].author}</h2>
+              <h3>Last Updated {guides[id].lastUpdated}</h3>
             </div>
           );
         })}

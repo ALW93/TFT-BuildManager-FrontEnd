@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login, demoLogin } from "../store/actions/authentication";
-import SignUpForm from "./SignUpForm";
 import { TextField, Button } from "@material-ui/core";
-import Grow from "@material-ui/core/Grow";
 
 const LoginForm = ({ login, demoLogin }) => {
   const [email, setEmail] = useState("");
@@ -59,20 +57,6 @@ const LoginForm = ({ login, demoLogin }) => {
       >
         Demo
       </Button>
-      <div className="signUpPrompt">
-        No Account? Sign Up
-        <Button
-          style={{
-            height: "20px",
-            width: "30px",
-            color: "#9f6c35",
-            marginLeft: "-8px",
-            marginTop: "0.9px",
-          }}
-        >
-          Here!
-        </Button>
-      </div>
     </div>
   );
 };
