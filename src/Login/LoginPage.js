@@ -13,25 +13,31 @@ function LoginPage() {
     <main>
       <SideBar />
       <div className="logIn__right">
-        <img src={Logo} alt="logo" />
+        <img src={Logo} alt="logo" style={{ width: "30%" }} />
         <h1>build manager</h1>
         <div className="loginForm__div">
-          {signup ? <SignUpForm /> : <LoginForm />}
-        </div>
-        <div className="signUpPrompt">
-          No Account? Sign Up
-          <Button
-            style={{
-              height: "20px",
-              width: "30px",
-              color: "#9f6c35",
-              marginLeft: "-8px",
-              marginTop: "0.9px",
-            }}
-            onClick={() => showSignUp(true)}
-          >
-            Here!
-          </Button>
+          {signup ? (
+            <SignUpForm showSignUp={showSignUp} />
+          ) : (
+            <>
+              <LoginForm />{" "}
+              <div className="signUpPrompt">
+                No Account? Sign Up
+                <Button
+                  style={{
+                    height: "20px",
+                    width: "30px",
+                    color: "#9f6c35",
+                    marginLeft: "-8px",
+                    marginTop: "0.9px",
+                  }}
+                  onClick={() => showSignUp(true)}
+                >
+                  Here!
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </main>

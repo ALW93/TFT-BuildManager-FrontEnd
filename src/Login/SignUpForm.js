@@ -5,7 +5,7 @@ import { TextField, Button } from "@material-ui/core";
 import "./SignUpForm.css";
 import art from "../Assets/favicon.png";
 
-const SignUpForm = ({ createUser }) => {
+const SignUpForm = ({ createUser, showSignUp }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +38,6 @@ const SignUpForm = ({ createUser }) => {
 
   return (
     <>
-      <img src={art} alt="poro" className="penguin" />
       <div className="signupContainer">
         <form onSubmit={handleSubmit}>
           <TextField
@@ -71,7 +70,7 @@ const SignUpForm = ({ createUser }) => {
             Sign Up
           </Button>
         </form>
-        <Button onClick={hideForm}>return to login</Button>
+        <Button onClick={() => showSignUp(false)}>return to login</Button>
       </div>
     </>
   );

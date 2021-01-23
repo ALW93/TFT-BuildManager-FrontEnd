@@ -49,14 +49,14 @@ const LoginForm = ({ login, demoLogin }) => {
           Login
         </Button>
       </form>
-      <Button
+      {/* <Button
         variant="contained"
         className="loginButton"
         style={{ backgroundColor: "#9f6c35", color: "white" }}
         onClick={handleDemoLogin}
       >
         Demo
-      </Button>
+      </Button> */}
     </div>
   );
 };
