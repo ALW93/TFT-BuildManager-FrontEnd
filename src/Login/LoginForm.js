@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login, demoLogin } from "../store/actions/authentication";
+import { login } from "../store/actions/authentication";
 import { TextField, Button } from "@material-ui/core";
 
 const LoginForm = ({ login, demoLogin }) => {
@@ -13,7 +13,8 @@ const LoginForm = ({ login, demoLogin }) => {
   };
 
   const handleDemoLogin = async (e) => {
-    demoLogin();
+    setEmail("editor@gmail.com");
+    setPassword("password");
   };
 
   const updateEmail = (e) => {
@@ -49,14 +50,14 @@ const LoginForm = ({ login, demoLogin }) => {
           Login
         </Button>
       </form>
-      {/* <Button
+      <Button
         variant="contained"
         className="loginButton"
         style={{ backgroundColor: "#9f6c35", color: "white" }}
         onClick={handleDemoLogin}
       >
         Demo
-      </Button> */}
+      </Button>
     </div>
   );
 };
@@ -64,10 +65,7 @@ const LoginForm = ({ login, demoLogin }) => {
 const LoginFormContainer = () => {
   const dispatch = useDispatch();
   return (
-    <LoginForm
-      login={(email, password) => dispatch(login(email, password))}
-      demoLogin={() => dispatch(demoLogin())}
-    />
+    <LoginForm login={(email, password) => dispatch(login(email, password))} />
   );
 };
 

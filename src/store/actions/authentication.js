@@ -22,11 +22,11 @@ export const loadToken = () => async (dispatch) => {
   }
 };
 
-export const demoLogin = () => async (dispatch) => {
-  window.localStorage.setItem(TOKEN_KEY, demoToken);
-  window.localStorage.setItem("USER_ID", "999");
-  dispatch(setToken(demoToken));
-};
+// export const demoLogin = () => async (dispatch) => {
+//   window.localStorage.setItem(TOKEN_KEY, demoToken);
+//   window.localStorage.setItem("USER_ID", "999");
+//   dispatch(setToken(demoToken));
+// };
 
 export const login = (email, password) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/session`, {
@@ -57,6 +57,7 @@ export const logout = () => async (dispatch, getState) => {
 
   window.localStorage.removeItem(TOKEN_KEY);
   window.localStorage.removeItem("USER_ID");
+  window.location.reload();
 };
 
 export const createUser = (user) => async (dispatch) => {
