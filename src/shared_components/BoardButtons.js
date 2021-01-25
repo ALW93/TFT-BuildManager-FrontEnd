@@ -44,7 +44,7 @@ const ActionButtons = ({ user, boardId, data, type }) => {
     if (boards && boards[boardId]) {
       setSaved(true);
     }
-    if (user.id === data.authorId) {
+    if (user && user.id === data.authorId) {
       setOwner(true);
     }
   }, [user]);

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../store/actions/authentication";
 import { TextField, Button } from "@material-ui/core";
 import "./SignUpForm.css";
-import art from "../Assets/favicon.png";
 
-const SignUpForm = ({ createUser, showSignUp }) => {
+const SignUpForm = ({ showSignUp }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const SignUpForm = ({ createUser, showSignUp }) => {
       email: email,
       password: password,
     };
-    await createUser(newUser);
+    await dispatch(createUser(newUser));
   };
 
   const updateUsername = (e) => {

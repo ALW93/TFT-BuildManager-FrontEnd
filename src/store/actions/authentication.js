@@ -68,8 +68,10 @@ export const createUser = (user) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const { token } = await response.json();
+    const { token, user } = await response.json();
+    console.log({ token, user });
     window.localStorage.setItem(TOKEN_KEY, token);
-    dispatch(setToken(token));
+    dispatch(setToken(token.token));
+    dispatch(setUser(user));
   }
 };
