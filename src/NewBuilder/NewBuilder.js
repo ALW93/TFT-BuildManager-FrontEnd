@@ -161,8 +161,41 @@ const NewBuilder = ({ type, showBuilder }) => {
   };
   //#endregion
 
+  // *** Clears Board Content ***
+  const clearBoard = () => {
+    setBoard(() => {
+      const object = {};
+      const spaces = Array(28).fill(null);
+      spaces.map((_, index) => {
+        object[index] = null;
+      });
+      return object;
+    });
+  };
+
   return (
     <div className="Builder__Container">
+      <div className="flex">
+        <div>
+          <label>Title</label>
+          <input type="text" onChange={(e) => setTitle(e.target.value)} />
+        </div>
+        <div>
+          <label>Subtitle</label>
+          <input type="text" onChange={(e) => setSubtitle(e.target.value)} />
+        </div>
+      </div>
+      {type === "normal" ? (
+        <>
+          <button onClick={submitBuild}>Submit</button>
+          <button onClick={clearBoard}>Clear</button>
+        </>
+      ) : (
+        <>
+          <button onClick={submitBuild}>Add to Guide</button>
+          <button onClick={() => showBuilder(false)}>Cancel</button>
+        </>
+      )}
       <div className="Builder__Container--Top">
         <div className="synergy-gallery">
           <h2>Synergies</h2>
@@ -202,28 +235,6 @@ const NewBuilder = ({ type, showBuilder }) => {
           onDragStart={onDragStart}
         />
       </div>
-
-      <div className="flex">
-        <div>
-          <label>Title</label>
-          <input type="text" onChange={(e) => setTitle(e.target.value)} />
-        </div>
-        <div>
-          <label>Subtitle</label>
-          <input type="text" onChange={(e) => setSubtitle(e.target.value)} />
-        </div>
-      </div>
-      {type === "normal" ? (
-        <>
-          <button onClick={submitBuild}>Submit</button>
-          <button>Clear</button>
-        </>
-      ) : (
-        <>
-          <button onClick={submitBuild}>Add to Guide</button>
-          <button onClick={() => showBuilder(false)}>Cancel</button>
-        </>
-      )}
     </div>
   );
 };

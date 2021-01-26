@@ -90,16 +90,16 @@
 
 .synergy-gallery {
   min-width: 25%;
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
 }
 
 .itemPool {
   min-width: 25%;
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
 }
 
 .middle {
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
   min-width: 50%;
 }
 

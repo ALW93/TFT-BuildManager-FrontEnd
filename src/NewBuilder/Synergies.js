@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { activeTraits } from "../set4/set4";
+import { orderedSynergies } from "./BoardService";
+import { displayActive } from "./Actives";
 
 const Synergies = ({ data, actives, setActives }) => {
   const [sorted, setSorted] = useState([]);
@@ -21,32 +23,24 @@ const Synergies = ({ data, actives, setActives }) => {
         }
       }
     });
-    console.log(obj);
     setActives(obj);
+    setSorted(orderedSynergies(obj));
   }, [data]);
 
   return (
     <div>
-      {JSON.stringify(actives)}
-      {data &&
-        Object.keys(data).map((syn) => {
-          let synergy = syn.toLowerCase();
-          if (synergy.includes("set4_")) {
-            let newSyn = synergy.replace("set4_", "");
-            synergy = newSyn;
-          }
+      {sorted &&
+        sorted.map((e) => {
+          let trait = e.trait.toLowerCase();
+          if (trait.includes("set4_")) trait = trait.replace("set4_", "");
           return (
-            <div>
+            <div className="flex">
               <img
-                src={require(`../Assets/traits/${synergy}.svg`)}
-                style={{
-                  width: "32px",
-                  height: "32px",
-                }}
+                src={`${require(`../Assets/traits/${trait}.svg`)}`}
+                style={{ width: "32px" }}
               />
-              {synergy}
-              || {actives[syn]} ||
-              {activeTraits[syn]}
+              <h5>{e.trait}</h5>
+              {displayActive(e.activated, activeTraits[e.trait])}
             </div>
           );
         })}

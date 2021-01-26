@@ -1,7 +1,8 @@
-const { TFT_BASE, demoToken } = require("../../config");
+const { TFT_BASE } = require("../../config");
 const { setBoards, setGuides } = require("./board");
 
-export const TOKEN_KEY = "TOKEN_KEY";
+export const TOKEN_KEY = "tft-buildmanager/authentication/TOKEN_KEY";
+export const ID_KEY = "tft-buildmanager/authentication/ID_KEY";
 export const SET_TOKEN = "tft-buildmanager/authentication/SET_TOKEN";
 export const SET_USER = "tft-buildmanager/authentication/SET_USER";
 
@@ -15,18 +16,18 @@ export const loadToken = () => async (dispatch) => {
     dispatch(setToken(token));
     const response = await fetch(`${TFT_BASE}/users/id/${id}`);
     const data = await response.json();
-
+    console.log("triggering token load", data);
     dispatch(setUser(data.user));
     dispatch(setBoards(data.boards));
     dispatch(setGuides(data.guides));
   }
 };
 
-export const demoLogin = () => async (dispatch) => {
-  window.localStorage.setItem(TOKEN_KEY, demoToken);
-  window.localStorage.setItem("USER_ID", "999");
-  dispatch(setToken(demoToken));
-};
+// export const demoLogin = () => async (dispatch) => {
+//   window.localStorage.setItem(TOKEN_KEY, demoToken);
+//   window.localStorage.setItem("USER_ID", "999");
+//   dispatch(setToken(demoToken));
+// };
 
 export const login = (email, password) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/session`, {
@@ -57,6 +58,7 @@ export const logout = () => async (dispatch, getState) => {
 
   window.localStorage.removeItem(TOKEN_KEY);
   window.localStorage.removeItem("USER_ID");
+  window.location.reload();
 };
 
 export const createUser = (user) => async (dispatch) => {
@@ -67,7 +69,9 @@ export const createUser = (user) => async (dispatch) => {
   });
 
   if (response.ok) {
-    const { token } = await response.json();
+    const { token, user } = await response.json();
+    console.log({ token, user });
+    window.localStorage.setItem("USER_ID", user.id);
     window.localStorage.setItem(TOKEN_KEY, token);
     dispatch(setToken(token));
   }
