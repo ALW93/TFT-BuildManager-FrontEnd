@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { activeTraits } from "../set4/set4";
+import { orderedSynergies } from "./BoardService";
 
 const Synergies = ({ data, actives, setActives }) => {
   const [sorted, setSorted] = useState([]);
@@ -21,37 +22,11 @@ const Synergies = ({ data, actives, setActives }) => {
         }
       }
     });
-    console.log(obj);
     setActives(obj);
+    console.log(orderedSynergies(obj));
   }, [data]);
 
-  return (
-    <div>
-      {JSON.stringify(actives)}
-      {data &&
-        Object.keys(data).map((syn) => {
-          let synergy = syn.toLowerCase();
-          if (synergy.includes("set4_")) {
-            let newSyn = synergy.replace("set4_", "");
-            synergy = newSyn;
-          }
-          return (
-            <div>
-              <img
-                src={require(`../Assets/traits/${synergy}.svg`)}
-                style={{
-                  width: "32px",
-                  height: "32px",
-                }}
-              />
-              {synergy}
-              || {actives[syn]} ||
-              {activeTraits[syn]}
-            </div>
-          );
-        })}
-    </div>
-  );
+  return <div>{JSON.stringify(actives)}</div>;
 };
 
 export default Synergies;
