@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { activeTraits } from "../set4/set4";
 import { orderedSynergies } from "./BoardService";
+import { displayActive } from "./Actives";
 
 const Synergies = ({ data, actives, setActives }) => {
   const [sorted, setSorted] = useState([]);
@@ -23,10 +24,28 @@ const Synergies = ({ data, actives, setActives }) => {
       }
     });
     setActives(obj);
-    console.log(orderedSynergies(obj));
+    setSorted(orderedSynergies(obj));
   }, [data]);
 
-  return <div>{JSON.stringify(actives)}</div>;
+  return (
+    <div>
+      {sorted &&
+        sorted.map((e) => {
+          let trait = e.trait.toLowerCase();
+          if (trait.includes("set4_")) trait = trait.replace("set4_", "");
+          return (
+            <div className="flex">
+              <img
+                src={`${require(`../Assets/traits/${trait}.svg`)}`}
+                style={{ width: "32px" }}
+              />
+              <h5>{e.trait}</h5>
+              {displayActive(e.activated, activeTraits[e.trait])}
+            </div>
+          );
+        })}
+    </div>
+  );
 };
 
 export default Synergies;
