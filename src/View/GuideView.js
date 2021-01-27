@@ -37,8 +37,8 @@ const GuideView = ({ match, someRef }) => {
           data.Guide_Boards.map((board) => {
             return (
               <div>
-                <h4>{board.Board.title}</h4>
-                <ViewBoard data={board.Board.grid} />
+                <h4>{board.Board && board.Board.title}</h4>
+                <ViewBoard data={board.Board && board.Board.grid} />
               </div>
             );
           })}
