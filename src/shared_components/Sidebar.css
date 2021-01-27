@@ -1,48 +1,15 @@
 .sidebar {
-  position: static;
-  margin: -10px;
-  height: 101vh;
-  width: 30vw;
-  background-size: 100%;
-  background-color: black;
-  background-position: center top;
-  background-repeat: no-repeat;
-  transition: all 3s ease-in-out;
-  border-right: 1px solid black;
+  position: fixed;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
 }
 
-.default {
-  background-image: url("../Assets/Ashe.jpg");
-}
-
-.Ahri {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/Ahri.jpg");
-}
-
-.Azir {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/Azir.jpg");
-}
-
-.Teemo {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/Teemo.jpg");
-}
-
-.Lux {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/Lux.jpg");
-}
-
-.LeeSin {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/LeeSin.jpg");
-}
-
-.Kindred {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/Kindred.jpg");
-}
-
-.Yone {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/Yone.jpg");
-}
-
-.Akali {
-  background-image: url("https://tft-buildmanager.s3.amazonaws.com/Champions/Akali.jpg");
+#videoBG {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }

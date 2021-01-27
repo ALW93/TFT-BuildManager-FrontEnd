@@ -10,7 +10,7 @@ function LoginPage() {
   const [signup, showSignUp] = useState(false);
 
   return (
-    <main>
+    <main className="Splash__Container">
       <SideBar />
       <div className="logIn__right">
         <img src={Logo} alt="logo" style={{ width: "30%" }} />
