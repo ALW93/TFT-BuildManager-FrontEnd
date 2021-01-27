@@ -20,12 +20,12 @@ const HomePage = () => {
 
   return (
     <div className="w100">
-      <div className="flex">
-        <div className="b1 w100">
-          <BoardAccordion boards={meta} type="browser" />
-          <BoardAccordion boards={community} type="browser" />
+      <div style={{ width: "67%", marginLeft: "12%" }}>
+        <div>
+          Toggle Area<button>11.2 Meta</button>
         </div>
-        <div style={{ width: "25%" }}>Something</div>
+        <BoardAccordion boards={meta} type="browser" />
+        <BoardAccordion boards={community} type="browser" />
       </div>
     </div>
   );

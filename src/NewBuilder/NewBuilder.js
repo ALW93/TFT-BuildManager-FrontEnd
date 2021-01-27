@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addBoard } from "../store/actions/editor";
 import Node from "./Node";
+import { TextField, Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { items as itemPool, champions as champPool } from "../set4/set4";
 import "./Builder.css";
@@ -47,6 +48,7 @@ const NewBuilder = ({ type, showBuilder }) => {
     };
     if (type === "normal") {
       createBoard(info);
+      history.push(`/profile/id/${user.id}/collection`);
     } else {
       dispatch(addBoard(info));
       showBuilder(false);
@@ -175,27 +177,33 @@ const NewBuilder = ({ type, showBuilder }) => {
 
   return (
     <div className="Builder__Container">
-      <div className="flex">
-        <div>
-          <label>Title</label>
-          <input type="text" onChange={(e) => setTitle(e.target.value)} />
-        </div>
-        <div>
-          <label>Subtitle</label>
-          <input type="text" onChange={(e) => setSubtitle(e.target.value)} />
-        </div>
+      <div>
+        <TextField
+          label="Title"
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <TextField
+          label="Description"
+          type="text"
+          onChange={(e) => setSubtitle(e.target.value)}
+        />
       </div>
       {type === "normal" ? (
         <>
-          <button onClick={submitBuild}>Submit</button>
-          <button onClick={clearBoard}>Clear</button>
+          <Button onClick={submitBuild}>Submit</Button>
+          <Button onClick={clearBoard}>Clear</Button>
         </>
-      ) : (
+      ) : null}
+
+      {type === "add" ? (
         <>
-          <button onClick={submitBuild}>Add to Guide</button>
-          <button onClick={() => showBuilder(false)}>Cancel</button>
+          <Button onClick={submitBuild}>Add to Guide</Button>
+          <Button onClick={() => showBuilder(false)}>Cancel</Button>
         </>
-      )}
+      ) : null}
+
       <div className="Builder__Container--Top">
         <div className="synergy-gallery">
           <h2>Synergies</h2>

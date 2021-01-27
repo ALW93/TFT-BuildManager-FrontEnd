@@ -1,6 +1,7 @@
 import React, { useState, createRef } from "react";
 import Editor from "../shared_components/Editor";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import ViewBoard from "../View/ViewBoard";
@@ -17,6 +18,7 @@ const GuideBuilder = () => {
   const boardCollection = useSelector((state) => state.info.boards);
   const editRef = createRef();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const setSave = (e) => {
     console.log("saving");
@@ -34,11 +36,12 @@ const GuideBuilder = () => {
     const quill = editRef.current.getEditor();
     const saveContent = quill.editor.delta.ops;
     const title = document.getElementById("guideTitle");
+    const token = window.localStorage.getItem("TOKEN_KEY");
     const response = await fetch(`${TFT_BASE}/guides`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        //   Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         guide: saveContent,
@@ -48,6 +51,7 @@ const GuideBuilder = () => {
       }),
     });
     const data = await response.json();
+    history.push(`/guide/id/${data.id}`);
   };
 
   return (

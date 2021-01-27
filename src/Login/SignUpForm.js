@@ -39,6 +39,7 @@ const SignUpForm = ({ showSignUp }) => {
   return (
     <>
       <div className="signupContainer">
+        <h3>Sign Up</h3>
         <form onSubmit={handleSubmit}>
           <TextField
             type="text"
@@ -67,7 +68,7 @@ const SignUpForm = ({ showSignUp }) => {
             }}
             type="Submit"
           >
-            Sign Up
+            Register
           </Button>
         </form>
         <Button onClick={() => showSignUp(false)}>return to login</Button>

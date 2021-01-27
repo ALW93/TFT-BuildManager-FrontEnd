@@ -6,8 +6,8 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ViewBoard from "../View/ViewBoard";
 import ActionButtons from "./BoardButtons";
-import { requirePropFactory } from "@material-ui/core";
 import SynergyPreview from "./SynergyPreview";
+import guideIcon from "../Assets/guide.svg";
 
 export default function BoardAccordion({ boards, type }) {
   const user = useSelector((state) => state.authentication.user);
@@ -17,7 +17,7 @@ export default function BoardAccordion({ boards, type }) {
       {boards &&
         Object.keys(boards).map((e) => {
           return (
-            <div>
+            <div className="flex">
               <Accordion
                 style={{
                   backgroundImage: `url(${IMG_API}/${boards[e].grid[
@@ -26,33 +26,37 @@ export default function BoardAccordion({ boards, type }) {
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "40%",
                   backgroundPosition: "right 23%",
-                  backdropFilter: "blur(10px)",
-                  border: "1px solid black",
                   margin: "2px",
+                  border: "2px solid #9E6C36",
+                  minWidth: "90%",
                 }}
               >
                 <AccordionSummary>
                   <div>
                     <div className="flex">
-                      <h1>{boards[e].title}</h1>
-                      <ActionButtons
-                        user={user}
-                        boardId={e}
-                        data={boards[e]}
-                        type={type}
-                      />
+                      <div>
+                        <h2 style={{ color: "#9E6C36" }}>{boards[e].title}</h2>
+                        <h3>{boards[e].subtitle}</h3>
+                      </div>
+                      <SynergyPreview synergies={boards[e].actives} />
                     </div>
-                    <h2>{boards[e].subtitle}</h2>
-                    {boards[e].feature_count ? (
-                      <button>Explore {boards[e].feature_count} Guides</button>
-                    ) : null}
-                    <SynergyPreview synergies={boards[e].actives} />
                   </div>
                 </AccordionSummary>
                 <AccordionDetails>
                   <ViewBoard data={boards[e].grid} />
                 </AccordionDetails>
               </Accordion>
+              <div>
+                <ActionButtons
+                  user={user}
+                  boardId={e}
+                  data={boards[e]}
+                  type={type}
+                />
+                {boards[e].feature_count ? (
+                  <img src={guideIcon} style={{ width: "30px" }} />
+                ) : null}
+              </div>
             </div>
           );
         })}

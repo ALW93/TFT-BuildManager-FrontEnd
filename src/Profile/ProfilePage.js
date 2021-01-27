@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { TFT_BASE } from "../config";
+import React from "react";
 import { useSelector } from "react-redux";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import "./ProfilePage.css";
@@ -13,6 +12,14 @@ const ProfilePage = () => {
         <div className={`profile__image fuwa`}></div>
         <div className="profile__details">
           <h1>{user && user.username}</h1>
+
+          {user ? (
+            <img
+              src={`${require(`../Assets/rank_badges/${user.rank.toLowerCase()}.png`)}`}
+              style={{ width: "123px" }}
+            />
+          ) : null}
+
           <h2>
             Rank: {user && user.rank}
             {user && user.verified ? <CheckBoxIcon /> : null}
