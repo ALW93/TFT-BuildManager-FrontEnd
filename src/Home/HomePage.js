@@ -20,7 +20,10 @@ const HomePage = () => {
 
   return (
     <div className="w100">
-      <div className="w50">
+      <div style={{ width: "67%", marginLeft: "12%" }}>
+        <div>
+          Toggle Area<button>11.2 Meta</button>
+        </div>
         <BoardAccordion boards={meta} type="browser" />
         <BoardAccordion boards={community} type="browser" />
       </div>

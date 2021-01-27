@@ -27,15 +27,19 @@ export default function BoardAccordion({ boards, type }) {
                   backgroundSize: "40%",
                   backgroundPosition: "right 23%",
                   margin: "2px",
+                  border: "2px solid #9E6C36",
+                  width: "90%",
                 }}
               >
                 <AccordionSummary>
                   <div>
-                    <SynergyPreview synergies={boards[e].actives} />
                     <div className="flex">
-                      <h1>{boards[e].title}</h1>
+                      <div>
+                        <h2 style={{ color: "#9E6C36" }}>{boards[e].title}</h2>
+                        <h3>{boards[e].subtitle}</h3>
+                      </div>
+                      <SynergyPreview synergies={boards[e].actives} />
                     </div>
-                    <h2>{boards[e].subtitle}</h2>
                   </div>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -50,10 +54,7 @@ export default function BoardAccordion({ boards, type }) {
                   type={type}
                 />
                 {boards[e].feature_count ? (
-                  <div className="flex">
-                    <img src={guideIcon} style={{ width: "30px" }} />
-                    <h3>View Guides ({boards[e].feature_count})</h3>
-                  </div>
+                  <img src={guideIcon} style={{ width: "30px" }} />
                 ) : null}
               </div>
             </div>
