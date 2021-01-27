@@ -9,27 +9,43 @@ const ProfilePage = () => {
   return (
     <div className="Profile__Container">
       <div className="profile__topbar">
-        <div className={`profile__image fuwa`}></div>
-        <div className="profile__details">
-          <h1>{user && user.username}</h1>
+        {user ? (
+          <>
+            {user.icon === "none" ? (
+              <button>Select Icon</button>
+            ) : (
+              <img
+                className="profile__image"
+                src={`${require(`../Assets/icons/${user.icon}.png`)}`}
+              />
+            )}
+            <div className="profile__details">
+              <h1>{user.username}</h1>
 
-          {user ? (
-            <img
-              src={`${require(`../Assets/rank_badges/${user.rank.toLowerCase()}.png`)}`}
-              style={{ width: "123px" }}
-            />
-          ) : null}
+              <img
+                src={`${require(`../Assets/rank_badges/${user.rank.toLowerCase()}.png`)}`}
+                style={{ width: "123px" }}
+              />
 
-          <h2>
-            Rank: {user && user.rank}
-            {user && user.verified ? <CheckBoxIcon /> : null}
-          </h2>
-          <h4>Joined On: {user && user.joined}</h4>
-          <h5>
-            Followers: {user && user.followerCount} Following:{" "}
-            {user && user.followingCount}
-          </h5>
-        </div>
+              <h2>Rank: {user.rank}</h2>
+              <h2>
+                Status:{" "}
+                {user.verified ? (
+                  <h3>
+                    Verified <CheckBoxIcon />{" "}
+                  </h3>
+                ) : (
+                  <h3>Unverified</h3>
+                )}
+              </h2>
+              <h4>Joined On: {user.joined}</h4>
+              <h5>
+                Followers: {user.followerCount} Following: {user.followingCount}
+              </h5>
+            </div>{" "}
+          </>
+        ) : null}
+        <h4>Match Statistics Coming Soon</h4>
       </div>
     </div>
   );
