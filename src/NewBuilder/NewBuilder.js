@@ -14,7 +14,6 @@ const NewBuilder = ({ type, showBuilder }) => {
   //#region
   const user = useSelector((state) => state.authentication.user);
   const dispatch = useDispatch();
-  const history = useHistory();
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [actives, setActives] = useState({});
@@ -190,12 +189,15 @@ const NewBuilder = ({ type, showBuilder }) => {
           <button onClick={submitBuild}>Submit</button>
           <button onClick={clearBoard}>Clear</button>
         </>
-      ) : (
+      ) : null}
+
+      {type === "add" ? (
         <>
           <button onClick={submitBuild}>Add to Guide</button>
           <button onClick={() => showBuilder(false)}>Cancel</button>
         </>
-      )}
+      ) : null}
+
       <div className="Builder__Container--Top">
         <div className="synergy-gallery">
           <h2>Synergies</h2>

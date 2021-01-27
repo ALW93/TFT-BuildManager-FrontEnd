@@ -28,7 +28,7 @@ export default function BoardAccordion({ boards, type }) {
                   backgroundPosition: "right 23%",
                   margin: "2px",
                   border: "2px solid #9E6C36",
-                  width: "90%",
+                  minWidth: "90%",
                 }}
               >
                 <AccordionSummary>

@@ -85,20 +85,18 @@ export default function AppWrapper() {
       >
         <div className={classes.drawerContainer}>
           <List>
-            {["Browse", "Guide Collection", "Board Collection"].map(
-              (text, index) => {
-                return (
-                  <Link to={routeRefs(user && user.id)[text]}>
-                    <ListItem button key={text}>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  </Link>
-                );
-              }
-            )}
+            {["Browse", "Board Collection"].map((text, index) => {
+              return (
+                <Link to={routeRefs(user && user.id)[text]}>
+                  <ListItem button key={text}>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              );
+            })}
           </List>
           <Divider />
           <List>
