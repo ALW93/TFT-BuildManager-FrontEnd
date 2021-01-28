@@ -33,7 +33,8 @@ const Synergies = ({ data, actives, setActives }) => {
         sorted.map((e) => {
           console.log(sorted);
           let trait = e && e.trait.toLowerCase();
-          if (trait.includes("set4_")) trait = trait.replace("set4_", "");
+          if (trait && trait.includes("set4_"))
+            trait = trait.replace("set4_", "");
           return (
             <div
               className="flex"

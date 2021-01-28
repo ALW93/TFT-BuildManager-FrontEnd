@@ -1,7 +1,6 @@
 import React from "react";
 
 export const displayActive = (actives, tiers) => {
-  console.log(actives, tiers);
   return (
     <div className="flex">
       {tiers.reverse().map((e) => {
