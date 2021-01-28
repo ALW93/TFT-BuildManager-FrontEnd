@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { champions as champPool, itemRef, champRef } from "../set4/set4";
+import { champions as champPool, itemRef, champRef } from "../set4update/set4";
 
 const Node = ({ champion, onDragOver, onDrop, onDragStart, position }) => {
   const [occupant, setOccupant] = useState({});

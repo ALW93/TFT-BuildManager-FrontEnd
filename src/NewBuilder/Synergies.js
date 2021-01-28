@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { activeTraits } from "../set4/set4";
+import { activeTraits } from "../set4update/set4";
 import { orderedSynergies } from "./BoardService";
 import { displayActive } from "./Actives";
 
