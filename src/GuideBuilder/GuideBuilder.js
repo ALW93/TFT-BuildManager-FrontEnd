@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import ViewBoard from "../View/ViewBoard";
-import { TFT_BASE } from "../config";
+import { TFT_BASE, IMG_API } from "../config";
 import { addBoard } from "../store/actions/editor";
 import "./GuideBuilder.css";
 import { TextField, Button } from "@material-ui/core";
@@ -14,6 +14,7 @@ const GuideBuilder = () => {
   const [saved, initSave] = useState(false);
   const [builder, showBuilder] = useState(false);
   const [collection, showCollection] = useState(false);
+  const [cover, setCover] = useState("Ahri");
   const boards = useSelector((state) => state.editor.boards);
   const boardCollection = useSelector((state) => state.info.boards);
   const editRef = createRef();
@@ -56,24 +57,46 @@ const GuideBuilder = () => {
 
   return (
     <div className="flex w100">
-      <div className="w50">
-        <TextField label="Title" type="text" id="guideTitle" />
-        <button className="action b_green" onClick={setSave}>
-          SAVE
-        </button>
-        <button className="action b_blue" onClick={submitHandler}>
-          PUBLISH
-        </button>
+      <div
+        style={{
+          width: "400px",
+          height: "100vh",
+          border: "1px solid black",
+          margin: "5px",
+          backgroundImage: `url(${IMG_API}/${cover}.jpg)`,
+          backgroundPosition: "center",
+        }}
+      />
 
+      <div style={{ margin: "5px", width: "65%" }}>
+        <TextField label="Title" type="text" id="guideTitle" />
+        <div>
+          <Button variant="outlined" onClick={setSave}>
+            SAVE
+          </Button>
+          <Button variant="outlined" onClick={submitHandler}>
+            PUBLISH
+          </Button>
+          <Button variant="outlined">Load Template</Button>
+          <Button variant="outlined">Change Cover</Button>
+        </div>
         <Editor save={saved} initSave={initSave} editRef={editRef} />
       </div>
       <div style={{ width: "50%" }}>
-        <button className="action" onClick={() => showBuilder(true)}>
+        <Button
+          variant="outlined"
+          className="action"
+          onClick={() => showBuilder(true)}
+        >
           Create New Board
-        </button>
-        <button className="action" onClick={() => showCollection(true)}>
+        </Button>
+        <Button
+          variant="outlined"
+          className="action"
+          onClick={() => showCollection(true)}
+        >
           Add From Collection
-        </button>
+        </Button>
         <Dialog
           open={builder}
           maxWidth="fit-content"
@@ -81,25 +104,29 @@ const GuideBuilder = () => {
         >
           <NewBuilder type="add" showBuilder={showBuilder} />
         </Dialog>
-        <Dialog open={collection} fullWidth={true} style={{ padding: "10px" }}>
-          {boardCollection &&
-            Object.keys(boardCollection).map((e) => {
-              return (
-                <div
-                  className="hover_selection"
-                  onClick={() => addExisting({ id: e, ...boardCollection[e] })}
-                >
-                  Select
-                  <h3>{boardCollection[e].title}</h3>
-                  <ViewBoard data={boardCollection[e].grid} />
-                  <h4 style={{ marginTop: "-50px" }}>
-                    notes: {boardCollection[e].subtitle}
-                  </h4>
-                </div>
-              );
-            })}
+        <Dialog open={collection} maxWidth={false} style={{ minWidth: "100%" }}>
+          <div>
+            {boardCollection &&
+              Object.keys(boardCollection).map((e) => {
+                return (
+                  <div
+                    className="hover_selection"
+                    onClick={() =>
+                      addExisting({ id: e, ...boardCollection[e] })
+                    }
+                  >
+                    Select
+                    <h3>{boardCollection[e].title}</h3>
+                    <ViewBoard data={boardCollection[e].grid} />
+                    <h4 style={{ marginTop: "-50px" }}>
+                      notes: {boardCollection[e].subtitle}
+                    </h4>
+                  </div>
+                );
+              })}
+          </div>
         </Dialog>
-        {/* test */} {/* Some text */}
+
         {boards &&
           boards.map((e) => {
             return (

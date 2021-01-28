@@ -1,5 +1,5 @@
 import { TFT_BASE } from "../config";
-import { activeTraits } from "../set4/set4";
+import { activeTraits } from "../set4update/set4";
 
 export const createBoard = async (payload) => {
   const token = window.localStorage.getItem("TOKEN_KEY");

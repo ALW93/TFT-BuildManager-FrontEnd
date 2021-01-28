@@ -85,7 +85,7 @@ export default function AppWrapper() {
       >
         <div className={classes.drawerContainer}>
           <List>
-            {["Browse", "Board Collection"].map((text, index) => {
+            {["Browse", "My Collection"].map((text, index) => {
               return (
                 <Link to={routeRefs(user && user.id)[text]}>
                   <ListItem button key={text}>
