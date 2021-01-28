@@ -6,9 +6,9 @@ export const displayActive = (actives, tiers) => {
     <div className="flex">
       {tiers.reverse().map((e) => {
         if (actives >= e) {
-          return <h1>{e}</h1>;
-        } else {
           return <h3>{e}</h3>;
+        } else {
+          return <h3 style={{ color: "darkgrey" }}>{e}</h3>;
         }
       })}
     </div>

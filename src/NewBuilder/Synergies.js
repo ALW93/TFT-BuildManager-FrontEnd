@@ -34,12 +34,22 @@ const Synergies = ({ data, actives, setActives }) => {
           let trait = e.trait.toLowerCase();
           if (trait.includes("set4_")) trait = trait.replace("set4_", "");
           return (
-            <div className="flex">
+            <div
+              className="flex"
+              style={{
+                width: "80%",
+                height: "3em",
+                justifyContent: "center",
+                alignItems: "center",
+                margin: "auto",
+              }}
+            >
               <img
                 src={`${require(`../Assets/traits/${trait}.svg`)}`}
-                style={{ width: "32px" }}
+                style={{ width: "25px", height: "25px", marginRight: "5px" }}
               />
-              <h5>{e.trait}</h5>
+
+              <h3 style={{ marginRight: "5px" }}>{trait}</h3>
               {displayActive(e.activated, activeTraits[e.trait])}
             </div>
           );
