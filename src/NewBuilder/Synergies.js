@@ -31,7 +31,8 @@ const Synergies = ({ data, actives, setActives }) => {
     <div>
       {sorted &&
         sorted.map((e) => {
-          let trait = e.trait.toLowerCase();
+          console.log(sorted);
+          let trait = e && e.trait.toLowerCase();
           if (trait.includes("set4_")) trait = trait.replace("set4_", "");
           return (
             <div
