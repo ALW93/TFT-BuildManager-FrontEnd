@@ -36,8 +36,7 @@ export const routeRefs = (id) => {
   return {
     Browse: "/home",
     "My Profile": `/profile/id/${id}`,
-    "Guide Collection": `/profile/id/${id}/bookmarks`,
-    "Board Collection": `/profile/id/${id}/collection`,
+    "My Collection": `/profile/id/${id}/collection`,
     "Publish Guide": "/guide-create",
     "Create Board": "/board-create",
   };
