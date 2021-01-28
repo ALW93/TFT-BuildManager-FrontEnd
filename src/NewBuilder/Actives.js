@@ -3,7 +3,7 @@ import React from "react";
 export const displayActive = (actives, tiers) => {
   return (
     <div className="flex">
-      {tiers.reverse().map((e) => {
+      {tiers.map((e) => {
         if (actives >= e) {
           return <h3>{e}</h3>;
         } else {
