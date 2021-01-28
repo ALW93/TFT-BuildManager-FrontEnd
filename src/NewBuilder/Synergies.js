@@ -24,6 +24,7 @@ const Synergies = ({ data, actives, setActives }) => {
       }
     });
     setActives(obj);
+    console.log(obj);
     setSorted(orderedSynergies(obj));
   }, [data]);
 
@@ -46,13 +47,21 @@ const Synergies = ({ data, actives, setActives }) => {
                 margin: "auto",
               }}
             >
-              <img
-                src={`${require(`../Assets/traits/${trait}.svg`)}`}
-                style={{ width: "25px", height: "25px", marginRight: "5px" }}
-              />
+              {trait ? (
+                <>
+                  <img
+                    src={`${require(`../Assets/traits/${trait}.svg`)}`}
+                    style={{
+                      width: "25px",
+                      height: "25px",
+                      marginRight: "5px",
+                    }}
+                  />
 
-              <h3 style={{ marginRight: "5px" }}>{trait}</h3>
-              {displayActive(e.activated, activeTraits[e.trait])}
+                  <h3 style={{ marginRight: "5px" }}>{trait}</h3>
+                  {displayActive(e.activated, activeTraits[e.trait])}
+                </>
+              ) : null}
             </div>
           );
         })}
