@@ -30,12 +30,11 @@ const Synergies = ({ data, actives, setActives }) => {
 
   return (
     <div>
-      {sorted &&
-        sorted.map((e) => {
+      {actives &&
+        Object.keys(actives).map((e) => {
           console.log(sorted);
-          let trait = e && e.trait.toLowerCase();
-          if (trait && trait.includes("set4_"))
-            trait = trait.replace("set4_", "");
+          let trait = e.toLowerCase();
+          if (e.includes("set4_")) trait = trait.replace("set4_", "");
           return (
             <div
               className="flex"
@@ -47,21 +46,17 @@ const Synergies = ({ data, actives, setActives }) => {
                 margin: "auto",
               }}
             >
-              {trait ? (
-                <>
-                  <img
-                    src={`${require(`../Assets/traits/${trait}.svg`)}`}
-                    style={{
-                      width: "25px",
-                      height: "25px",
-                      marginRight: "5px",
-                    }}
-                  />
+              <img
+                src={`${require(`../Assets/traits/${trait}.svg`)}`}
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  marginRight: "5px",
+                }}
+              />
 
-                  <h3 style={{ marginRight: "5px" }}>{trait}</h3>
-                  {displayActive(e.activated, activeTraits[e.trait])}
-                </>
-              ) : null}
+              <h3 style={{ marginRight: "5px" }}>{trait}</h3>
+              {displayActive(actives[e], activeTraits[e])}
             </div>
           );
         })}
