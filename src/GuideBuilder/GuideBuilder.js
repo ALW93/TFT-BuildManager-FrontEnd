@@ -81,11 +81,7 @@ const GuideBuilder = () => {
         >
           <NewBuilder type="add" showBuilder={showBuilder} />
         </Dialog>
-        <Dialog
-          open={collection}
-          maxWidth="fit-content"
-          style={{ padding: "10px" }}
-        >
+        <Dialog open={collection} fullWidth={true} style={{ padding: "10px" }}>
           {boardCollection &&
             Object.keys(boardCollection).map((e) => {
               return (
