@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 const GuidePreview = ({ guides }) => {
   const history = useHistory();
@@ -9,7 +10,7 @@ const GuidePreview = ({ guides }) => {
   };
 
   return (
-    <ul style={{ width: "70%" }}>
+    <ul className="w100">
       {guides &&
         Object.keys(guides).map((id) => {
           return (
@@ -19,14 +20,22 @@ const GuidePreview = ({ guides }) => {
                 style={{
                   listStyleType: "square",
                   margin: "2px",
+                  width: "100%",
+                  border: "2px solid blue",
                   paddingLeft: "20px",
                 }}
               >
-                <h1>{guides[id].title}</h1>
-                <h2>By {guides[id].author}</h2>
-                <h3>Last Updated {guides[id].lastUpdated}</h3>
+                <h2>{guides[id].title}</h2>
+                <h3>By {guides[id].author}</h3>
+                <h4>Last Updated {guides[id].lastUpdated}</h4>
               </li>
-              <button>Remove</button>
+              <Button
+                variant="contained"
+                color="secondary"
+                style={{ maxHeight: "50px" }}
+              >
+                Remove
+              </Button>
             </div>
           );
         })}

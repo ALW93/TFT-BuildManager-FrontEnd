@@ -20,12 +20,6 @@ export default function BoardAccordion({ boards, type }) {
             <div className="flex">
               <Accordion
                 style={{
-                  backgroundImage: `url(${IMG_API}/${boards[e].grid[
-                    boards[e].grid.length - 1
-                  ].id.slice(5)}.jpg)`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "40%",
-                  backgroundPosition: "right 23%",
                   margin: "2px",
                   border: "2px solid #9E6C36",
                   minWidth: "90%",
@@ -39,6 +33,20 @@ export default function BoardAccordion({ boards, type }) {
                         <h3>{boards[e].subtitle}</h3>
                       </div>
                       <SynergyPreview synergies={boards[e].actives} />
+                      {boards[e].grid.map((e) => {
+                        return (
+                          <img
+                            src={require(`../Assets/champions/${e.id}.png`)}
+                            style={{
+                              width: "40px",
+                              height: "40px",
+                              margin: "1px",
+                              borderRadius: "5px",
+                              border: "1px solid black",
+                            }}
+                          />
+                        );
+                      })}
                     </div>
                   </div>
                 </AccordionSummary>
