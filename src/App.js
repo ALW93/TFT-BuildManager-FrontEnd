@@ -6,7 +6,7 @@ import { ProtectedRoute, PrivateRoute } from "./Utility/route-utility";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import LoginPage from "./Login/LoginPage";
 import Routes from "./Utility/routes";
-import AppWrapper from "./AppWrapper";
+
 import HomePage from "./Home/HomePage";
 import Splash from "./Test/Splash";
 

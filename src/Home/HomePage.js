@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { TFT_BASE } from "../config";
-import BoardAccordion from "../shared_components/BoardAccordion";
 import BoardPreview from "../shared_components/BoardPreview";
 
 const HomePage = () => {
