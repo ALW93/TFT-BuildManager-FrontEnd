@@ -4,6 +4,15 @@
 
 body {
   margin: 0;
+  overflow: overlay;
+}
+
+div::-webkit-scrollbar {
+  width: 0;
+}
+div {
+  overflow: -moz-scrollbars-none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
 }
 
 .b_blue {
@@ -61,4 +70,9 @@ a {
 
 .w100 {
   width: 100%;
+}
+
+/* align-items */
+.al_c {
+  align-items: center;
 }
