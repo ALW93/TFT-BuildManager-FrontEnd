@@ -1,49 +1,15 @@
-.profile__topbar {
-  display: flex !important;
-}
-
-.profile_details {
-  margin-block-start: auto;
-  display: flex;
-  /* align-self: flex-end;
-  margin-inline-end: auto; */
-}
-
-.profile_details > h1 {
-  margin-top: -20px;
-  margin-block-start: auto;
-}
-
-.profile_details > h4 {
-  margin-top: auto;
-  font-size: small;
-}
-
-.profile__statbar {
-  display: flex;
-}
-
 .profile__image {
   position: relative;
   height: 200px;
   width: 200px;
-  margin-top: -50px;
-  margin-left: 30px;
-  z-index: 9999;
-}
-
-.fuwa {
-  background-image: url("../Assets/icons/fuwa.png");
-  background-size: 200px;
-  border-radius: 100px;
-  border: 1px solid white;
+  border-radius: 50%;
+  border: 1px solid black;
 }
 
 .Profile__Container {
-  margin: 40px 150px 0 150px;
-}
-
-.BuildContainer {
-  margin: 30px 50px 0 50px;
-  text-align: center;
+  background-color: rgb(255, 243, 228);
+  width: 20%;
+  padding: 2%;
+  margin: 1%;
+  border-radius: 5px;
 }

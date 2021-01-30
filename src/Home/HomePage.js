@@ -28,8 +28,6 @@ const HomePage = () => {
 
         {meta &&
           Object.keys(meta).map((e) => <BoardPreview id={e} data={meta[e]} />)}
-        {/* <BoardAccordion boards={meta} type="browser" />
-        <BoardAccordion boards={community} type="browser" /> */}
       </div>
     </div>
   );
