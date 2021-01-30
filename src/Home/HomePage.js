@@ -25,7 +25,9 @@ const HomePage = () => {
         <div>
           Toggle Area<button>11.2 Meta</button>
         </div>
-        <BoardPreview boards={meta} />
+
+        {meta &&
+          Object.keys(meta).map((e) => <BoardPreview id={e} data={meta[e]} />)}
         {/* <BoardAccordion boards={meta} type="browser" />
         <BoardAccordion boards={community} type="browser" /> */}
       </div>
