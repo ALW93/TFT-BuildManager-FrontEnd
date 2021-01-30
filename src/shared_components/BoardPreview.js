@@ -5,6 +5,7 @@ import ActionButtons from "./BoardButtons";
 import SynergyPreview from "./SynergyPreview";
 import "./BoardPreview.css";
 import Grow from "@material-ui/core/Grow";
+import { itemRef } from "../set4update/set4";
 import guideIcon from "../Assets/guide.svg";
 
 const BoardPreview = ({ id, data }) => {
@@ -29,16 +30,22 @@ const BoardPreview = ({ id, data }) => {
             </div>
             {data.grid.map((e) => {
               return (
-                <img
-                  src={require(`../Assets/champions/${e.id}.png`)}
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    margin: "1px",
-                    borderRadius: "5px",
-                    border: "1px solid black",
-                  }}
-                />
+                <div>
+                  <img
+                    src={require(`../Assets/champions/${e.id}.png`)}
+                    className="champPreview"
+                  />
+                  <div className="flex">
+                    {e.items
+                      ? e.items.map((e) => (
+                          <img
+                            src={require(`../Assets/items/${itemRef[e].image}`)}
+                            className="itemPreview"
+                          />
+                        ))
+                      : null}
+                  </div>
+                </div>
               );
             })}
           </div>
