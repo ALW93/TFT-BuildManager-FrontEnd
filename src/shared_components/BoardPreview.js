@@ -3,10 +3,10 @@ import ViewBoard from "../View/ViewBoard";
 import { useSelector } from "react-redux";
 import ActionButtons from "./BoardButtons";
 import SynergyPreview from "./SynergyPreview";
+import { Link } from "react-router-dom";
 import "./BoardPreview.css";
 import Grow from "@material-ui/core/Grow";
 import { itemRef } from "../set4update/set4";
-import guideIcon from "../Assets/guide.svg";
 
 const BoardPreview = ({ id, data }) => {
   const user = useSelector((state) => state.authentication.user);
@@ -52,12 +52,40 @@ const BoardPreview = ({ id, data }) => {
         ) : null}
         {toggle ? (
           <Grow direction="down" in={toggle} mountOnEnter unmountOnExit>
-            <div
-              style={{
-                fontSize: "0.9em",
-              }}
-            >
-              <ViewBoard data={data.grid} />
+            <div className="flex">
+              <div
+                style={{
+                  fontSize: "0.9em",
+                }}
+              >
+                <ViewBoard data={data.grid} />
+              </div>
+              <div>
+                <h1>Carries</h1>
+                {data.grid
+                  .filter((e) => e.items)
+                  .map((e) => {
+                    return (
+                      <div>
+                        <img
+                          src={require(`../Assets/champions/${e.id}.png`)}
+                          className="champPreview"
+                        />
+                        {e.items.map((item) => {
+                          return (
+                            <img
+                              src={require(`../Assets/items/${itemRef[item].image}`)}
+                              className="champPreview"
+                            />
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+                <Link to={`/board/id/${id}`}>
+                  <button>View Full Guide</button>
+                </Link>
+              </div>
             </div>
           </Grow>
         ) : null}
