@@ -47,6 +47,7 @@
 .navLinks {
   color: rgb(255, 207, 148);
   text-shadow: 0 0 3px rgb(210, 123, 17);
+  cursor: pointer;
 }
 
 .login__interior {
