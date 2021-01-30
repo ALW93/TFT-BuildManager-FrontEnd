@@ -25,13 +25,11 @@ const ViewBoard = ({ data }) => {
   }, [data]);
 
   return (
-    <div>
-      <div className="hexagon-gallery">
-        {data &&
-          Object.keys(board).map((node) => {
-            return <ViewNode champion={board[node]} position={node} />;
-          })}
-      </div>
+    <div className="hexagon-gallery">
+      {data &&
+        Object.keys(board).map((node) => {
+          return <ViewNode champion={board[node]} position={node} />;
+        })}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { TFT_BASE } from "../config";
 import BoardAccordion from "../shared_components/BoardAccordion";
+import BoardPreview from "../shared_components/BoardPreview";
 
 const HomePage = () => {
   const [meta, setMeta] = useState([]);
@@ -24,6 +25,7 @@ const HomePage = () => {
         <div>
           Toggle Area<button>11.2 Meta</button>
         </div>
+        <BoardPreview boards={meta} />
         <BoardAccordion boards={meta} type="browser" />
         <BoardAccordion boards={community} type="browser" />
       </div>

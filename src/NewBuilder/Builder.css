@@ -109,9 +109,10 @@
   margin: auto;
   padding: 5px 55px 0px 7px;
   display: grid;
-  width: fit-content;
+  font-size: inherit;
+  width: 100%;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 1.5%;
+  grid-gap: inherit;
 }
 
 .hex {
@@ -119,6 +120,7 @@
   position: relative;
   width: 5em;
   height: 5.8em;
+
   background-color: #424242;
   -webkit-clip-path: polygon(
     50% 0%,

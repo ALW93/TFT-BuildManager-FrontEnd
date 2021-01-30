@@ -1,6 +1,7 @@
 import React from "react";
 import chonk from "../Assets/New/transparent_4.5.png";
 import "./Splash.css";
+import { Link } from "react-router-dom";
 import logo from "../Assets/Logo.png";
 import { InteriorSwitch } from "../Utility/routes";
 import calligraphyIcon from "../Assets/New/calligraphy.png";
@@ -31,16 +32,22 @@ const Splash = () => {
         >
           <div className="flex al_c">
             <img src={lanternIcon} className="navIcon" />
-            <p className="navLinks">Browse Builds</p>
+            <Link to="/home">
+              <p className="navLinks">Browse Builds</p>
+            </Link>
           </div>
           <div className="flex al_c">
             <img src={calligraphyIcon} className="navIcon" />
-            <p className="navLinks">Builder</p>
+            <Link to="/board-create">
+              <p className="navLinks">Builder</p>
+            </Link>
           </div>
           <img class="login__logo" src={logo} />
           <div className="flex al_c">
             <img src={boyIcon} className="navIcon" />
-            <p className="navLinks">Profile</p>
+            <Link to={`/profile/id/${user && user.id}`}>
+              <p className="navLinks">Profile</p>
+            </Link>
           </div>
           <div className="flex al_c">
             <img src={dragonIcon} className="navIcon" />
