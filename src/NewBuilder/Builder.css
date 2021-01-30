@@ -111,15 +111,15 @@
   display: grid;
   font-size: inherit;
   width: 100%;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: inherit;
+  grid-template-columns: repeat(7, 4.2em);
+  grid-gap: 1%;
 }
 
 .hex {
   display: inline-block;
   position: relative;
-  width: 5em;
-  height: 5.8em;
+  width: 4em;
+  height: 4.8em;
 
   background-color: #424242;
   -webkit-clip-path: polygon(
@@ -135,10 +135,10 @@
 
 .hex__inner {
   position: absolute;
-  top: 3.5px; /* equal to border thickness */
-  left: 3.5px; /* equal to border thickness */
-  width: 4.5em;
-  height: 5.3em;
+  top: 2.8px; /* equal to border thickness */
+  left: 2.5px; /* equal to border thickness */
+  width: 3.7em;
+  height: 4.4em;
   background-position: center;
   background-size: 120%;
   background-repeat: no-repeat;
@@ -201,7 +201,7 @@
 
 .equipped {
   position: relative;
-  width: 18px;
+  width: 1em;
   margin: -10px 0.5px 0 1px;
   border-radius: 50px;
   z-index: 999;
@@ -211,8 +211,8 @@
 .traits {
   margin: 1px;
   background-color: #424242;
-  width: 20px;
-  height: 20px;
+  width: 1em;
+  height: 1em;
   padding-bottom: 1px;
   text-align-last: center;
   border-radius: 50px;
@@ -220,8 +220,8 @@
 }
 
 .traits img {
-  width: 11px;
-  height: 11px;
+  width: 80%;
+  height: 90%;
   filter: drop-shadow(16px 16px 20px red) invert(75%);
 }
 
