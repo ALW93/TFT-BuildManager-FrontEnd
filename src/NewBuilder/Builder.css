@@ -111,6 +111,7 @@
   display: grid;
   font-size: inherit;
   width: 100%;
+  place-content: center;
   grid-template-columns: repeat(7, 4.2em);
   grid-gap: 1%;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ViewBoard from "../View/ViewBoard";
 import { useSelector } from "react-redux";
 import ActionButtons from "./BoardButtons";
@@ -7,6 +7,13 @@ import guideIcon from "../Assets/guide.svg";
 
 const BoardPreview = ({ boards }) => {
   const user = useSelector((state) => state.authentication.user);
+  const [toggle, setToggle] = useState(false);
+
+  const toggleView = () => {
+    let prev = toggle;
+    setToggle(!prev);
+  };
+
   return (
     <div>
       {boards &&
@@ -14,15 +21,18 @@ const BoardPreview = ({ boards }) => {
           return (
             <div className="flex">
               <div
+                onClick={toggleView}
                 style={{
                   margin: "2px",
                   border: "2px solid #9E6C36",
                   minWidth: "90%",
+                  background: "white",
                 }}
               >
                 <div>
                   <div>
                     <div className="flex">
+                      <ActionButtons user={user} boardId={e} data={boards[e]} />
                       <div>
                         <h2 style={{ color: "#9E6C36" }}>{boards[e].title}</h2>
                         <h3>{boards[e].subtitle}</h3>
@@ -45,14 +55,14 @@ const BoardPreview = ({ boards }) => {
                     </div>
                   </div>
                 </div>
-                <div style={{ fontSize: "0.8em" }}>
-                  <ViewBoard data={boards[e].grid} />
-                </div>
-              </div>
-              <div>
-                <ActionButtons user={user} boardId={e} data={boards[e]} />
-                {boards[e].feature_count ? (
-                  <img src={guideIcon} style={{ width: "30px" }} />
+                {toggle ? (
+                  <div
+                    style={{
+                      fontSize: "0.9em",
+                    }}
+                  >
+                    <ViewBoard data={boards[e].grid} />
+                  </div>
                 ) : null}
               </div>
             </div>

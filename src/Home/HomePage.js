@@ -26,8 +26,8 @@ const HomePage = () => {
           Toggle Area<button>11.2 Meta</button>
         </div>
         <BoardPreview boards={meta} />
-        <BoardAccordion boards={meta} type="browser" />
-        <BoardAccordion boards={community} type="browser" />
+        {/* <BoardAccordion boards={meta} type="browser" />
+        <BoardAccordion boards={community} type="browser" /> */}
       </div>
     </div>
   );
