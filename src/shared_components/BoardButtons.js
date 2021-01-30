@@ -13,7 +13,8 @@ const ActionButtons = ({ user, boardId, data, type }) => {
   const token = useSelector((state) => state.authentication.token);
   const boards = useSelector((state) => state.info.boards);
 
-  const saveBuild = async () => {
+  const saveBuild = async (e) => {
+    e.preventDefault();
     console.log("saving");
     if (saved) {
       if (owner) {

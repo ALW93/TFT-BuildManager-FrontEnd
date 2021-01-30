@@ -6,7 +6,7 @@ import Profile from "../Profile/ProfilePage";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import HomePage from "../Home/HomePage";
 import GuideBuilder from "../GuideBuilder/GuideBuilder";
-import BoardCollection from "../Collection/BoardCollection";
+import BoardCollection from "../Profile/BoardCollection";
 
 export const InteriorSwitch = () => (
   <Switch>

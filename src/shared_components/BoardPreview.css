@@ -1,0 +1,8 @@
+.Preview {
+  margin: 2px;
+  border: 1px solid #9e6c36;
+  min-width: 90%;
+  border-radius: 5px;
+  padding: 5px;
+  background: rgb(255, 243, 228);
+}

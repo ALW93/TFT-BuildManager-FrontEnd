@@ -7,6 +7,16 @@ body {
   overflow: overlay;
 }
 
+/* Header and Text Colors */
+.goldHead {
+  color: #9e6c36;
+}
+
+.glowHead {
+  color: rgb(255, 207, 148);
+  text-shadow: 0 0 3px rgb(210, 123, 17);
+}
+
 div::-webkit-scrollbar {
   width: 0;
 }

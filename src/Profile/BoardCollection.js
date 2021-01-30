@@ -7,7 +7,7 @@ const BoardCollection = () => {
 
   return (
     <div>
-      <h1>Boards</h1>
+      <h1 className="glowHead">Collection</h1>
       {Object.keys(boards).map((e) => (
         <BoardPreview id={e} data={boards[e]} />
       ))}

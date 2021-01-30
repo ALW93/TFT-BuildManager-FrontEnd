@@ -3,6 +3,7 @@ import ViewBoard from "../View/ViewBoard";
 import { useSelector } from "react-redux";
 import ActionButtons from "./BoardButtons";
 import SynergyPreview from "./SynergyPreview";
+import "./BoardPreview.css";
 import Grow from "@material-ui/core/Grow";
 import guideIcon from "../Assets/guide.svg";
 
@@ -17,23 +18,15 @@ const BoardPreview = ({ id, data }) => {
 
   return (
     <div>
-      <div
-        onClick={toggleView}
-        style={{
-          margin: "2px",
-          border: "2px solid #9E6C36",
-          minWidth: "90%",
-          background: "white",
-        }}
-      >
+      <div onClick={toggleView} className="Preview">
         {data ? (
           <div className="flex">
             <ActionButtons user={user} boardId={id} data={data} />
             <div>
-              <h2 style={{ color: "#9E6C36" }}>{data.title}</h2>
+              <SynergyPreview synergies={data.actives} />
+              <h2 className="goldHead">{data.title}</h2>
               <h3>{data.subtitle}</h3>
             </div>
-            <SynergyPreview synergies={data.actives} />
             {data.grid.map((e) => {
               return (
                 <img

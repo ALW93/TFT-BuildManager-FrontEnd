@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import "./ProfilePage.css";
-import BoardCollection from "../Collection/BoardCollection";
+import BoardCollection from "./BoardCollection";
 
 const ProfilePage = () => {
   const user = useSelector((state) => state.authentication.user);
@@ -48,7 +48,9 @@ const ProfilePage = () => {
           </>
         ) : null}
       </div>
-      <BoardCollection />
+      <div className="Collection">
+        <BoardCollection />
+      </div>
     </div>
   );
 };

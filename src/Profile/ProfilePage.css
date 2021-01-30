@@ -13,3 +13,10 @@
   margin: 1%;
   border-radius: 5px;
 }
+
+.Collection {
+  border: 2px solid white;
+  width: 100%;
+  padding: 0 5% 1% 5%;
+  margin: 1%;
+}
