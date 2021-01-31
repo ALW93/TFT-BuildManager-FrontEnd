@@ -6,7 +6,7 @@ import SynergyPreview from "./SynergyPreview";
 import { Link } from "react-router-dom";
 import "./BoardPreview.css";
 import Grow from "@material-ui/core/Grow";
-import { itemRef } from "./itemRef.js";
+import itemRef from "./itemRef.js";
 
 const BoardPreview = ({ id, data }) => {
   const user = useSelector((state) => state.authentication.user);

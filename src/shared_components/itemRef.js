@@ -1,4 +1,4 @@
-export const itemRef = {
+const itemRef = {
   DB: {
     name: "Deathblade",
     description:
@@ -252,4 +252,4 @@ export const itemRef = {
   },
 };
 
-module.exports = itemRef;
+export default itemRef;
