@@ -1,6 +1,13 @@
 .boardview__container {
+  display: flex;
   border: 1px solid black;
   height: 100%;
+}
+
+.boards {
+  z-index: 2;
+
+  margin-left: 25%;
 }
 
 .background {
