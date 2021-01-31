@@ -1,4 +1,4 @@
-export const itemRef = {
+const itemRef = {
   DB: {
     name: "Deathblade",
     description:
@@ -251,3 +251,5 @@ export const itemRef = {
     image: "99.png",
   },
 };
+
+module.exports = itemRef;

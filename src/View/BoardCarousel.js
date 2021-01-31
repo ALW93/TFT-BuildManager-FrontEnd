@@ -7,8 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ViewBoard from "./ViewBoard";
-import NewBuilder from "../NewBuilder/NewBuilder";
-import Dialog from "@material-ui/core/Dialog";
+import GuideBuilder from "../GuideBuilder/GuideBuilder";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: "rgb(255, 243, 228)",
     borderRadius: "5px",
-
+    height: "100%",
     padding: "10px",
     display: "flex",
     width: "100%",
@@ -50,13 +49,14 @@ const useStyles = makeStyles((theme) => ({
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
+  content: {
+    height: "62vh",
+  },
 }));
 
-export default function VerticalTabs({ main, subs, guide }) {
-  const user = useSelector((state) => state.authentication.user);
+export default function VerticalTabs({ main, subs, guide, owner }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(1);
-  const [builder, showBuilder] = useState(false);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -80,8 +80,8 @@ export default function VerticalTabs({ main, subs, guide }) {
             return <Tab label={e.title} />;
           })}
       </Tabs>
-      <TabPanel value={value} index={0}>
-        Guide
+      <TabPanel className={classes.content} value={value} index={0}>
+        {guide && owner ? <GuideBuilder /> : <GuideBuilder />}
       </TabPanel>
 
       <TabPanel value={value} index={1}>

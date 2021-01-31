@@ -26,19 +26,9 @@ const Editor = ({ save, initSave, editRef, type }) => {
   }, [save]);
 
   return (
-    <div style={{ width: "100%" }}>
-      <ReactQuill
-        ref={editRef}
-        style={{
-          width: "inherit",
-          height: "71vh",
-        }}
-      >
-        <div
-          style={{ width: "100%", fontSize: "larger", height: "100%" }}
-        ></div>
-      </ReactQuill>
-    </div>
+    <ReactQuill ref={editRef}>
+      <div style={{ width: "40vw", fontSize: "larger", height: "52vh" }}></div>
+    </ReactQuill>
   );
 };
 export default Editor;
