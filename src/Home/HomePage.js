@@ -6,6 +6,7 @@ import BoardPreview from "../shared_components/BoardPreview";
 const HomePage = () => {
   const [meta, setMeta] = useState([]);
   const [community, setCommunity] = useState([]);
+  const [view, setView] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
       setMeta(data);
       const res = await fetch(`${TFT_BASE}/boards/community`);
       const parsed = await res.json();
+      console.log(parsed);
       setCommunity(parsed);
     })();
   }, []);
@@ -22,11 +24,24 @@ const HomePage = () => {
     <div className="w100">
       <div style={{ width: "67%", marginLeft: "12%" }}>
         <div>
-          Toggle Area<button>11.2 Meta</button>
+          <button onClick={() => setView(true)}>Meta Builds</button>
+          <button onClick={() => setView(false)}>Community</button>
         </div>
-
-        {meta &&
-          Object.keys(meta).map((e) => <BoardPreview id={e} data={meta[e]} />)}
+        {view ? (
+          <>
+            {meta &&
+              Object.keys(meta).map((e) => (
+                <BoardPreview id={e} data={meta[e]} />
+              ))}
+          </>
+        ) : (
+          <>
+            {community &&
+              Object.keys(community).map((e) => (
+                <BoardPreview id={e} data={community[e]} />
+              ))}
+          </>
+        )}
       </div>
     </div>
   );

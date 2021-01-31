@@ -4,41 +4,21 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { saveGuide } from "../store/actions/editor";
 
-const Editor = ({ save, initSave, editRef, type }) => {
-  const dispatch = useDispatch();
-  const content = useSelector((state) => state.editor.guide);
+const Editor = ({ editRef, edit, guide }) => {
+  console.log(edit, guide);
 
   useEffect(() => {
-    if (content.length) {
+    if (guide) {
+      console.log(guide);
       const editor = editRef.current.getEditor();
-      editor.setContents(content);
+      editor.setContents(guide);
     }
-  }, []);
-
-  useEffect(() => {
-    if (save) {
-      console.log("saving content");
-      const quill = editRef.current.getEditor();
-      const saveContent = quill.editor.delta.ops;
-      dispatch(saveGuide(saveContent));
-      initSave(false);
-    }
-  }, [save]);
+  }, [guide]);
 
   return (
-    <div style={{ width: "100%" }}>
-      <ReactQuill
-        ref={editRef}
-        style={{
-          width: "inherit",
-          height: "71vh",
-        }}
-      >
-        <div
-          style={{ width: "100%", fontSize: "larger", height: "100%" }}
-        ></div>
-      </ReactQuill>
-    </div>
+    <ReactQuill ref={editRef} readOnly={!edit} theme="bubble">
+      <div style={{ width: "40vw", fontSize: "larger", height: "52vh" }}></div>
+    </ReactQuill>
   );
 };
 export default Editor;
