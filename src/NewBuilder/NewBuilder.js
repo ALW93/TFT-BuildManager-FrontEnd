@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
 import { useDispatch } from "react-redux";
+import { TFT_BASE } from "../config";
 import { useHistory } from "react-router-dom";
 import { addBoard } from "../store/actions/editor";
 import Node from "./Node";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { champions as champPool } from "../set4update/set4";
 import { items as itemPool } from "../set4/set4";
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NewBuilder = ({ type, showBuilder }) => {
   const classes = useStyles();
+  const token = window.localStorage.getItem("TOKEN_KEY");
   //#region
   const user = useSelector((state) => state.authentication.user);
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const NewBuilder = ({ type, showBuilder }) => {
     return object;
   });
 
-  const submitBuild = () => {
+  const submitBuild = async () => {
     let reduced = Object.keys(board)
       .map((e, index) => {
         if (board[e]) {
@@ -63,8 +65,9 @@ const NewBuilder = ({ type, showBuilder }) => {
       subtitle: subtitle,
     };
     if (type === "normal") {
-      createBoard(info);
-      history.push(`/profile/id/${user.id}/collection`);
+      const data = await createBoard(info);
+      const id = await data.newBoard.id;
+      history.push(`/board/id/${id}`);
     } else {
       dispatch(addBoard(info));
       showBuilder(false);
