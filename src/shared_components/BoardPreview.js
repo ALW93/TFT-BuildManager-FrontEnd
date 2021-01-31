@@ -6,7 +6,8 @@ import SynergyPreview from "./SynergyPreview";
 import { Link } from "react-router-dom";
 import "./BoardPreview.css";
 import Grow from "@material-ui/core/Grow";
-import { itemRef } from "../set4update/set4";
+
+import { itemRef } from "./itemRef";
 
 const BoardPreview = ({ id, data }) => {
   const user = useSelector((state) => state.authentication.user);
@@ -39,7 +40,7 @@ const BoardPreview = ({ id, data }) => {
                     {e.items && itemRef
                       ? e.items.map((e) => (
                           <img
-                            src={require(`../Assets/items/11.png`)}
+                            src={require(`../Assets/items/${itemRef[e].image}`)}
                             className="itemPreview"
                           />
                         ))
