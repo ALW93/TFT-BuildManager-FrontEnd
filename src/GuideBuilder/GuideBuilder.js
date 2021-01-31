@@ -10,7 +10,7 @@ import { addBoard } from "../store/actions/editor";
 import "./GuideBuilder.css";
 import { TextField, Button } from "@material-ui/core";
 
-const GuideBuilder = () => {
+const GuideBuilder = ({ edit }) => {
   const [saved, initSave] = useState(false);
   const [builder, showBuilder] = useState(false);
   const [collection, showCollection] = useState(false);
@@ -30,12 +30,12 @@ const GuideBuilder = () => {
     const saveContent = quill.editor.delta.ops;
     const title = document.getElementById("guideTitle");
     const token = window.localStorage.getItem("TOKEN_KEY");
-    console.log(saveContent);
+    console.log(JSON.stringify(saveContent));
   };
 
   return (
     <div className="flex w100">
-      <Editor save={saved} initSave={initSave} editRef={editRef} />
+      <Editor editRef={editRef} edit={edit} />
       <div>
         <Button variant="outlined" onClick={submitHandler}>
           Save

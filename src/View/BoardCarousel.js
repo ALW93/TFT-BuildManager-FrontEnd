@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
@@ -81,7 +82,15 @@ export default function VerticalTabs({ main, subs, guide, owner }) {
           })}
       </Tabs>
       <TabPanel className={classes.content} value={value} index={0}>
-        {guide && owner ? <GuideBuilder /> : <GuideBuilder />}
+        {guide ? (
+          <ReactQuill value={guide} readOnly={true} theme="bubble">
+            <div
+              style={{ width: "40vw", fontSize: "larger", height: "52vh" }}
+            ></div>
+          </ReactQuill>
+        ) : (
+          "No Guide Available"
+        )}
       </TabPanel>
 
       <TabPanel value={value} index={1}>

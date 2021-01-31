@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { TFT_BASE, IMG_API } from "../config";
-
-import { useSelector } from "react-redux";
 import "./View.css";
 import { DateTime } from "luxon";
 import BoardCarousel from "./BoardCarousel";
