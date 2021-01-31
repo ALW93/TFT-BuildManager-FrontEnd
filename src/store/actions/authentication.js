@@ -18,6 +18,7 @@ export const loadToken = () => async (dispatch) => {
     const data = await response.json();
     console.log("triggering token load", data);
     dispatch(setUser(data.user));
+    console.log(data);
     dispatch(setBoards(data.boards));
     dispatch(setGuides(data.guides));
   }
@@ -41,6 +42,7 @@ export const login = (email, password) => async (dispatch) => {
     window.localStorage.setItem("USER_ID", user.id);
     window.localStorage.setItem(TOKEN_KEY, token);
     dispatch(setUser(user));
+    console.log(user);
     dispatch(setToken(token));
     dispatch(setBoards(user.boards));
   }

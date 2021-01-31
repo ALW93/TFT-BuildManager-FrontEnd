@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addBoard } from "../store/actions/editor";
 import Node from "./Node";
+import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { champions as champPool } from "../set4update/set4";
@@ -12,7 +13,21 @@ import "./Builder.css";
 import Synergies from "./Synergies";
 import { createBoard } from "./BoardService";
 
+const useStyles = makeStyles((theme) => ({
+  input: {
+    color: "rgb(255, 207, 148)",
+    textShadow: "0 0 3px rgb(210, 123, 17)",
+  },
+  textfield: {
+    borderRadius: "5px",
+    opacity: 0.5,
+    height: "20px",
+    fontSize: "20px",
+  },
+}));
+
 const NewBuilder = ({ type, showBuilder }) => {
+  const classes = useStyles();
   //#region
   const user = useSelector((state) => state.authentication.user);
   const dispatch = useDispatch();
@@ -178,36 +193,51 @@ const NewBuilder = ({ type, showBuilder }) => {
 
   return (
     <div className="Builder__Container">
-      <div>
-        <TextField
-          label="Title"
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-        />
+      <div className="flex">
+        <div>
+          <label className="glowHead">Title</label>
+          <input
+            className={classes.textfield}
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
 
-        <TextField
-          label="Description"
-          type="text"
-          onChange={(e) => setSubtitle(e.target.value)}
-        />
+        <div>
+          <label className="glowHead">Description</label>
+          <input
+            className={classes.textfield}
+            label="Description"
+            type="text"
+            onChange={(e) => setSubtitle(e.target.value)}
+          />
+        </div>
       </div>
       {type === "normal" ? (
         <>
-          <Button onClick={submitBuild}>Submit</Button>
-          <Button onClick={clearBoard}>Clear</Button>
+          <Button className={classes.input} onClick={submitBuild}>
+            Submit
+          </Button>
+          <Button className={classes.input} onClick={clearBoard}>
+            Clear
+          </Button>
         </>
       ) : null}
 
       {type === "add" ? (
         <>
-          <Button onClick={submitBuild}>Add to Guide</Button>
-          <Button onClick={() => showBuilder(false)}>Cancel</Button>
+          <Button className={classes.input} onClick={submitBuild}>
+            Add to Guide
+          </Button>
+          <Button className={classes.input} onClick={() => showBuilder(false)}>
+            Cancel
+          </Button>
         </>
       ) : null}
 
       <div className="Builder__Container--Top">
         <div className="synergy-gallery">
-          <h2>Synergies</h2>
+          <h2 className="glowHead">Synergies</h2>
           <Synergies
             data={synergies}
             setActives={setActives}
@@ -215,7 +245,11 @@ const NewBuilder = ({ type, showBuilder }) => {
           />
         </div>
         <div className="middle">
-          {type === "normal" ? <h2>Create a Board</h2> : <h2>Add a Board</h2>}
+          {type === "normal" ? (
+            <h2 className="glowHead">Create a Board</h2>
+          ) : (
+            <h2 className="glowHead">Add a Board</h2>
+          )}
           <div className="hexagon-gallery">
             {Object.keys(board).map((node) => {
               return (
@@ -231,7 +265,7 @@ const NewBuilder = ({ type, showBuilder }) => {
           </div>
         </div>
         <div className="itemPool">
-          <h2>Items</h2>
+          <h2 className="glowHead">Items</h2>
           <ItemPool items={itemPool} />
         </div>
       </div>

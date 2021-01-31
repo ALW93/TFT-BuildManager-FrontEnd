@@ -4,6 +4,25 @@
 
 body {
   margin: 0;
+  overflow: overlay;
+}
+
+/* Header and Text Colors */
+.goldHead {
+  color: #9e6c36;
+}
+
+.glowHead {
+  color: rgb(255, 207, 148);
+  text-shadow: 0 0 3px rgb(210, 123, 17);
+}
+
+div::-webkit-scrollbar {
+  width: 0;
+}
+div {
+  overflow: -moz-scrollbars-none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
 }
 
 .b_blue {
@@ -61,4 +80,9 @@ a {
 
 .w100 {
   width: 100%;
+}
+
+/* align-items */
+.al_c {
+  align-items: center;
 }

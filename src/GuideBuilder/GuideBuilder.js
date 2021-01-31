@@ -101,9 +101,7 @@ const GuideBuilder = () => {
           open={builder}
           maxWidth="fit-content"
           style={{ padding: "10px" }}
-        >
-          <NewBuilder type="add" showBuilder={showBuilder} />
-        </Dialog>
+        ></Dialog>
         <Dialog open={collection} maxWidth={false} style={{ minWidth: "100%" }}>
           <div>
             {boardCollection &&

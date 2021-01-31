@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Switch, Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loadToken } from "./store/actions/authentication";
 import { ProtectedRoute, PrivateRoute } from "./Utility/route-utility";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import LoginPage from "./Login/LoginPage";
 import Routes from "./Utility/routes";
-import AppWrapper from "./AppWrapper";
+
 import HomePage from "./Home/HomePage";
+import Splash from "./Test/Splash";
 
 const theme = createMuiTheme({
   typography: {
@@ -30,13 +31,14 @@ const App = ({ needLogin, loadToken }) => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/test" component={Splash} />
         <ProtectedRoute
           path="/login"
           exact
           needLogin={needLogin}
           component={LoginPage}
         />
-        <PrivateRoute path="/" needLogin={needLogin} component={AppWrapper} />
+        <PrivateRoute path="/" needLogin={needLogin} component={Splash} />
         <Redirect to="/login" />
       </Switch>
     </BrowserRouter>

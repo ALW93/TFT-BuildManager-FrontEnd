@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import "./ProfilePage.css";
+import BoardCollection from "./BoardCollection";
 
 const ProfilePage = () => {
   const user = useSelector((state) => state.authentication.user);
 
   return (
-    <div className="Profile__Container">
-      <div className="profile__topbar">
+    <div className="flex">
+      <div className="Profile__Container">
         {user ? (
           <>
             {user.icon === "none" ? (
@@ -19,33 +20,36 @@ const ProfilePage = () => {
                 src={`${require(`../Assets/icons/${user.icon}.png`)}`}
               />
             )}
-            <div className="profile__details">
+            <div>
               <h1>{user.username}</h1>
-
               <img
                 src={`${require(`../Assets/rank_badges/${user.rank.toLowerCase()}.png`)}`}
-                style={{ width: "123px" }}
+                style={{ width: "100px" }}
               />
+              <h3>Rank: {user.rank}</h3>
 
-              <h2>Rank: {user.rank}</h2>
-              <h2>
-                Status:{" "}
+              <h3>
+                Status:{"  "}
                 {user.verified ? (
-                  <h3>
-                    Verified <CheckBoxIcon />{" "}
-                  </h3>
+                  <>
+                    Verified
+                    <CheckBoxIcon />
+                  </>
                 ) : (
-                  <h3>Unverified</h3>
+                  "Unverified"
                 )}
-              </h2>
-              <h4>Joined On: {user.joined}</h4>
+              </h3>
+              <h4>Member Since {user.joined}</h4>
               <h5>
                 Followers: {user.followerCount} Following: {user.followingCount}
               </h5>
             </div>{" "}
+            <h4>Match Statistics Coming Soon</h4>
           </>
         ) : null}
-        <h4>Match Statistics Coming Soon</h4>
+      </div>
+      <div className="Collection">
+        <BoardCollection />
       </div>
     </div>
   );
