@@ -36,7 +36,7 @@ const BoardPreview = ({ id, data }) => {
                     className="champPreview"
                   />
                   <div className="flex">
-                    {e.items
+                    {e.items && itemRef
                       ? e.items.map((e) => (
                           <img
                             src={require(`../Assets/items/${itemRef[e].image}`)}
