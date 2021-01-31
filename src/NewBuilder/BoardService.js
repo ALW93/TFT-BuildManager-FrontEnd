@@ -1,10 +1,8 @@
 import { TFT_BASE } from "../config";
 import { activeTraits } from "../set4update/set4";
-import { Redirect } from "react-router-dom";
 
 export const createBoard = async (payload, history) => {
   const token = window.localStorage.getItem("TOKEN_KEY");
-
   const response = await fetch(`${TFT_BASE}/boards`, {
     method: "POST",
     headers: {

@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { TFT_BASE, IMG_API } from "../config";
 import "./View.css";
 import { DateTime } from "luxon";
+import { useDispatch } from "react-redux";
 import BoardCarousel from "./BoardCarousel";
+import { deleteBoard } from "../store/actions/board";
 
 const View = ({ match }) => {
   const buildId = match.params.id;
+  const dispatch = useDispatch();
   const [board, setBoard] = useState([]);
   const [author, setAuthor] = useState({});
   const [date, setDate] = useState("");
@@ -26,6 +29,12 @@ const View = ({ match }) => {
     })();
   }, []);
 
+  const delBoard = () => {
+    if (window.confirm(`Are you sure you want to delete ${board.title}?`)) {
+      dispatch(deleteBoard(board.id));
+    }
+  };
+
   return (
     <div className="boardview__container">
       <div
@@ -40,7 +49,7 @@ const View = ({ match }) => {
           <>
             <button>Guide Editor</button>
             <button>Add a Board</button>
-            <button>Delete</button>
+            <button onClick={delBoard}>Delete</button>
           </>
         ) : null}
         <div

@@ -5,6 +5,7 @@ export const SET_COMMENTS = "tft-buildmanager/authentication/SET_COMMENTS";
 
 export const setBoards = (payload) => ({ type: SET_BOARDS, payload });
 export const setGuides = (payload) => ({ type: SET_GUIDES, payload });
+const token = window.localStorage.getItem("TOKEN_KEY");
 
 export const addBoard = (id, boardId, token) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/id/${id}/boards`, {
@@ -33,7 +34,7 @@ export const removeBoard = (id, boardId, token) => async (dispatch) => {
   });
 };
 
-export const deleteBoard = (boardId, token) => async (dispatch) => {
+export const deleteBoard = (boardId) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/boards/id/${boardId}`, {
     method: "DELETE",
     headers: {
