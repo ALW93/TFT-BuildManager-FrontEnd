@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { TFT_BASE } from "../config";
+import { TFT_BASE, IMG_API } from "../config";
 import ViewBoard from "./ViewBoard";
+import "./View.css";
 
 const View = ({ match }) => {
   const buildId = match.params.id;
@@ -18,14 +19,22 @@ const View = ({ match }) => {
   }, []);
 
   return (
-    <div>
-      <h1>Build Preview</h1>
-      <h1>Board</h1>
-      <h2>{board.title}</h2>
-      <h2>Votes {board.votes || 0}</h2>
+    <div className="boardview__container">
+      <div
+        className="background"
+        style={{ backgroundImage: `url(${IMG_API}/Pyke.jpg)` }}
+      />
+
+      <h2 className="glowHead">{board.title}</h2>
       <h3>Last Updated </h3>
       <h3>Created By {author.username}</h3>
-      <ViewBoard data={board.grid} />
+      <div
+        style={{
+          fontSize: "0.9em",
+        }}
+      >
+        <ViewBoard data={board.grid} />
+      </div>
     </div>
   );
 };

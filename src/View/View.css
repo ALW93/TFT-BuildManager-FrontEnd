@@ -1,0 +1,13 @@
+.boardview__container {
+  border: 1px solid black;
+  height: 100%;
+}
+
+.background {
+  position: absolute;
+  height: 100%;
+  width: 500px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1), transparent);
+}
