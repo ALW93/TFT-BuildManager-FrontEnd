@@ -1,4 +1,4 @@
-const itemRef = {
+export const itemRef = {
   DB: {
     name: "Deathblade",
     description:
