@@ -39,7 +39,7 @@ const BoardPreview = ({ id, data }) => {
                     {e.items && itemRef
                       ? e.items.map((e) => (
                           <img
-                            src={require(`../Assets/items/${itemRef[e].image}`)}
+                            src={require(`../Assets/items/11.png`)}
                             className="itemPreview"
                           />
                         ))
