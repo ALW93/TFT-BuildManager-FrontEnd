@@ -6,12 +6,9 @@
 
 .boards {
   z-index: 2;
-
-  margin-left: 25%;
 }
 
 .background {
-  position: absolute;
   height: 100%;
   width: 500px;
   background-repeat: no-repeat;

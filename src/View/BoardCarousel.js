@@ -36,8 +36,11 @@ TabPanel.propTypes = {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "rgb(255, 243, 228)",
+    borderRadius: "5px",
+    padding: "10px",
     display: "flex",
+    width: "fit-content",
     height: "fit-content",
   },
   tabs: {
@@ -53,8 +56,6 @@ export default function VerticalTabs({ main, subs }) {
     setValue(newValue);
   };
 
-  console.log(main);
-
   return (
     <div className={classes.root}>
       <Tabs
@@ -62,7 +63,6 @@ export default function VerticalTabs({ main, subs }) {
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
         className={classes.tabs}
       >
         <Tab label="Final Board" />
