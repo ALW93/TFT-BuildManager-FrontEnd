@@ -40,7 +40,11 @@ const View = ({ match }) => {
             fontSize: "0.9em",
           }}
         >
-          <BoardCarousel main={board.grid} subs={board.SubBoards} />
+          <BoardCarousel
+            main={board.grid}
+            subs={board.SubBoards}
+            guide={board.guide}
+          />
           {/* <ViewBoard data={board.grid} /> */}
         </div>
       </div>

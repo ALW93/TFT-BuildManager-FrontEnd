@@ -6,6 +6,9 @@
 
 .boards {
   z-index: 2;
+
+  width: 80%;
+  padding: 0 5% 0 5%;
 }
 
 .background {
