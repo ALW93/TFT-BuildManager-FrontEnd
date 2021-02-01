@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SelectionPool, GUI, ItemPool } from "./Tools";
 import { useDispatch } from "react-redux";
-import { TFT_BASE } from "../config";
 import { useHistory } from "react-router-dom";
 import { addBoard } from "../store/actions/editor";
 import Node from "./Node";
@@ -12,7 +11,7 @@ import { champions as champPool } from "../set4update/set4";
 import { items as itemPool } from "../set4/set4";
 import "./Builder.css";
 import Synergies from "./Synergies";
-import { createBoard } from "./BoardService";
+import { createBoard } from "../store/actions/board";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -65,8 +64,8 @@ const NewBuilder = ({ type, showBuilder }) => {
       subtitle: subtitle,
     };
     if (type === "normal") {
-      const data = await createBoard(info);
-      const id = await data.newBoard.id;
+      const data = await dispatch(createBoard(info));
+      const id = await data.id;
       history.push(`/board/id/${id}`);
     } else {
       dispatch(addBoard(info));
