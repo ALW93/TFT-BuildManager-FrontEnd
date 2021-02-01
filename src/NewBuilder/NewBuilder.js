@@ -67,7 +67,8 @@ const NewBuilder = ({ type }) => {
       const id = await data.id;
       history.push(`/board/id/${id}`);
     } else {
-      console.log({ ...info, boardId: prevId.id });
+      await dispatch(createSub({ ...info, boardId: prevId.id }));
+      history.push(`/board/id/${prevId.id}`);
     }
   };
 
