@@ -18,11 +18,7 @@ export default function reducer(state = { boards: {} }, action) {
       });
       return { ...state, boards: obj };
     }
-    case UPDATE_BOARD: {
-      let newBoards = state.boards;
-      newBoards[action.payload.id].guide = action.payload.content;
-      return { ...state, boards: newBoards };
-    }
+
     default:
       return state;
   }

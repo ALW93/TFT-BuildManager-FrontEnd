@@ -131,7 +131,11 @@ export default function BoardCarousel({
           >
             Submit
           </Button>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => showEditor(false)}
+          >
             Cancel
           </Button>
         </TabPanel>

@@ -13,6 +13,9 @@ export const InteriorSwitch = () => (
     <Route exact path="/board-create">
       <NewBuilder type="normal" />
     </Route>
+    <Route exact path="/subboard-create">
+      <NewBuilder type="subboard" />
+    </Route>
     <Route exact path="/guide-create" component={GuideBuilder} />
     <Route exact path="/guide-create/add">
       <NewBuilder type="add" />

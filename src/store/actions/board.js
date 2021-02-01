@@ -6,7 +6,6 @@ export const UPDATE_BOARD = "tft-buildmanager/info/UPDATE_BOARD";
 
 export const newBoard = (payload) => ({ type: CREATE_BOARD, payload });
 export const delBoard = (id) => ({ type: DELETE_BOARD, id });
-export const updateBoard = (payload) => ({ type: UPDATE_BOARD, payload });
 
 const token = window.localStorage.getItem("TOKEN_KEY");
 

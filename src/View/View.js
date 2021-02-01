@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TFT_BASE, IMG_API } from "../config";
 import "./View.css";
 import { DateTime } from "luxon";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import BoardCarousel from "./BoardCarousel";
 import { deleteBoard } from "../store/actions/board";
@@ -54,7 +54,9 @@ const View = ({ match }) => {
         {owner ? (
           <>
             <button onClick={() => showEditor(true)}>Guide Editor</button>
-            <button>Add a Board</button>
+            <Link to="/subboard-create">
+              <button>Add a Board</button>
+            </Link>
             <button onClick={delBoard}>Delete</button>
           </>
         ) : null}
