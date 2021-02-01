@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import BoardCarousel from "./BoardCarousel";
 import { deleteBoard } from "../store/actions/board";
 
-const View = ({ match }) => {
+const View = ({ match, location }) => {
   const buildId = match.params.id;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -54,7 +54,7 @@ const View = ({ match }) => {
         {owner ? (
           <>
             <button onClick={() => showEditor(true)}>Guide Editor</button>
-            <Link to="/subboard-create">
+            <Link to={`/board/id/${board.id}/new_sub`}>
               <button>Add a Board</button>
             </Link>
             <button onClick={delBoard}>Delete</button>

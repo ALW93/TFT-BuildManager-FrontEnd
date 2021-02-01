@@ -66,3 +66,17 @@ export const deleteBoard = (boardId) => async (dispatch) => {
   });
   dispatch(delBoard(boardId));
 };
+
+// ** PUBLISH A NEW SUBBOARD ***
+export const createSub = (payload) => async (dispatch) => {
+  const response = await fetch(`${TFT_BASE}/boards/id/${payload.id}/subBoard`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  return data.newSub;
+};
