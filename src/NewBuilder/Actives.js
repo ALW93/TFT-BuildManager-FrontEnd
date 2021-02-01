@@ -5,9 +5,9 @@ export const displayActive = (actives, tiers) => {
     <div className="flex">
       {tiers.map((e) => {
         if (actives >= e) {
-          return <h3>{e}</h3>;
+          return <h3 className="glowHead">{e}</h3>;
         } else {
-          return <h3 style={{ color: "darkgrey" }}>{e}</h3>;
+          return <h3 className="goldHead">{e}</h3>;
         }
       })}
     </div>

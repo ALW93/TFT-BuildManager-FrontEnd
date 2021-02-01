@@ -1,12 +1,16 @@
 import { TFT_BASE } from "../../config";
-export const SET_BOARDS = "tft-buildmanager/authentication/SET_BOARDS";
-export const SET_GUIDES = "tft-buildmanager/authentication/SET_GUIDES";
-export const SET_COMMENTS = "tft-buildmanager/authentication/SET_COMMENTS";
 
-export const setBoards = (payload) => ({ type: SET_BOARDS, payload });
-export const setGuides = (payload) => ({ type: SET_GUIDES, payload });
+export const CREATE_BOARD = "tft-buildmanager/info/CREATE_BOARD";
+export const DELETE_BOARD = "tft-buildmanager/info/DELETE_BOARD";
 
-export const addBoard = (id, boardId, token) => async (dispatch) => {
+export const newBoard = (payload) => ({ type: CREATE_BOARD, payload });
+export const delBoard = (id) => ({ type: DELETE_BOARD, id });
+
+const token = window.localStorage.getItem("TOKEN_KEY");
+
+// *** ADD BOARD TO COLLECTION ***
+export const addBoard = (id, boardId, data) => async (dispatch) => {
+  console.log(token);
   const response = await fetch(`${TFT_BASE}/users/id/${id}/boards`, {
     method: "POST",
     headers: {
@@ -16,13 +20,13 @@ export const addBoard = (id, boardId, token) => async (dispatch) => {
     body: JSON.stringify({ boardId }),
   });
   if (response.ok) {
+    dispatch(newBoard(data));
     return response;
-  } else {
-    return "error";
   }
 };
 
-export const removeBoard = (id, boardId, token) => async (dispatch) => {
+// *** REMOVE BOARD FROM COLLECTION ***
+export const removeBoard = (id, boardId) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/id/${id}/boards`, {
     method: "DELETE",
     headers: {
@@ -31,9 +35,27 @@ export const removeBoard = (id, boardId, token) => async (dispatch) => {
     },
     body: JSON.stringify({ boardId }),
   });
+  console.log(boardId);
+  dispatch(delBoard(boardId));
 };
 
-export const deleteBoard = (boardId, token) => async (dispatch) => {
+// ** PUBLISH A NEW BOARD ***
+export const createBoard = (payload) => async (dispatch) => {
+  const response = await fetch(`${TFT_BASE}/boards`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  dispatch(newBoard(data.newBoard));
+  return data.newBoard;
+};
+
+// *** DELETE OWN PUBLISHED BOARD ***
+export const deleteBoard = (boardId) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/boards/id/${boardId}`, {
     method: "DELETE",
     headers: {
@@ -41,4 +63,5 @@ export const deleteBoard = (boardId, token) => async (dispatch) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  dispatch(delBoard(boardId));
 };

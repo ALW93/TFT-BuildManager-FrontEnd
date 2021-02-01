@@ -73,21 +73,19 @@ export const GUI = ({ filter, setFilter }) => {
 
   return (
     <div>
-      <div>
-        {Object.keys(costs).map((cost) => {
-          return (
-            <>
-              <Radio
-                checked={filter.cost === costs[cost]}
-                onChange={costHandler}
-                value={costs[cost]}
-                name="radio-button-demo"
-              />
-              <label>{cost}</label>
-            </>
-          );
-        })}
-      </div>
+      {Object.keys(costs).map((cost) => {
+        return (
+          <>
+            <Radio
+              checked={filter.cost === costs[cost]}
+              onChange={costHandler}
+              value={costs[cost]}
+              name="radio-button-demo"
+            />
+            <label className="glowHead">{cost}</label>
+          </>
+        );
+      })}
     </div>
   );
 };
