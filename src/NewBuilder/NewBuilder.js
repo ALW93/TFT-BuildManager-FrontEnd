@@ -195,7 +195,7 @@ const NewBuilder = ({ type, showBuilder }) => {
 
   return (
     <div className="Builder__Container">
-      <div className="flex">
+      <div className="flex" style={{ justifyContent: "center" }}>
         <div>
           <label className="glowHead">Title</label>
           <input
