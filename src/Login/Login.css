@@ -25,7 +25,8 @@ form {
 
 .logIn__right {
   position: absolute;
-  background-color: white;
+  background-color: rgb(255, 243, 228);
+  padding-top: 11%;
   width: 28%;
   height: 100%;
   z-index: 2;
