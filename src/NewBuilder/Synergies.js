@@ -52,10 +52,13 @@ const Synergies = ({ data, actives, setActives }) => {
                   width: "25px",
                   height: "25px",
                   marginRight: "5px",
+                  filter: "drop-shadow(16px 16px 20px blue) invert(85%)",
                 }}
               />
 
-              <h3 style={{ marginRight: "5px" }}>{trait}</h3>
+              <h3 style={{ marginRight: "5px" }} className="glowHead">
+                {trait}
+              </h3>
               {displayActive(actives[e], activeTraits[e])}
             </div>
           );

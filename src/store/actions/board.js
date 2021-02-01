@@ -10,6 +10,7 @@ const token = window.localStorage.getItem("TOKEN_KEY");
 
 // *** ADD BOARD TO COLLECTION ***
 export const addBoard = (id, boardId, data) => async (dispatch) => {
+  console.log(token);
   const response = await fetch(`${TFT_BASE}/users/id/${id}/boards`, {
     method: "POST",
     headers: {
@@ -34,6 +35,8 @@ export const removeBoard = (id, boardId) => async (dispatch) => {
     },
     body: JSON.stringify({ boardId }),
   });
+  console.log(boardId);
+  dispatch(delBoard(boardId));
 };
 
 // ** PUBLISH A NEW BOARD ***
