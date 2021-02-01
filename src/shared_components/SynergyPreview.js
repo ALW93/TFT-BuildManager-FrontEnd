@@ -8,12 +8,12 @@ const SynergyPreview = ({ synergies }) => {
           let name = e.toLowerCase();
           if (name.includes("set4_")) name = name.replace("set4_", "");
           return (
-            <div className="flex">
-              <p>{synergies[e]}</p>
+            <div className="flex al_c">
               <img
                 src={`${require(`../Assets/traits/${name}.svg`)}`}
-                style={{ width: "22px", height: "22px" }}
+                style={{ width: "22px", height: "22px", margin: "2px" }}
               />
+              <p>{synergies[e]}</p>
             </div>
           );
         })}

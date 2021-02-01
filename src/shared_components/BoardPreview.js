@@ -284,7 +284,7 @@ const BoardPreview = ({ id, data }) => {
               <h3 className="no_m">{data.subtitle}</h3>
             </div>
           </div>
-          <div className="flex">
+          <div className="flex als_c">
             {data.grid.map((e) => {
               return (
                 <div>
@@ -292,7 +292,7 @@ const BoardPreview = ({ id, data }) => {
                     src={require(`../Assets/champions/${e.id}.png`)}
                     className="champPreview"
                   />
-                  <div className="flex">
+                  <div className="flex ">
                     {e.items && itemRef
                       ? e.items.map((e) => (
                           <img
