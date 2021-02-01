@@ -9,7 +9,7 @@ export const delBoard = (id) => ({ type: DELETE_BOARD, id });
 const token = window.localStorage.getItem("TOKEN_KEY");
 
 // *** ADD BOARD TO COLLECTION ***
-export const addBoard = (id, boardId, token) => async (dispatch) => {
+export const addBoard = (id, boardId, data) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/id/${id}/boards`, {
     method: "POST",
     headers: {
@@ -19,12 +19,13 @@ export const addBoard = (id, boardId, token) => async (dispatch) => {
     body: JSON.stringify({ boardId }),
   });
   if (response.ok) {
+    dispatch(newBoard(data));
     return response;
   }
 };
 
 // *** REMOVE BOARD FROM COLLECTION ***
-export const removeBoard = (id, boardId, token) => async (dispatch) => {
+export const removeBoard = (id, boardId) => async (dispatch) => {
   const response = await fetch(`${TFT_BASE}/users/id/${id}/boards`, {
     method: "DELETE",
     headers: {
@@ -59,6 +60,5 @@ export const deleteBoard = (boardId) => async (dispatch) => {
       Authorization: `Bearer ${token}`,
     },
   });
-
   dispatch(delBoard(boardId));
 };
