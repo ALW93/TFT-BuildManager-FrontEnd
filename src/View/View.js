@@ -15,6 +15,8 @@ const View = ({ match }) => {
   const [author, setAuthor] = useState({});
   const [date, setDate] = useState("");
   const [owner, setOwner] = useState(false);
+  const [editor, showEditor] = useState(false);
+  const [id, setId] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -24,6 +26,7 @@ const View = ({ match }) => {
       const parsedDate = new DateTime(data.createdAt).toLocaleString(
         DateTime.DATE_FULL
       );
+      setId(buildId);
       setBoard(data);
       setOwner(parseInt(id) === data.authorId);
       setAuthor(data.Creator);
@@ -50,7 +53,7 @@ const View = ({ match }) => {
         <h4 className="goldHead">Last Updated {date}</h4>
         {owner ? (
           <>
-            <button>Guide Editor</button>
+            <button onClick={() => showEditor(true)}>Guide Editor</button>
             <button>Add a Board</button>
             <button onClick={delBoard}>Delete</button>
           </>
@@ -65,6 +68,8 @@ const View = ({ match }) => {
             subs={board.SubBoards}
             guide={board.guide}
             owner={owner}
+            editor={editor}
+            buildId={id}
           />
         </div>
       </div>

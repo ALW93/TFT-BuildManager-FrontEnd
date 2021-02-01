@@ -71,6 +71,10 @@ a {
   justify-content: space-between;
 }
 
+.jc_sa {
+  justify-content: space-around;
+}
+
 .b1 {
   border: 3px solid red;
 }
@@ -79,6 +83,15 @@ a {
   border: 3px solid blue;
 }
 
+/* width tools */
+
+.w10 {
+  width: 10%;
+}
+
+.w20 {
+  width: 20%;
+}
 .w50 {
   width: 50%;
 }
@@ -90,6 +103,10 @@ a {
 /* align-items */
 .al_c {
   align-items: center;
+}
+
+.jc_c {
+  justify-content: center;
 }
 
 /* margin tools */

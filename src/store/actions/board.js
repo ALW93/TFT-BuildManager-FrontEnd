@@ -65,3 +65,15 @@ export const deleteBoard = (boardId) => async (dispatch) => {
   });
   dispatch(delBoard(boardId));
 };
+
+// *** ADD/EDIT GUIDE FOR BOARD ***
+export const updateGuide = (boardId, content) => async (dispatch) => {
+  const response = await fetch(`${TFT_BASE}/boards/id/${boardId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(content),
+  });
+};
