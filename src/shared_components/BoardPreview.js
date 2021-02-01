@@ -324,27 +324,30 @@ const BoardPreview = ({ id, data }) => {
                   View Full Guide
                 </Button>
               </Link>
-              <h1>Carries</h1>
-              {data.grid
-                .filter((e) => e.items)
-                .map((e) => {
-                  return (
-                    <div>
-                      <img
-                        src={require(`../Assets/champions/${e.id}.png`)}
-                        className="champPreview"
-                      />
-                      {e.items.map((item) => {
-                        return (
-                          <img
-                            src={require(`../Assets/items/${itemRef[item].image}`)}
-                            className="champPreview"
-                          />
-                        );
-                      })}
-                    </div>
-                  );
-                })}
+              <h2>Carries</h2>
+              <div>
+                {data.grid
+                  .filter((e) => e.items)
+                  .map((e) => {
+                    return (
+                      <div className="flex al_c">
+                        <img
+                          src={require(`../Assets/champions/${e.id}.png`)}
+                          className="carryPreview"
+                        />
+
+                        {e.items.map((item) => {
+                          return (
+                            <img
+                              src={require(`../Assets/items/${itemRef[item].image}`)}
+                              className="carryItems"
+                            />
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </Grow>
