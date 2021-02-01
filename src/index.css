@@ -62,8 +62,13 @@ a {
   color: inherit;
 }
 
+/* flex actions */
 .flex {
   display: flex;
+}
+
+.jc_sb {
+  justify-content: space-between;
 }
 
 .b1 {
@@ -85,4 +90,9 @@ a {
 /* align-items */
 .al_c {
   align-items: center;
+}
+
+/* margin tools */
+.no_m {
+  margin: 0;
 }

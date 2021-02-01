@@ -3,8 +3,12 @@
   border: 1px solid #9e6c36;
   min-width: 90%;
   border-radius: 5px;
-  padding: 5px;
+  padding: 20px;
   background: rgb(255, 243, 228);
+}
+
+.preview__mid {
+  text-align: left;
 }
 
 .champPreview {

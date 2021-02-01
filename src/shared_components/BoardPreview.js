@@ -5,7 +5,7 @@ import ActionButtons from "./BoardButtons";
 import SynergyPreview from "./SynergyPreview";
 import { Link } from "react-router-dom";
 import "./BoardPreview.css";
-import Grow from "@material-ui/core/Grow";
+import { Grow, Button } from "@material-ui/core";
 
 const itemRef = {
   DB: {
@@ -274,33 +274,37 @@ const BoardPreview = ({ id, data }) => {
     <div>
       <div onClick={toggleView} className="Preview">
         {data ? (
-          <div className="flex">
-            <ActionButtons user={user} boardId={id} data={data} />
-            <div>
-              <SynergyPreview synergies={data.actives} />
-              <h2 className="goldHead">{data.title}</h2>
-              <h3>{data.subtitle}</h3>
+          <div className="flex jc_sb">
+            <div className="flex">
+              <ActionButtons user={user} boardId={id} data={data} />
+              <div className="preview__mid">
+                <SynergyPreview synergies={data.actives} />
+                <h2 className="goldHead no_m">{data.title}</h2>
+                <h3 className="no_m">{data.subtitle}</h3>
+              </div>
             </div>
-            {data.grid.map((e) => {
-              return (
-                <div>
-                  <img
-                    src={require(`../Assets/champions/${e.id}.png`)}
-                    className="champPreview"
-                  />
-                  <div className="flex">
-                    {e.items && itemRef
-                      ? e.items.map((e) => (
-                          <img
-                            src={require(`../Assets/items/${itemRef[e].image}`)}
-                            className="itemPreview"
-                          />
-                        ))
-                      : null}
+            <div className="flex">
+              {data.grid.map((e) => {
+                return (
+                  <div>
+                    <img
+                      src={require(`../Assets/champions/${e.id}.png`)}
+                      className="champPreview"
+                    />
+                    <div className="flex">
+                      {e.items && itemRef
+                        ? e.items.map((e) => (
+                            <img
+                              src={require(`../Assets/items/${itemRef[e].image}`)}
+                              className="itemPreview"
+                            />
+                          ))
+                        : null}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         ) : null}
         {toggle ? (
@@ -314,6 +318,11 @@ const BoardPreview = ({ id, data }) => {
                 <ViewBoard data={data.grid} />
               </div>
               <div>
+                <Link to={`/board/id/${id}`}>
+                  <Button variant="contained" color="primary">
+                    View Full Guide
+                  </Button>
+                </Link>
                 <h1>Carries</h1>
                 {data.grid
                   .filter((e) => e.items)
@@ -335,9 +344,6 @@ const BoardPreview = ({ id, data }) => {
                       </div>
                     );
                   })}
-                <Link to={`/board/id/${id}`}>
-                  <button>View Full Guide</button>
-                </Link>
               </div>
             </div>
           </Grow>
