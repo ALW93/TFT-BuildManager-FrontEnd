@@ -1,5 +1,5 @@
 import { SET_BOARDS } from "../actions/authentication";
-import { DELETE_BOARD, CREATE_BOARD } from "../actions/board";
+import { DELETE_BOARD, CREATE_BOARD, UPDATE_BOARD } from "../actions/board";
 
 export default function reducer(state = { boards: {} }, action) {
   switch (action.type) {
@@ -17,6 +17,11 @@ export default function reducer(state = { boards: {} }, action) {
         if (parseInt(id) !== action.id) obj[id] = state.boards[id];
       });
       return { ...state, boards: obj };
+    }
+    case UPDATE_BOARD: {
+      let newBoards = state.boards;
+      newBoards[action.payload.id].guide = action.payload.content;
+      return { ...state, boards: newBoards };
     }
     default:
       return state;

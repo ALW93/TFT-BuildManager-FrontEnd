@@ -11,6 +11,7 @@ import Box from "@material-ui/core/Box";
 import ViewBoard from "./ViewBoard";
 import { Button } from "@material-ui/core";
 import { TFT_BASE } from "../config";
+import { updateBoard } from "../store/actions/board";
 
 //#region
 function TabPanel(props) {
@@ -59,15 +60,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 //#endregion
 
-export default function BoardCarousel({ main, subs, guide, editor, buildId }) {
+export default function BoardCarousel({
+  main,
+  subs,
+  guide,
+  editor,
+  buildId,
+  showEditor,
+}) {
   const quill = createRef();
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [content, setContent] = useState([]);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(updateGuide(buildId, { content: "test" }));
     const sendUpdate = async () => {
       const response = await fetch(`${TFT_BASE}/boards/id/${buildId}`, {
         method: "PUT",
@@ -77,7 +83,8 @@ export default function BoardCarousel({ main, subs, guide, editor, buildId }) {
         body: JSON.stringify({ content: content }),
       });
       const data = await response.json();
-      console.log(data);
+
+      showEditor(false);
     };
     sendUpdate();
   }, [content]);
@@ -86,10 +93,11 @@ export default function BoardCarousel({ main, subs, guide, editor, buildId }) {
     setValue(newValue);
   };
 
-  const updateGuide = () => {
+  const updateGuide = (e) => {
+    e.preventDefault();
     const target = quill.current.getEditor();
-    const content = target.editor.delta.ops;
-    setContent(content);
+    const change = target.editor.delta.ops;
+    setContent(change);
   };
 
   return (
@@ -119,7 +127,7 @@ export default function BoardCarousel({ main, subs, guide, editor, buildId }) {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => updateGuide()}
+            onClick={(e) => updateGuide(e)}
           >
             Submit
           </Button>

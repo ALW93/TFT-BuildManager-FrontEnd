@@ -32,7 +32,7 @@ const View = ({ match }) => {
       setAuthor(data.Creator);
       setDate(parsedDate);
     })();
-  }, []);
+  }, [editor]);
 
   const delBoard = () => {
     if (window.confirm(`Are you sure you want to delete ${board.title}?`)) {
@@ -70,6 +70,8 @@ const View = ({ match }) => {
             owner={owner}
             editor={editor}
             buildId={id}
+            setBoard={setBoard}
+            showEditor={showEditor}
           />
         </div>
       </div>
