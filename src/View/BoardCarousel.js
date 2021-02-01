@@ -76,7 +76,8 @@ export default function BoardCarousel({ main, subs, guide, editor, buildId }) {
         },
         body: JSON.stringify({ content: content }),
       });
-      console.log(response);
+      const data = await response.json();
+      console.log(data);
     };
     sendUpdate();
   }, [content]);
