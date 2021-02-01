@@ -62,8 +62,17 @@ a {
   color: inherit;
 }
 
+/* flex actions */
 .flex {
   display: flex;
+}
+
+.jc_sb {
+  justify-content: space-between;
+}
+
+.jc_sa {
+  justify-content: space-around;
 }
 
 .b1 {
@@ -74,6 +83,15 @@ a {
   border: 3px solid blue;
 }
 
+/* width tools */
+
+.w10 {
+  width: 10%;
+}
+
+.w20 {
+  width: 20%;
+}
 .w50 {
   width: 50%;
 }
@@ -85,4 +103,13 @@ a {
 /* align-items */
 .al_c {
   align-items: center;
+}
+
+.jc_c {
+  justify-content: center;
+}
+
+/* margin tools */
+.no_m {
+  margin: 0;
 }

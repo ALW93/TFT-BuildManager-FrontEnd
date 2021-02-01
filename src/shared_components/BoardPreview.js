@@ -5,7 +5,7 @@ import ActionButtons from "./BoardButtons";
 import SynergyPreview from "./SynergyPreview";
 import { Link } from "react-router-dom";
 import "./BoardPreview.css";
-import Grow from "@material-ui/core/Grow";
+import { Grow, Button } from "@material-ui/core";
 
 const itemRef = {
   DB: {
@@ -271,16 +271,20 @@ const BoardPreview = ({ id, data }) => {
   };
 
   return (
-    <div>
-      <div onClick={toggleView} className="Preview">
-        {data ? (
-          <div className="flex">
+    <div onClick={toggleView} className="Preview">
+      {data ? (
+        <div className="flex jc_sb">
+          <div style={{ placeSelf: "center", marginRight: "10px" }}>
             <ActionButtons user={user} boardId={id} data={data} />
-            <div>
+          </div>
+          <div className="flex w50">
+            <div className="preview__mid">
               <SynergyPreview synergies={data.actives} />
-              <h2 className="goldHead">{data.title}</h2>
-              <h3>{data.subtitle}</h3>
+              <h2 className="goldHead no_m">{data.title}</h2>
+              <h3 className="no_m">{data.subtitle}</h3>
             </div>
+          </div>
+          <div className="flex">
             {data.grid.map((e) => {
               return (
                 <div>
@@ -302,47 +306,49 @@ const BoardPreview = ({ id, data }) => {
               );
             })}
           </div>
-        ) : null}
-        {toggle ? (
-          <Grow direction="down" in={toggle} mountOnEnter unmountOnExit>
-            <div className="flex">
-              <div
-                style={{
-                  fontSize: "0.9em",
-                }}
-              >
-                <ViewBoard data={data.grid} />
-              </div>
-              <div>
-                <h1>Carries</h1>
-                {data.grid
-                  .filter((e) => e.items)
-                  .map((e) => {
-                    return (
-                      <div>
-                        <img
-                          src={require(`../Assets/champions/${e.id}.png`)}
-                          className="champPreview"
-                        />
-                        {e.items.map((item) => {
-                          return (
-                            <img
-                              src={require(`../Assets/items/${itemRef[item].image}`)}
-                              className="champPreview"
-                            />
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-                <Link to={`/board/id/${id}`}>
-                  <button>View Full Guide</button>
-                </Link>
-              </div>
+        </div>
+      ) : null}
+      {toggle ? (
+        <Grow direction="down" in={toggle} mountOnEnter unmountOnExit>
+          <div className="flex jc_sa" style={{ marginTop: "5%" }}>
+            <div
+              style={{
+                fontSize: "0.9em",
+              }}
+            >
+              <ViewBoard data={data.grid} />
             </div>
-          </Grow>
-        ) : null}
-      </div>
+            <div>
+              <Link to={`/board/id/${id}`}>
+                <Button variant="contained" color="primary">
+                  View Full Guide
+                </Button>
+              </Link>
+              <h1>Carries</h1>
+              {data.grid
+                .filter((e) => e.items)
+                .map((e) => {
+                  return (
+                    <div>
+                      <img
+                        src={require(`../Assets/champions/${e.id}.png`)}
+                        className="champPreview"
+                      />
+                      {e.items.map((item) => {
+                        return (
+                          <img
+                            src={require(`../Assets/items/${itemRef[item].image}`)}
+                            className="champPreview"
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        </Grow>
+      ) : null}
     </div>
   );
 };
