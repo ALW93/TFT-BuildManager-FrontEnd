@@ -59,7 +59,7 @@ const NewBuilder = ({ type }) => {
       authorId: user.id,
       grid: reduced,
       actives: actives,
-      title: title,
+      title: title || "Untitled Board",
       subtitle: subtitle,
     };
     if (type === "normal") {

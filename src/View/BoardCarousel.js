@@ -1,6 +1,5 @@
 import React, { useState, createRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -11,7 +10,6 @@ import Box from "@material-ui/core/Box";
 import ViewBoard from "./ViewBoard";
 import { Button } from "@material-ui/core";
 import { TFT_BASE } from "../config";
-import { updateBoard } from "../store/actions/board";
 
 //#region
 function TabPanel(props) {
@@ -88,6 +86,14 @@ export default function BoardCarousel({
     };
     sendUpdate();
   }, [content]);
+
+  useEffect(() => {
+    if (!guide) setValue(1);
+  }, [guide]);
+
+  useEffect(() => {
+    if (editor) setValue(0);
+  }, [editor]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
