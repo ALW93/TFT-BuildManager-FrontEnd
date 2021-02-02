@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import BoardCarousel from "./BoardCarousel";
+import { Button } from "@material-ui/core";
 import { deleteBoard } from "../store/actions/board";
 
 const View = ({ match, location }) => {
@@ -16,6 +17,7 @@ const View = ({ match, location }) => {
   const [date, setDate] = useState("");
   const [owner, setOwner] = useState(false);
   const [editor, showEditor] = useState(false);
+  const [cover, setCover] = useState("Azir");
   const [id, setId] = useState("");
 
   useEffect(() => {
@@ -26,11 +28,14 @@ const View = ({ match, location }) => {
       const parsedDate = new DateTime(data.createdAt).toLocaleString(
         DateTime.DATE_FULL
       );
+      let coverChamp = data.grid[0].id;
+      if (coverChamp.indexOf("TFT4_") > -1) coverChamp = coverChamp.slice(5);
       setId(buildId);
       setBoard(data);
       setOwner(parseInt(id) === data.authorId);
       setAuthor(data.Creator);
       setDate(parsedDate);
+      setCover(coverChamp);
     })();
   }, [editor]);
 
@@ -45,7 +50,7 @@ const View = ({ match, location }) => {
     <div className="boardview__container">
       <div
         className="background"
-        style={{ backgroundImage: `url(${IMG_API}/Azir.jpg)` }}
+        style={{ backgroundImage: `url(${IMG_API}/${cover}.jpg)` }}
       />
       <div className="boards">
         <h2 className="glowHead">{board.title}</h2>
@@ -53,11 +58,15 @@ const View = ({ match, location }) => {
         <h4 className="goldHead">Last Updated {date}</h4>
         {owner ? (
           <>
-            <button onClick={() => showEditor(true)}>Guide Editor</button>
+            <Button variant="contained" onClick={() => showEditor(true)}>
+              Edit Guide
+            </Button>
             <Link to={`/board/id/${board.id}/new_sub`}>
-              <button>Add a Board</button>
+              <Button variant="contained">Add Board</Button>
             </Link>
-            <button onClick={delBoard}>Delete</button>
+            <Button variant="contained" onClick={delBoard}>
+              Delete Guide
+            </Button>
           </>
         ) : null}
         <div

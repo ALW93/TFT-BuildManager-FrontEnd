@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Profile from "../Profile/ProfilePage";
 import NewBuilder from "../NewBuilder/NewBuilder";
 import HomePage from "../Home/HomePage";
-import GuideBuilder from "../GuideBuilder/GuideBuilder";
+
 import BoardCollection from "../Profile/BoardCollection";
 
 export const InteriorSwitch = () => (
@@ -15,10 +15,6 @@ export const InteriorSwitch = () => (
     </Route>
     <Route exact path="/board/id/:id/new_sub">
       <NewBuilder type="subboard" />
-    </Route>
-    <Route exact path="/guide-create" component={GuideBuilder} />
-    <Route exact path="/guide-create/add">
-      <NewBuilder type="add" />
     </Route>
 
     <Route exact path="/profile/id/:id" component={Profile} />

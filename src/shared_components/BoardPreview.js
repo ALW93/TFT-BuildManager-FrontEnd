@@ -6,6 +6,7 @@ import SynergyPreview from "./SynergyPreview";
 import { Link } from "react-router-dom";
 import "./BoardPreview.css";
 import { Grow, Button } from "@material-ui/core";
+import { IMG_API } from "../config";
 
 const itemRef = {
   DB: {
