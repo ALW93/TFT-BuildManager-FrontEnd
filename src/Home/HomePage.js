@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./HomePage.css";
 import { TFT_BASE } from "../config";
+import { Button, makeStyles } from "@material-ui/core";
 import BoardPreview from "../shared_components/BoardPreview";
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    color: "rgb(255, 207, 148)",
+    textShadow: "0 0 3px rgb(210, 123, 17)",
+  },
+}));
+
 const HomePage = () => {
+  const classes = useStyles();
   const [meta, setMeta] = useState([]);
   const [community, setCommunity] = useState([]);
   const [view, setView] = useState(true);
@@ -24,8 +33,12 @@ const HomePage = () => {
     <div className="w100">
       <div style={{ width: "67%", marginLeft: "12%" }}>
         <div>
-          <button onClick={() => setView(true)}>Meta Builds</button>
-          <button onClick={() => setView(false)}>Community</button>
+          <Button className={classes.button} onClick={() => setView(true)}>
+            Meta Builds
+          </Button>
+          <Button className={classes.button} onClick={() => setView(false)}>
+            Community
+          </Button>
         </div>
         {view ? (
           <>

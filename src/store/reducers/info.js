@@ -1,5 +1,5 @@
 import { SET_BOARDS } from "../actions/authentication";
-import { DELETE_BOARD, CREATE_BOARD } from "../actions/board";
+import { DELETE_BOARD, CREATE_BOARD, UPDATE_BOARD } from "../actions/board";
 
 export default function reducer(state = { boards: {} }, action) {
   switch (action.type) {
@@ -18,6 +18,7 @@ export default function reducer(state = { boards: {} }, action) {
       });
       return { ...state, boards: obj };
     }
+
     default:
       return state;
   }

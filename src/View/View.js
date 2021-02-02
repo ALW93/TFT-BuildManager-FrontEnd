@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { TFT_BASE, IMG_API } from "../config";
 import "./View.css";
 import { DateTime } from "luxon";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import BoardCarousel from "./BoardCarousel";
 import { deleteBoard } from "../store/actions/board";
 
-const View = ({ match }) => {
+const View = ({ match, location }) => {
   const buildId = match.params.id;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -32,7 +32,7 @@ const View = ({ match }) => {
       setAuthor(data.Creator);
       setDate(parsedDate);
     })();
-  }, []);
+  }, [editor]);
 
   const delBoard = () => {
     if (window.confirm(`Are you sure you want to delete ${board.title}?`)) {
@@ -54,7 +54,9 @@ const View = ({ match }) => {
         {owner ? (
           <>
             <button onClick={() => showEditor(true)}>Guide Editor</button>
-            <button>Add a Board</button>
+            <Link to={`/board/id/${board.id}/new_sub`}>
+              <button>Add a Board</button>
+            </Link>
             <button onClick={delBoard}>Delete</button>
           </>
         ) : null}
@@ -70,6 +72,8 @@ const View = ({ match }) => {
             owner={owner}
             editor={editor}
             buildId={id}
+            setBoard={setBoard}
+            showEditor={showEditor}
           />
         </div>
       </div>

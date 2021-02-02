@@ -6,7 +6,6 @@ export const UPDATE_BOARD = "tft-buildmanager/info/UPDATE_BOARD";
 
 export const newBoard = (payload) => ({ type: CREATE_BOARD, payload });
 export const delBoard = (id) => ({ type: DELETE_BOARD, id });
-export const updateBoard = (payload) => ({ type: UPDATE_BOARD, payload });
 
 const token = window.localStorage.getItem("TOKEN_KEY");
 
@@ -66,4 +65,21 @@ export const deleteBoard = (boardId) => async (dispatch) => {
     },
   });
   dispatch(delBoard(boardId));
+};
+
+// ** PUBLISH A NEW SUBBOARD ***
+export const createSub = (payload) => async (dispatch) => {
+  const response = await fetch(
+    `${TFT_BASE}/boards/id/${payload.boardId}/subBoard`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    }
+  );
+  const data = await response.json();
+  return data.newSub;
 };

@@ -105,6 +105,10 @@ a {
   align-items: center;
 }
 
+.als_c {
+  align-self: center;
+}
+
 .jc_c {
   justify-content: center;
 }
@@ -112,4 +116,8 @@ a {
 /* margin tools */
 .no_m {
   margin: 0;
+}
+
+.pos_a {
+  position: absolute;
 }
