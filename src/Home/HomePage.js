@@ -24,14 +24,13 @@ const HomePage = () => {
       setMeta(data);
       const res = await fetch(`${TFT_BASE}/boards/community`);
       const parsed = await res.json();
-      console.log(parsed);
       setCommunity(parsed);
     })();
   }, []);
 
   return (
     <div className="w100">
-      <div style={{ width: "67%", marginLeft: "12%" }}>
+      <div style={{ width: "60%", margin: "auto" }}>
         <div>
           <Button className={classes.button} onClick={() => setView(true)}>
             Meta Builds
