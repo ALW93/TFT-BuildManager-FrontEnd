@@ -153,14 +153,17 @@ export default function BoardCarousel({
         </TabPanel>
       )}
 
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} style={{ width: "100%" }}>
+        <h2 className="title">Final Board</h2>
         <ViewBoard data={main} />
       </TabPanel>
       {subs &&
         subs.map((e, idx) => {
           return (
-            <TabPanel value={value} index={idx + 2}>
+            <TabPanel value={value} index={idx + 2} style={{ width: "100%" }}>
+              <h2 className="title">{e.title}</h2>
               <ViewBoard data={e.grid} />
+              <p className="subtitle">{e.subtitle}</p>
             </TabPanel>
           );
         })}

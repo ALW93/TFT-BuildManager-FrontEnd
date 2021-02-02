@@ -18,3 +18,11 @@
   overflow: hidden;
   mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1), transparent);
 }
+
+.subtitle {
+  margin-top: -5%;
+}
+
+.title {
+  margin-top: 0;
+}
